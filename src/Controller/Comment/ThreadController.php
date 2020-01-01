@@ -239,8 +239,7 @@ class ThreadController extends AbstractController
         $parent = null;
 
         if (null === $thread || null === $comment || $comment->getThread() !== $thread) {
-            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId,
-                $id));
+            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId, $id));
         }
 
         $ancestors = $comment->getAncestors();
@@ -275,8 +274,7 @@ class ThreadController extends AbstractController
         $comment = $commentManager->findCommentById($commentId);
 
         if (null === $thread || null === $comment || $comment->getThread() !== $thread) {
-            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId,
-                $id));
+            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId, $id));
         }
 
         $form = $this->createForm(DeleteCommentType::class, $comment, ['method' => 'DELETE']);
@@ -309,8 +307,7 @@ class ThreadController extends AbstractController
         $comment = $commentManager->findCommentById($commentId);
 
         if (null === $thread || null === $comment || $comment->getThread() !== $thread) {
-            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId,
-                $id));
+            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId, $id));
         }
 
         $form = $this->createForm(DeleteCommentType::class, $comment, ['method' => 'DELETE']);
@@ -346,8 +343,7 @@ class ThreadController extends AbstractController
         $comment = $commentManager->findCommentById($commentId);
 
         if (null === $thread || null === $comment || $comment->getThread() !== $thread) {
-            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId,
-                $id));
+            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId, $id));
         }
 
         $form = $this->createForm(CommentType::class, $comment, ['method' => 'PUT']);
@@ -378,8 +374,7 @@ class ThreadController extends AbstractController
         $comment = $commentManager->findCommentById($commentId);
 
         if (null === $thread || null === $comment || $comment->getThread() !== $thread) {
-            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId,
-                $id));
+            throw new NotFoundHttpException(sprintf("No comment with id '%s' found for thread with id '%s'", $commentId, $id));
         }
 
         $form = $this->createForm(CommentType::class, $comment, ['method' => 'PUT']);
@@ -689,8 +684,7 @@ class ThreadController extends AbstractController
         if (null !== $commentId) {
             $comment = $commentManager->findCommentById($commentId);
             if (!$comment) {
-                throw new NotFoundHttpException(sprintf('Parent comment with identifier "%s" does not exist',
-                    $commentId));
+                throw new NotFoundHttpException(sprintf('Parent comment with identifier "%s" does not exist', $commentId));
             }
 
             if ($comment->getThread() !== $thread) {
