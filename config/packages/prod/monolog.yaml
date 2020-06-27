@@ -4,9 +4,7 @@ monolog:
             type: fingers_crossed
             action_level: error
             handler: grouped
-            excluded_404s:
-                # regex: exclude all 404 errors from the logs
-                - ^/
+            excluded_http_codes: [401, 403, 404, 405]
         grouped:
             type: group
             members: [nested, buffered]
