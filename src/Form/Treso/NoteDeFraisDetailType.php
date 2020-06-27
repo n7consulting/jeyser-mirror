@@ -27,7 +27,9 @@ class NoteDeFraisDetailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('description', TextareaType::class,
+        $builder->add(
+            'description',
+            TextareaType::class,
             ['label' => 'Description de la dépense',
              'required' => true,
              'attr' => [
@@ -40,8 +42,11 @@ class NoteDeFraisDetailType extends AbstractType
             ->add('tauxTVA', NumberType::class, ['label' => 'Taux TVA (%)', 'required' => false])
             ->add('kilometrage', IntegerType::class, ['label' => 'Nombre de Kilomètre', 'required' => false])
             ->add('tauxKm', IntegerType::class, ['label' => 'Prix au kilomètre (en cts)', 'required' => false])
-            ->add('type', ChoiceType::class,
-                ['choices' => array_flip(NoteDeFraisDetail::getTypeChoices()), 'required' => true])
+            ->add(
+                'type',
+                ChoiceType::class,
+                ['choices' => array_flip(NoteDeFraisDetail::getTypeChoices()), 'required' => true]
+            )
             ->add('compte', Select2EntityType::class, [
                 'class' => Compte::class,
                 'choice_label' => 'libelle',

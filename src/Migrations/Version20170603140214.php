@@ -16,8 +16,10 @@ class Version20170603140214 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         /*
          * Jeyser got migrations quite late in the project.
@@ -25,9 +27,11 @@ class Version20170603140214 extends AbstractMigration
          * is already there.
          * fetch() equals to an array if the column exist, and false otherwise.
          */
-        $this->skipIf(is_array($this->connection->executeQuery('SELECT * FROM AdminParam where name = "namingConvention"')
+        $this->skipIf(
+            is_array($this->connection->executeQuery('SELECT * FROM AdminParam where name = "namingConvention"')
             ->fetch()),
-            'namingConvention already in AdminParam table');
+            'namingConvention already in AdminParam table'
+        );
 
         $query = 'INSERT INTO `AdminParam` (`id`, `name`, `paramType`, `defaultValue`, `required`, `paramLabel`, 
 `paramDescription`, `priority`) VALUES (NULL, \'namingConvention\', \'string\', \'nom\', \'1\',
@@ -41,8 +45,10 @@ Accepte les valeurs numero ou nom\', \'820\')';
      */
     public function down(Schema $schema): void
     {
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('DELETE from AdminParam where name = "namingConvention"');
     }

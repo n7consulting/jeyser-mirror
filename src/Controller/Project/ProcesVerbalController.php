@@ -39,9 +39,12 @@ class ProcesVerbalController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function add(Request $request, Etude $etude, EtudePermissionChecker $permChecker,
-                              DocTypeManager $docTypeManager)
-    {
+    public function add(
+        Request $request,
+        Etude $etude,
+        EtudePermissionChecker $permChecker,
+        DocTypeManager $docTypeManager
+    ) {
         $em = $this->getDoctrine()->getManager();
 
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {
@@ -51,9 +54,12 @@ class ProcesVerbalController extends AbstractController
         $proces = new ProcesVerbal();
         $etude->addPvi($proces);
 
-        $form = $this->createForm(ProcesVerbalSubType::class, $proces,
+        $form = $this->createForm(
+            ProcesVerbalSubType::class,
+            $proces,
             ['type' => 'pvi', 'prospect' => $etude->getProspect(), 'phases' => count($etude->getPhases()->getValues()),
-            ]);
+            ]
+        );
         if ('POST' == $request->getMethod()) {
             $form->handleRequest($request);
 
@@ -84,9 +90,12 @@ class ProcesVerbalController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function modifier(Request $request, ProcesVerbal $procesverbal, EtudePermissionChecker $permChecker,
-                                   DocTypeManager $docTypeManager)
-    {
+    public function modifier(
+        Request $request,
+        ProcesVerbal $procesverbal,
+        EtudePermissionChecker $permChecker,
+        DocTypeManager $docTypeManager
+    ) {
         $em = $this->getDoctrine()->getManager();
 
         $etude = $procesverbal->getEtude();
@@ -95,10 +104,13 @@ class ProcesVerbalController extends AbstractController
             throw new AccessDeniedException('Cette étude est confidentielle');
         }
 
-        $form = $this->createForm(ProcesVerbalSubType::class, $procesverbal,
+        $form = $this->createForm(
+            ProcesVerbalSubType::class,
+            $procesverbal,
             ['type' => $procesverbal->getType(), 'prospect' => $procesverbal->getEtude()->getProspect(),
              'phases' => count($procesverbal->getEtude()->getPhases()->getValues()),
-            ]);
+            ]
+        );
         $deleteForm = $this->createDeleteForm($procesverbal->getId());
         if ('POST' == $request->getMethod()) {
             $form->handleRequest($request);
@@ -149,9 +161,12 @@ class ProcesVerbalController extends AbstractController
             $procesverbal->setType($type);
         }
 
-        $form = $this->createForm(ProcesVerbalType::class, $etude,
+        $form = $this->createForm(
+            ProcesVerbalType::class,
+            $etude,
             ['type' => $type, 'prospect' => $etude->getProspect(), 'phases' => count($etude->getPhases()->getValues()),
-            ]);
+            ]
+        );
         if ('POST' == $request->getMethod()) {
             $form->handleRequest($request);
 
@@ -164,7 +179,8 @@ class ProcesVerbalController extends AbstractController
             }
         }
 
-        return $this->render('Project/ProcesVerbal/rediger.html.twig',
+        return $this->render(
+            'Project/ProcesVerbal/rediger.html.twig',
             ['form' => $form->createView(), 'etude' => $etude, 'type' => $type]
         );
     }

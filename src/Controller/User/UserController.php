@@ -139,9 +139,12 @@ class UserController extends AbstractController
      *
      * @throws \Exception
      */
-    public function addUserFromPersonne(Request $request, Personne $personne, UserManagerInterface $userManager,
-                                              MailerInterface $mailer)
-    {
+    public function addUserFromPersonne(
+        Request $request,
+        Personne $personne,
+        UserManagerInterface $userManager,
+        MailerInterface $mailer
+    ) {
         $create_user_form = $this->createFormBuilder(['id' => $personne->getId()])
             ->add('id', HiddenType::class)
             ->getForm();

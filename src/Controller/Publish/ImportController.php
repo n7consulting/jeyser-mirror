@@ -28,7 +28,10 @@ class ImportController extends AbstractController
     public function index(Request $request, SiajeEtudeImporter $siajeImporter)
     {
         set_time_limit(0);
-        $form = $this->createFormBuilder([])->add('import_method', ChoiceType::class, ['label' => 'Type du fichier',
+        $form = $this->createFormBuilder([])->add(
+            'import_method',
+            ChoiceType::class,
+            ['label' => 'Type du fichier',
                 'required' => true,
                 'choices' => $this::AVAILABLE_FORMATS,
                 'choice_label' => function ($value) {

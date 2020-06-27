@@ -26,7 +26,9 @@ class ApType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('suiveur', Select2EntityType::class,
+        $builder->add(
+            'suiveur',
+            Select2EntityType::class,
             ['label' => 'Suiveur de projet',
              'class' => Personne::class,
              'choice_label' => 'prenomNom',
@@ -34,16 +36,21 @@ class ApType extends AbstractType
                  return $pr->getByMandatNonNulQueryBuilder();
              },
              'required' => false,
-            ])
+            ]
+        )
             ->add('ap', SubApType::class, ['label' => ' ', 'prospect' => $options['prospect']])
             ->add('fraisDossier', IntegerType::class, ['label' => 'Frais de dossier', 'required' => false])
-            ->add('presentationProjet', TextareaType::class,
+            ->add(
+                'presentationProjet',
+                TextareaType::class,
                 ['label' => 'Présentation du projet',
                  'required' => false,
                  'attr' => ['cols' => '100%', 'rows' => 5],
                 ]
             )
-            ->add('descriptionPrestation', TextareaType::class,
+            ->add(
+                'descriptionPrestation',
+                TextareaType::class,
                 ['label' => 'Description de la prestation proposée',
                  'required' => false,
                  'attr' => ['title' => "La phrase commence par 'N7 Consulting réalisera, pour le compte du Client, 
@@ -52,7 +59,8 @@ class ApType extends AbstractType
                             'cols' => '100%',
                             'rows' => 5,
                  ],
-                ])
+                ]
+            )
             ->add('competences', Select2EntityType::class, [
                 'class' => Competence::class,
                 'by_reference' => false,

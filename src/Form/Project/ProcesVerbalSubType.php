@@ -22,8 +22,11 @@ class ProcesVerbalSubType extends DocTypeType
     {
         $phaseNum = $options['phases'];
         if ('pvi' == $options['type']) {
-            $builder->add('phaseID', IntegerType::class,
-                ['label' => 'Phases concernées', 'required' => false, 'attr' => ['min' => '1', 'max' => $phaseNum]]);
+            $builder->add(
+                'phaseID',
+                IntegerType::class,
+                ['label' => 'Phases concernées', 'required' => false, 'attr' => ['min' => '1', 'max' => $phaseNum]]
+            );
         }
 
         DocTypeType::buildForm($builder, $options);

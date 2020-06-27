@@ -48,9 +48,13 @@ class RegistrationListener implements EventSubscriberInterface
         $message->setSubject('Jeyser CRM : Nouvel utilisateur ' . $event->getUser()->getUsername())
             ->setFrom(getenv('TECHNICAL_FROM'))
             ->setTo(getenv('TECHNICAL_TO'))
-            ->setBody($this->templating->render('bundles/FOSUserBundle/Default/alert-email.html.twig',
-                ['username' => $event->getUser()->getUsername(), 'email' => $event->getUser()->getEmail()]),
-                'text/html');
+            ->setBody(
+                $this->templating->render(
+                    'bundles/FOSUserBundle/Default/alert-email.html.twig',
+                    ['username' => $event->getUser()->getUsername(), 'email' => $event->getUser()->getEmail()]
+                ),
+                'text/html'
+            );
         $this->mailer->send($message);
     }
 }

@@ -33,7 +33,9 @@ class DocTypeType extends AbstractType
         // Version du document
         $builder->add('version', IntegerType::class, ['label' => 'Version du document']);
 
-        $builder->add('signataire1', Select2EntityType::class,
+        $builder->add(
+            'signataire1',
+            Select2EntityType::class,
             ['label' => 'Signataire Junior',
              'class' => Personne::class,
              'choice_label' => 'prenomNom',
@@ -41,7 +43,8 @@ class DocTypeType extends AbstractType
                  return $pr->getMembresByPoste('president%');
              },
              'required' => true,
-            ]);
+            ]
+        );
 
         // Si le document n'est ni une FactureVente ni un RM
         if (Mission::class != $options['data_class'] &&
@@ -51,12 +54,17 @@ class DocTypeType extends AbstractType
 
             $pro = $options['prospect'];
             if (Av::class != $options['data_class']) {
-                $builder->add('knownSignataire2', CheckboxType::class,
+                $builder->add(
+                    'knownSignataire2',
+                    CheckboxType::class,
                     [
                         'required' => false,
                         'label' => 'Le signataire client existe-t-il déjà dans la base de donnée ?',
-                    ])
-                    ->add('newSignataire2', EmployeType::class,
+                    ]
+                )
+                    ->add(
+                        'newSignataire2',
+                        EmployeType::class,
                         ['label' => 'Nouveau signataire ' . $pro->getNom(),
                          'required' => false,
                          'signataire' => true,
@@ -76,13 +84,16 @@ class DocTypeType extends AbstractType
             ]);
         }
 
-        $builder->add('dateSignature', DateType::class,
+        $builder->add(
+            'dateSignature',
+            DateType::class,
             ['label' => 'Date de Signature du document',
              'required' => false,
              'format' => 'dd/MM/yyyy',
              'widget' => 'single_text',
              'attr' => ['autocomplete' => 'off'],
-            ]);
+            ]
+        );
     }
 
     public function getBlockPrefix()

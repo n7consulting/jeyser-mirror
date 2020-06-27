@@ -49,9 +49,13 @@ class DocumentManager
      * @param TokenStorageInterface $tokenStorage
      * @param KernelInterface       $kernel
      */
-    public function __construct(ObjectManager $em, $juniorId, $authorizedStorageSize, TokenStorageInterface $tokenStorage,
-                                KernelInterface $kernel)
-    {
+    public function __construct(
+        ObjectManager $em,
+        $juniorId,
+        $authorizedStorageSize,
+        TokenStorageInterface $tokenStorage,
+        KernelInterface $kernel
+    ) {
         $this->em = $em;
         $this->junior_id = $juniorId;
         $this->junior_authorizedStorageSize = $authorizedStorageSize ?? 512000;
@@ -78,9 +82,13 @@ class DocumentManager
      *
      * @throws \Exception
      */
-    public function uploadDocumentFromUrl($url, array $authorizedMIMEType, $name, $relatedDocument = null,
-                                          $deleteIfExist = false)
-    {
+    public function uploadDocumentFromUrl(
+        $url,
+        array $authorizedMIMEType,
+        $name,
+        $relatedDocument = null,
+        $deleteIfExist = false
+    ) {
         $tempStorage = 'tmp/' . sha1(uniqid(mt_rand(), true));
 
         if (false === ($handle = @fopen($url, 'r'))) { // Erreur
@@ -113,9 +121,13 @@ class DocumentManager
      *
      * @throws \Exception
      */
-    public function uploadDocumentFromFile(UploadedFile $file, array $authorizedMIMEType, $name,
-                                           RelatedDocument $relatedDocument = null, $deleteIfExist = false)
-    {
+    public function uploadDocumentFromFile(
+        UploadedFile $file,
+        array $authorizedMIMEType,
+        $name,
+        RelatedDocument $relatedDocument = null,
+        $deleteIfExist = false
+    ) {
         $document = new Document();
 
         // MIME-type Check

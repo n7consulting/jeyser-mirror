@@ -38,7 +38,9 @@ class AddMembreFieldSubscriber implements EventSubscriberInterface
         // over the null condition.
 
         $user = $data;
-        $form->add('personne', Select2EntityType::class,
+        $form->add(
+            'personne',
+            Select2EntityType::class,
             ['label' => "Associer ce compte d'utilisateur à un membre existant",
              'class' => 'App\Entity\Personne\Personne',
              'choice_label' => 'prenomNom',
@@ -46,6 +48,7 @@ class AddMembreFieldSubscriber implements EventSubscriberInterface
              'query_builder' => function (PersonneRepository $pr) use ($user) {
                  return $pr->getMembreNotUser($user);
              },
-            ]);
+            ]
+        );
     }
 }

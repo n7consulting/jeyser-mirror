@@ -26,14 +26,23 @@ class CotisationURSSAFType extends AbstractType
     {
         $builder
             ->add('libelle', TextType::class, ['label' => 'Libelle'])
-            ->add('dateDebut', DateType::class,
-                ['label' => 'Applicable du', 'required' => true, 'widget' => 'single_text'])
-            ->add('dateFin', DateType::class,
-                ['label' => 'Applicable au', 'required' => true, 'widget' => 'single_text'])
+            ->add(
+                'dateDebut',
+                DateType::class,
+                ['label' => 'Applicable du', 'required' => true, 'widget' => 'single_text']
+            )
+            ->add(
+                'dateFin',
+                DateType::class,
+                ['label' => 'Applicable au', 'required' => true, 'widget' => 'single_text']
+            )
             ->add('tauxPartJE', PercentType::class, ['label' => 'Taux Part Junior', 'required' => false, 'scale' => 3])
             ->add('tauxPartEtu', PercentType::class, ['label' => 'Taux Part Etu', 'required' => false, 'scale' => 3])
-            ->add('surBaseURSSAF', CheckboxType::class,
-                ['label' => 'Est indexé sur la base URSSAF ?', 'required' => false])
+            ->add(
+                'surBaseURSSAF',
+                CheckboxType::class,
+                ['label' => 'Est indexé sur la base URSSAF ?', 'required' => false]
+            )
             ->add('deductible', CheckboxType::class, ['label' => 'Est déductible ?', 'required' => false]);
     }
 

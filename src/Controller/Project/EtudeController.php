@@ -225,7 +225,9 @@ class EtudeController extends AbstractController
             $this->addFlash('danger', 'Le formulaire contient des erreurs.');
         }
 
-        return $this->render('Project/Etude/ajouter.html.twig', [
+        return $this->render(
+            'Project/Etude/ajouter.html.twig',
+            [
                 'form' => $form->createView(),
             ]
         );
@@ -276,9 +278,12 @@ class EtudeController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function modifier(Request $request, Etude $etude, EtudePermissionChecker $permChecker,
-                             ValidatorInterface $validator)
-    {
+    public function modifier(
+        Request $request,
+        Etude $etude,
+        EtudePermissionChecker $permChecker,
+        ValidatorInterface $validator
+    ) {
         $em = $this->getDoctrine()->getManager();
 
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {
@@ -380,8 +385,10 @@ class EtudeController extends AbstractController
         $etudesParMandat = [];
 
         for ($i = 1; $i < $MANDAT_MAX; ++$i) {
-            array_push($etudesParMandat,
-                $em->getRepository(Etude::class)->findBy(['mandat' => $i], ['num' => 'DESC']));
+            array_push(
+                $etudesParMandat,
+                $em->getRepository(Etude::class)->findBy(['mandat' => $i], ['num' => 'DESC'])
+            );
         }
 
         //WARN
@@ -413,15 +420,20 @@ class EtudeController extends AbstractController
         foreach (array_reverse($etudesParMandat) as $etudesInMandat) {
             /** @var Etude $etude */
             foreach ($etudesInMandat as $etude) {
-                $form = $form->add((string) (2 * $id), HiddenType::class,
+                $form = $form->add(
+                    (string) (2 * $id),
+                    HiddenType::class,
                     ['label' => 'refEtude',
                      'data' => $etude->getReference($namingConvention),
                     ]
                 )
-                    ->add((string) (2 * $id + 1), TextareaType::class,
+                    ->add(
+                        (string) (2 * $id + 1),
+                        TextareaType::class,
                         ['label' => $etude->getReference($namingConvention),
                          'required' => false, 'data' => $etude->getStateDescription(),
-                        ]);
+                        ]
+                    );
                 ++$id;
                 if (self::STATE_ID_EN_COURS == $etude->getStateID()) {
                     array_push($etudesEnCours, $etude);

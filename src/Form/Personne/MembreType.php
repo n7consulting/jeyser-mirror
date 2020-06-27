@@ -34,7 +34,9 @@ class MembreType extends AbstractType
     {
         $builder
             ->add('personne', PersonneType::class, ['label' => ' ', 'user' => true])
-            ->add('identifiant', TextType::class,
+            ->add(
+                'identifiant',
+                TextType::class,
                 ['label' => 'Identifiant',
                  'required' => false,
                  'attr' => ['readonly' => true],
@@ -42,13 +44,19 @@ class MembreType extends AbstractType
             )
             ->add('emailEMSE', TextType::class, ['label' => 'Email Ecole', 'required' => false])
             ->add('promotion', IntegerType::class, ['label' => 'Promotion', 'required' => false])
-            ->add('dateDeNaissance', GenemuDateType::class,
+            ->add(
+                'dateDeNaissance',
+                GenemuDateType::class,
                 ['label' => 'Date de naissance (jj/mm/aaaa)', 'widget' => 'single_text', 'format' => 'dd/MM/yyyy',
                  'required' => false,
-                ])
+                ]
+            )
             ->add('lieuDeNaissance', TextType::class, ['label' => 'Lieu de naissance', 'required' => false])
-            ->add('nationalite', Select2CountryType::class,
-                ['label' => 'Nationalité', 'required' => true, 'preferred_choices' => ['FR']])
+            ->add(
+                'nationalite',
+                Select2CountryType::class,
+                ['label' => 'Nationalité', 'required' => true, 'preferred_choices' => ['FR']]
+            )
             ->add('mandats', CollectionType::class, [
                 'entry_type' => MandatType::class,
                 'allow_add' => true,
@@ -62,26 +70,41 @@ class MembreType extends AbstractType
                 'multiple' => true,
                 'required' => false,
             ])
-            ->add('dateConventionEleve', GenemuDateType::class,
+            ->add(
+                'dateConventionEleve',
+                GenemuDateType::class,
                 ['label' => 'Date de Signature de la Convention Elève', 'format' => 'dd/MM/yyyy', 'required' => false,
                  'widget' => 'single_text',
-                ])
+                ]
+            )
             ->add('photo', FileType::class, [
                 'mapped' => false,
                 'required' => false,
                 'label' => 'Modifier la photo de profil du membre',
             ])
-            ->add('formatPaiement', ChoiceType::class,
-                ['choices' => ['aucun' => 'aucun', 'cheque' => 'Chèque', 'especes' => 'Espèces'], 'required' => true])
-            ->add('filiere', EntityType::class,
+            ->add(
+                'formatPaiement',
+                ChoiceType::class,
+                ['choices' => ['aucun' => 'aucun', 'cheque' => 'Chèque', 'especes' => 'Espèces'], 'required' => true]
+            )
+            ->add(
+                'filiere',
+                EntityType::class,
                 ['label' => 'Filiere',
                  'class' => Filiere::class,
                  'required' => true,
-                ])
-            ->add('securiteSociale', TextType::class,
-                ['required' => false, 'label' => 'Numéro de sécurité sociale'])
-            ->add('commentaire', TextareaType::class,
-                ['required' => false, 'label' => 'Commentaire libre']);
+                ]
+            )
+            ->add(
+                'securiteSociale',
+                TextType::class,
+                ['required' => false, 'label' => 'Numéro de sécurité sociale']
+            )
+            ->add(
+                'commentaire',
+                TextareaType::class,
+                ['required' => false, 'label' => 'Commentaire libre']
+            );
     }
 
     public function getBlockPrefix()

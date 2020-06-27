@@ -90,10 +90,13 @@ class DocumentController extends AbstractController
      *
      * @return Response
      */
-    public function uploadEtude(Request $request, Etude $etude, EtudePermissionChecker $permChecker,
-                                DocumentManager $documentManager,
-                                KernelInterface $kernel)
-    {
+    public function uploadEtude(
+        Request $request,
+        Etude $etude,
+        EtudePermissionChecker $permChecker,
+        DocumentManager $documentManager,
+        KernelInterface $kernel
+    ) {
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {
             throw new AccessDeniedException('Cette étude est confidentielle !');
         }
@@ -191,9 +194,13 @@ class DocumentController extends AbstractController
         return $this->redirectToRoute('publish_documenttype_index');
     }
 
-    private function upload(Request $request, $deleteIfExist = false, $options = [], DocumentManager $documentManager,
-                            KernelInterface $kernel)
-    {
+    private function upload(
+        Request $request,
+        $deleteIfExist = false,
+        $options = [],
+        DocumentManager $documentManager,
+        KernelInterface $kernel
+    ) {
         $document = new Document();
         $document->setProjectDir($kernel->getProjectDir());
         if (count($options)) {

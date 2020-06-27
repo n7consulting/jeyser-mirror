@@ -32,10 +32,16 @@ class BVType extends AbstractType
             ->add('numero', IntegerType::class)
             ->add('nombreJEH', IntegerType::class)
             ->add('remunerationBruteParJEH', MoneyType::class)
-            ->add('dateDeVersement', DateType::class,
-                ['label' => 'Date de versement', 'required' => true, 'widget' => 'single_text'])
-            ->add('dateDemission', DateType::class,
-                ['label' => 'Date d\'émission', 'required' => true, 'widget' => 'single_text'])
+            ->add(
+                'dateDeVersement',
+                DateType::class,
+                ['label' => 'Date de versement', 'required' => true, 'widget' => 'single_text']
+            )
+            ->add(
+                'dateDemission',
+                DateType::class,
+                ['label' => 'Date d\'émission', 'required' => true, 'widget' => 'single_text']
+            )
             ->add('typeDeTravail', TextType::class)
             ->add('mission', Select2EntityType::class, [
                 'label' => 'Mission',

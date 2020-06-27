@@ -15,8 +15,10 @@ class Version20180110191604 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         // no easy backward check to perform, besides, can be performed multiple times
 
@@ -27,8 +29,10 @@ class Version20180110191604 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE Etude DROP FOREIGN KEY FK_DC1F8620A823BE4F');
         $this->addSql('ALTER TABLE Etude ADD CONSTRAINT FK_DC1F8620A823BE4F FOREIGN KEY (cc_id) REFERENCES Cc (id)');

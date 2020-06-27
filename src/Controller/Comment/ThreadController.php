@@ -73,9 +73,11 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function getThreadsActions(Request $request, ThreadManagerInterface $threadManager,
-                                      SerializerInterface $serializer)
-    {
+    public function getThreadsActions(
+        Request $request,
+        ThreadManagerInterface $threadManager,
+        SerializerInterface $serializer
+    ) {
         $ids = $request->query->get('ids');
 
         if (null === $ids) {
@@ -194,9 +196,12 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function newThreadCommentsAction(Request $request, $id, ThreadManagerInterface $threadManager,
-                                            CommentManagerInterface $commentManager)
-    {
+    public function newThreadCommentsAction(
+        Request $request,
+        $id,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         if (!$thread) {
             throw new NotFoundHttpException(sprintf('Thread with identifier of "%s" does not exist', $id));
@@ -231,9 +236,12 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function getThreadCommentAction($id, $commentId, ThreadManagerInterface $threadManager,
-                                           CommentManagerInterface $commentManager)
-    {
+    public function getThreadCommentAction(
+        $id,
+        $commentId,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         $comment = $commentManager->findCommentById($commentId);
         $parent = null;
@@ -247,10 +255,12 @@ class ThreadController extends AbstractController
             $parent = $this->getValidCommentParent($thread, $ancestors[count($ancestors) - 1], $commentManager);
         }
 
-        return $this->render('Comment/Thread/comment.html.twig',
+        return $this->render(
+            'Comment/Thread/comment.html.twig',
             ['comment' => $comment, 'thread' => $thread, 'parent' => $parent,
              'depth' => $comment->getDepth(),
-            ]);
+            ]
+        );
     }
 
     /**
@@ -267,9 +277,13 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function removeThreadCommentAction(Request $request, $id, $commentId, ThreadManagerInterface $threadManager,
-                                              CommentManagerInterface $commentManager)
-    {
+    public function removeThreadCommentAction(
+        Request $request,
+        $id,
+        $commentId,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         $comment = $commentManager->findCommentById($commentId);
 
@@ -281,8 +295,10 @@ class ThreadController extends AbstractController
         $comment->setState($request->query->get('value', $comment::STATE_DELETED));
         $form->setData($comment);
 
-        return $this->render('Comment/Thread/comment_remove.html.twig',
-            ['form' => $form->createView(), 'id' => $id, 'commentId' => $commentId]);
+        return $this->render(
+            'Comment/Thread/comment_remove.html.twig',
+            ['form' => $form->createView(), 'id' => $id, 'commentId' => $commentId]
+        );
     }
 
     /**
@@ -299,10 +315,13 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function patchThreadCommentStateAction(Request $request, $id, $commentId,
-                                                  ThreadManagerInterface $threadManager,
-                                                  CommentManagerInterface $commentManager)
-    {
+    public function patchThreadCommentStateAction(
+        Request $request,
+        $id,
+        $commentId,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         $comment = $commentManager->findCommentById($commentId);
 
@@ -336,9 +355,12 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function editThreadCommentAction($id, $commentId, ThreadManagerInterface $threadManager,
-                                            CommentManagerInterface $commentManager)
-    {
+    public function editThreadCommentAction(
+        $id,
+        $commentId,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         $comment = $commentManager->findCommentById($commentId);
 
@@ -349,8 +371,10 @@ class ThreadController extends AbstractController
         $form = $this->createForm(CommentType::class, $comment, ['method' => 'PUT']);
         $form->setData($comment);
 
-        return $this->render('Comment/Thread/comment_edit.html.twig',
-            ['form' => $form->createView(), 'comment' => $comment]);
+        return $this->render(
+            'Comment/Thread/comment_edit.html.twig',
+            ['form' => $form->createView(), 'comment' => $comment]
+        );
     }
 
     /**
@@ -367,9 +391,13 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function putThreadCommentsAction(Request $request, $id, $commentId, ThreadManagerInterface $threadManager,
-                                            CommentManagerInterface $commentManager)
-    {
+    public function putThreadCommentsAction(
+        Request $request,
+        $id,
+        $commentId,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         $comment = $commentManager->findCommentById($commentId);
 
@@ -404,10 +432,13 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function getThreadCommentsAction(Request $request, $id, ThreadManagerInterface $threadManager,
-                                            ValidatorInterface $validator,
-                                            CommentManagerInterface $commentManager)
-    {
+    public function getThreadCommentsAction(
+        Request $request,
+        $id,
+        ThreadManagerInterface $threadManager,
+        ValidatorInterface $validator,
+        CommentManagerInterface $commentManager
+    ) {
         $displayDepth = $request->query->get('displayDepth');
         $sorter = $request->query->get('sorter');
         $thread = $threadManager->findThreadById($id);
@@ -441,9 +472,10 @@ class ThreadController extends AbstractController
                 $comments = $commentManager->findCommentsByThread($thread, $displayDepth, $sorter);
 
                 // We need nodes for the api to return a consistent response, not an array of comments
-                $comments = array_map(function ($comment) {
-                    return ['comment' => $comment, 'children' => []];
-                },
+                $comments = array_map(
+                    function ($comment) {
+                        return ['comment' => $comment, 'children' => []];
+                    },
                     $comments
                 );
                 break;
@@ -475,9 +507,12 @@ class ThreadController extends AbstractController
      *
      * @return Response
      */
-    public function postThreadCommentsAction(Request $request, $id, ThreadManagerInterface $threadManager,
-                                             CommentManagerInterface $commentManager)
-    {
+    public function postThreadCommentsAction(
+        Request $request,
+        $id,
+        ThreadManagerInterface $threadManager,
+        CommentManagerInterface $commentManager
+    ) {
         $thread = $threadManager->findThreadById($id);
         if (!$thread) {
             throw new NotFoundHttpException(sprintf('Thread with identifier of "%s" does not exist', $id));
@@ -514,8 +549,10 @@ class ThreadController extends AbstractController
      */
     protected function onCreateCommentSuccess(FormInterface $form, $id)
     {
-        return $this->forward($this->routeToControllerName('fos_comment_get_thread_comment'),
-            ['id' => $id, 'commentId' => $form->getData()->getId()])
+        return $this->forward(
+            $this->routeToControllerName('fos_comment_get_thread_comment'),
+            ['id' => $id, 'commentId' => $form->getData()->getId()]
+        )
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -530,11 +567,14 @@ class ThreadController extends AbstractController
      */
     protected function onCreateCommentError(FormInterface $form, $id, CommentInterface $parent = null)
     {
-        return $this->render('Comment/Thread/comment_new.html.twig',
+        return $this->render(
+            'Comment/Thread/comment_new.html.twig',
             ['form' => $form->createView(),
              'id' => $id,
              'parent' => $parent,
-            ], new Response('', Response::HTTP_BAD_REQUEST));
+            ],
+            new Response('', Response::HTTP_BAD_REQUEST)
+        );
     }
 
     /**
@@ -546,8 +586,10 @@ class ThreadController extends AbstractController
      */
     protected function onCreateThreadSuccess(FormInterface $form)
     {
-        return $this->forward($this->routeToControllerName('fos_comment_get_thread'),
-            ['id' => $form->getData()->getId()])
+        return $this->forward(
+            $this->routeToControllerName('fos_comment_get_thread'),
+            ['id' => $form->getData()->getId()]
+        )
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -560,8 +602,11 @@ class ThreadController extends AbstractController
      */
     protected function onCreateThreadError(FormInterface $form)
     {
-        return $this->render('Comment/Thread/new.html.twig', ['form' => $form->createView()],
-            new Response('', Response::HTTP_BAD_REQUEST));
+        return $this->render(
+            'Comment/Thread/new.html.twig',
+            ['form' => $form->createView()],
+            new Response('', Response::HTTP_BAD_REQUEST)
+        );
     }
 
     /**
@@ -573,8 +618,10 @@ class ThreadController extends AbstractController
      */
     protected function onCreateThreadErrorDuplicate(FormInterface $form)
     {
-        return new Response(sprintf("Duplicate thread id '%s'.", $form->getData()->getId()),
-            Response::HTTP_BAD_REQUEST);
+        return new Response(
+            sprintf("Duplicate thread id '%s'.", $form->getData()->getId()),
+            Response::HTTP_BAD_REQUEST
+        );
     }
 
     /**
@@ -587,8 +634,10 @@ class ThreadController extends AbstractController
      */
     protected function onEditCommentSuccess(FormInterface $form, $id)
     {
-        return $this->forward($this->routeToControllerName('fos_comment_get_thread_comment'),
-            ['id' => $id, 'commentId' => $form->getData()->getId()])->setStatusCode(Response::HTTP_CREATED);
+        return $this->forward(
+            $this->routeToControllerName('fos_comment_get_thread_comment'),
+            ['id' => $id, 'commentId' => $form->getData()->getId()]
+        )->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
@@ -601,11 +650,14 @@ class ThreadController extends AbstractController
      */
     protected function onEditCommentError(FormInterface $form, $id)
     {
-        return $this->render('Comment/Thread/comment_edit.html.twig',
+        return $this->render(
+            'Comment/Thread/comment_edit.html.twig',
             ['form' => $form->createView(),
              'comment' => $form->getData(),
              'id' => $id,
-            ], new Response('', Response::HTTP_BAD_REQUEST));
+            ],
+            new Response('', Response::HTTP_BAD_REQUEST)
+        );
     }
 
     /**
@@ -617,8 +669,10 @@ class ThreadController extends AbstractController
      */
     protected function onOpenThreadSuccess(FormInterface $form)
     {
-        return $this->forward($this->routeToControllerName('fos_comment_edit_thread_commentable'),
-            ['id' => $form->getData()->getId(), 'value' => !$form->getData()->isCommentable()])
+        return $this->forward(
+            $this->routeToControllerName('fos_comment_edit_thread_commentable'),
+            ['id' => $form->getData()->getId(), 'value' => !$form->getData()->isCommentable()]
+        )
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
@@ -631,11 +685,14 @@ class ThreadController extends AbstractController
      */
     protected function onOpenThreadError(FormInterface $form)
     {
-        return $this->render('Comment/Thread/commentable.html.twig',
+        return $this->render(
+            'Comment/Thread/commentable.html.twig',
             ['form' => $form->createView(),
              'id' => $form->getData()->getId(),
              'isCommentable' => $form->getData()->isCommentable(),
-            ], new Response('', Response::HTTP_BAD_REQUEST));
+            ],
+            new Response('', Response::HTTP_BAD_REQUEST)
+        );
     }
 
     /**
@@ -648,8 +705,10 @@ class ThreadController extends AbstractController
      */
     protected function onRemoveThreadCommentSuccess(FormInterface $form, $id)
     {
-        return $this->forward($this->routeToControllerName('fos_comment_get_thread_comment'),
-            ['id' => $id, 'commentId' => $form->getData()->getId()])->setStatusCode(Response::HTTP_CREATED);
+        return $this->forward(
+            $this->routeToControllerName('fos_comment_get_thread_comment'),
+            ['id' => $id, 'commentId' => $form->getData()->getId()]
+        )->setStatusCode(Response::HTTP_CREATED);
     }
 
     /**
@@ -662,12 +721,15 @@ class ThreadController extends AbstractController
      */
     protected function onRemoveThreadCommentError(FormInterface $form, $id)
     {
-        return $this->render('Comment/Thread/comment_remove.html.twig',
+        return $this->render(
+            'Comment/Thread/comment_remove.html.twig',
             ['form' => $form->createView(),
              'id' => $id,
              'commentId' => $form->getData()->getId(),
              'value' => $form->getData()->getState(),
-            ], new Response(Response::HTTP_BAD_REQUEST));
+            ],
+            new Response(Response::HTTP_BAD_REQUEST)
+        );
     }
 
     /**

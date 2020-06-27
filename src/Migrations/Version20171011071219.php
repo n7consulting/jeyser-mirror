@@ -24,9 +24,11 @@ class Version20171011071219 extends AbstractMigration
          * is already there.
          * fetch() equals to an array if the column exist, and false otherwise.
          */
-        $this->skipIf(is_array($this->connection->executeQuery('SELECT * FROM information_schema.COLUMNS
+        $this->skipIf(
+            is_array($this->connection->executeQuery('SELECT * FROM information_schema.COLUMNS
                     WHERE TABLE_SCHEMA = "jeyser" AND TABLE_NAME = "FactureDetail" AND COLUMN_NAME = "factureADeduire_id"')->fetch()),
-            'FactureDetail.factureADeduire_id column already available');
+            'FactureDetail.factureADeduire_id column already available'
+        );
 
         // Ondelete set null for montantADeduire
         $this->addSql('ALTER TABLE Facture DROP FOREIGN KEY FK_313B5D8CD4F76809');

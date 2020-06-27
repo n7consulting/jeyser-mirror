@@ -26,17 +26,26 @@ class ClientContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('faitPar', Select2EntityType::class,
+            ->add(
+                'faitPar',
+                Select2EntityType::class,
                 ['label' => 'Fait par',
                  'class' => Personne::class,
                  'choice_label' => 'prenomNom',
                  'required' => true,
-                ])
-            ->add('date', DateType::class,
-                ['label' => 'Date du contact', 'required' => true, 'widget' => 'single_text'])
+                ]
+            )
+            ->add(
+                'date',
+                DateType::class,
+                ['label' => 'Date du contact', 'required' => true, 'widget' => 'single_text']
+            )
             ->add('objet', TextType::class, ['label' => 'Objet'])
-            ->add('contenu', TextareaType::class,
-                ['label' => 'Résumé du contact', 'attr' => ['cols' => '100%', 'rows' => 5]])
+            ->add(
+                'contenu',
+                TextareaType::class,
+                ['label' => 'Résumé du contact', 'attr' => ['cols' => '100%', 'rows' => 5]]
+            )
             ->add('moyenContact', MoyenContactType::class, ['label' => 'Contact effectué par']);
     }
 

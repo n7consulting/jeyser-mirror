@@ -60,7 +60,8 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('dashboard_parameters_admin');
         }
 
-        return $this->render('Dashboard/Admin/index.html.twig',
+        return $this->render(
+            'Dashboard/Admin/index.html.twig',
             ['form' => $form->createView()]
         );
     }

@@ -26,11 +26,14 @@ class AdminParamType extends AbstractType
 
         foreach ($fields as $field) {
             /* @var $field AdminParam */
-            $builder->add($field->getName(), $this->chooseType($field->getParamType()),
+            $builder->add(
+                $field->getName(),
+                $this->chooseType($field->getParamType()),
                 ['required' => $field->getRequired(),
                  'label' => $field->getParamLabel(),
                  'attr' => ['tooltip' => $field->getParamDescription()],
-                ]);
+                ]
+            );
         }
     }
 

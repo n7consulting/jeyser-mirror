@@ -115,7 +115,7 @@ class MembreRepository extends EntityRepository
         return $query;
     }
 
-    /** Fonction retournant une jointure entre un membre et ses competences
+    /** Fonction retournant une jointure entre un membre et ses competences.
      * @param $id
      *
      * @return Membre|null

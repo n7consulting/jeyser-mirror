@@ -38,9 +38,12 @@ class ApController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function rediger(Request $request, Etude $etude, EtudePermissionChecker $permChecker,
-                            DocTypeManager $docTypeManager)
-    {
+    public function rediger(
+        Request $request,
+        Etude $etude,
+        EtudePermissionChecker $permChecker,
+        DocTypeManager $docTypeManager
+    ) {
         $em = $this->getDoctrine()->getManager();
 
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {

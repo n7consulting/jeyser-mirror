@@ -84,8 +84,10 @@ class IndicateursController extends AbstractController
     {
         $statsBrutes = ['Pas de données' => 'A venir'];
 
-        return $this->render('Stat/Indicateurs/index.html.twig',
-            ['stats' => $statsBrutes, 'indicateurs' => self::INDICATEURS]);
+        return $this->render(
+            'Stat/Indicateurs/index.html.twig',
+            ['stats' => $statsBrutes, 'indicateurs' => self::INDICATEURS]
+        );
     }
 
     /**
@@ -605,7 +607,7 @@ class IndicateursController extends AbstractController
     {
         $formationsParMandat = $em->getRepository(Formation::class)->findAllByMandat();
 
-        $maxMandat = $formationsParMandat !== [] ? max(array_keys($formationsParMandat)) : 0;
+        $maxMandat = [] !== $formationsParMandat ? max(array_keys($formationsParMandat)) : 0;
         $mandats = [];
 
         /** @var Formation[] $formations */
@@ -738,8 +740,10 @@ class IndicateursController extends AbstractController
                 if (!array_key_exists($promo, $cumuls)) {
                     $cumuls[$promo] = [];
                 }
-                $cumuls[$promo][$d] = (array_key_exists($d,
-                    $cumuls[$promo]) ? $cumuls[$promo][$d] : (end($cumuls[$promo]) ? end($cumuls[$promo]) : 0));
+                $cumuls[$promo][$d] = (array_key_exists(
+                    $d,
+                    $cumuls[$promo]
+                ) ? $cumuls[$promo][$d] : (end($cumuls[$promo]) ? end($cumuls[$promo]) : 0));
             }
             $cumuls[$p][$d] += $t;
         }
@@ -1292,8 +1296,11 @@ class IndicateursController extends AbstractController
         //how much each skill has make us earn.
         $series = [];
         $categories = [];
-        $used_mandats = array_fill(0, $MANDAT_MAX - $MANDAT_MIN + 1,
-            0); // an array to post-process results and remove mandats without data.
+        $used_mandats = array_fill(
+            0,
+            $MANDAT_MAX - $MANDAT_MIN + 1,
+            0
+        ); // an array to post-process results and remove mandats without data.
         //create array structure
         foreach ($competences as $c) {
             $temp = [

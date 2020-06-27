@@ -66,13 +66,15 @@ class DeclaratifController extends AbstractController
         /** Date Management form */
         $form = $this->createFormBuilder(['message' => 'Date'])
             ->add(
-                'date', GenemuDateType::class,
+                'date',
+                GenemuDateType::class,
                 [
                     'label' => 'Mois considéré',
                     'required' => true,
                     'widget' => 'single_text',
                     'data' => null === $year || null === $month ? date_create() : new \DateTime($year . '-' . $month . '-01'),
-                    'format' => 'dd/MM/yyyy', ])
+                    'format' => 'dd/MM/yyyy', ]
+            )
             ->add('trimestriel', CheckboxType::class, ['label' => 'Trimestriel ?', 'required' => false])
             ->getForm();
 
@@ -210,7 +212,8 @@ class DeclaratifController extends AbstractController
         }
         sort($tvas);
 
-        return $this->render('Treso/Declaratif/TVA.html.twig',
+        return $this->render(
+            'Treso/Declaratif/TVA.html.twig',
             ['form' => $form->createView(),
                 'tvas' => $tvas,
                 'tvaDeductible' => $tvaDeductible,
@@ -245,7 +248,8 @@ class DeclaratifController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $form = $this->createFormBuilder(['message' => 'Date'])
             ->add(
-                'date', GenemuDateType::class,
+                'date',
+                GenemuDateType::class,
                 [
                     'label' => 'Mois du déclaratif',
                     'required' => true, 'widget' => 'single_text',
@@ -273,7 +277,8 @@ class DeclaratifController extends AbstractController
             $salarieRemunere[$id] = 1;
         }
 
-        return $this->render('Treso/Declaratif/BRC.html.twig',
+        return $this->render(
+            'Treso/Declaratif/BRC.html.twig',
             ['form' => $form->createView(), 'bvs' => $bvs, 'nbSalarieRemunere' => count($salarieRemunere)]
         );
     }

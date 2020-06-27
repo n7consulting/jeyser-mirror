@@ -31,16 +31,31 @@ class PhaseType extends AbstractType
     {
         $builder->add('position', HiddenType::class, ['attr' => ['class' => 'position']])
             ->add('titre', TextType::class, ['attr' => ['placeholder' => 'Titre phase']])
-            ->add('objectif', TextareaType::class,
-                ['label' => 'Objectif', 'required' => false, 'attr' => ['placeholder' => 'Objectif']])
-            ->add('methodo', TextareaType::class,
-                ['label' => 'Méthodologie', 'required' => false, 'attr' => ['placeholder' => 'Méthodologie']])
-            ->add('nbrJEH', IntegerType::class,
-                ['label' => 'Nombre de JEH', 'required' => false, 'attr' => ['class' => 'nbrJEH']])
-            ->add('prixJEH', IntegerType::class,
-                ['label' => 'Prix du JEH HT', 'required' => false, 'attr' => ['class' => 'prixJEH']])
-            ->add('dateDebut', DateType::class,
-                ['label' => 'Date de début', 'format' => 'd/MM/y', 'required' => false, 'widget' => 'single_text'])
+            ->add(
+                'objectif',
+                TextareaType::class,
+                ['label' => 'Objectif', 'required' => false, 'attr' => ['placeholder' => 'Objectif']]
+            )
+            ->add(
+                'methodo',
+                TextareaType::class,
+                ['label' => 'Méthodologie', 'required' => false, 'attr' => ['placeholder' => 'Méthodologie']]
+            )
+            ->add(
+                'nbrJEH',
+                IntegerType::class,
+                ['label' => 'Nombre de JEH', 'required' => false, 'attr' => ['class' => 'nbrJEH']]
+            )
+            ->add(
+                'prixJEH',
+                IntegerType::class,
+                ['label' => 'Prix du JEH HT', 'required' => false, 'attr' => ['class' => 'prixJEH']]
+            )
+            ->add(
+                'dateDebut',
+                DateType::class,
+                ['label' => 'Date de début', 'format' => 'd/MM/y', 'required' => false, 'widget' => 'single_text']
+            )
             ->add('delai', IntegerType::class, ['label' => 'Durée en nombre de jours', 'required' => false]);
         if ($options['etude']) {
             $builder->add('groupe', Select2EntityType::class, [
@@ -55,8 +70,11 @@ class PhaseType extends AbstractType
         }
 
         if ($options['isAvenant']) {
-            $builder->add('etatSurAvenant', ChoiceType::class,
-                ['choices' => array_flip(Phase::getEtatSurAvenantChoice()), 'required' => false]);
+            $builder->add(
+                'etatSurAvenant',
+                ChoiceType::class,
+                ['choices' => array_flip(Phase::getEtatSurAvenantChoice()), 'required' => false]
+            );
         }
     }
 

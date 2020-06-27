@@ -25,8 +25,11 @@ class ProspectType extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
-            ->add('entite', ChoiceType::class,
-                ['choices' => array_flip(Prospect::getEntiteChoice()), 'required' => false])
+            ->add(
+                'entite',
+                ChoiceType::class,
+                ['choices' => array_flip(Prospect::getEntiteChoice()), 'required' => false]
+            )
             ->add('adresse', TextareaType::class, ['required' => false])
             ->add('codepostal', TextType::class, ['required' => false, 'attr' => ['placeholder' => 'Code Postal']])
             ->add('ville', TextType::class, ['required' => false, 'attr' => ['placeholder' => 'Ville']])

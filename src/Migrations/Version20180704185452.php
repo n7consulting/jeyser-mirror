@@ -15,8 +15,10 @@ final class Version20180704185452 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE Document DROP FOREIGN KEY FK_211FE8203256915B');
         $this->addSql('ALTER TABLE Document ADD CONSTRAINT FK_211FE8203256915B FOREIGN KEY (relation_id) REFERENCES RelatedDocument (id) ON DELETE SET NULL');
@@ -25,8 +27,10 @@ final class Version20180704185452 extends AbstractMigration
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('ALTER TABLE Document DROP FOREIGN KEY FK_211FE8203256915B');
         $this->addSql('ALTER TABLE Document ADD CONSTRAINT FK_211FE8203256915B FOREIGN KEY (relation_id) REFERENCES RelatedDocument (id)');

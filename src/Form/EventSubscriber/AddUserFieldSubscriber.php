@@ -43,7 +43,9 @@ class AddUserFieldSubscriber implements EventSubscriberInterface
         // over the null condition.
 
         $personne = $data;
-        $form->add('user', 'entity',
+        $form->add(
+            'user',
+            'entity',
             ['label' => "Séléctionner un compte d'utilisateur associé s'il existe déjà",
              'class' => User::class,
              'property' => 'username',
@@ -51,6 +53,7 @@ class AddUserFieldSubscriber implements EventSubscriberInterface
              'query_builder' => function (UserRepository $ur) use ($personne) {
                  return $ur->getNotPersonne($personne);
              },
-            ]);
+            ]
+        );
     }
 }
