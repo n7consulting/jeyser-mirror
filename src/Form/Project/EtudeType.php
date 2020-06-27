@@ -76,7 +76,7 @@ class EtudeType extends AbstractType
             ->add('ceActive', CheckboxType::class, [
                 'label' => 'suivi.etude_form.ce_active',
                 'translation_domain' => 'project',
-                'attr' => ['title' => 'suivi.etude_form.confidentialite_tooltip'],
+                'attr' => ['title' => 'suivi.etude_form.ce_active_tooltip'],
                 'required' => false,
             ])
             ->add('suiveur', Select2EntityType::class, [
