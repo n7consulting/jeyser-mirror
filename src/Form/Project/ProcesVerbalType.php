@@ -20,7 +20,9 @@ class ProcesVerbalType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add(strtolower($options['type']), ProcesVerbalSubType::class,
+        $builder->add(
+            strtolower($options['type']),
+            ProcesVerbalSubType::class,
             ['label' => ' ',
              'type' => $options['type'],
              'prospect' => $options['prospect'],

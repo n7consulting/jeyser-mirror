@@ -131,10 +131,13 @@ class TraitementController extends AbstractController
 
     private $kernel;
 
-    public function __construct(ChartManager $chartManager, EtudePermissionChecker $permChecker,
-                                Environment $twigEnvironment,
-                                KeyValueStore $keyValueStore, KernelInterface $kernel)
-    {
+    public function __construct(
+        ChartManager $chartManager,
+        EtudePermissionChecker $permChecker,
+        Environment $twigEnvironment,
+        KeyValueStore $keyValueStore,
+        KernelInterface $kernel
+    ) {
         $this->chartManager = $chartManager;
         $this->permChecker = $permChecker;
         $this->twigEnvironment = $twigEnvironment;
@@ -336,8 +339,10 @@ class TraitementController extends AbstractController
             $templateName = $this->kernel->getProjectDir() . '' . Document::DOCUMENT_TMP_FOLDER . '/' . $idDocx;
 
             $response = new Response();
-            $response->headers->set('Content-Type',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            $response->headers->set(
+                'Content-Type',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            );
             $response->headers->set('Content-Length', filesize($templateName));
             $response->headers->set('Content-disposition', 'attachment; filename="' . $refDocx . '.docx"');
             $response->headers->set('Pragma', 'no-cache');
@@ -385,8 +390,10 @@ class TraitementController extends AbstractController
         if (true === $zip->open($docxFullPath)) {
             for ($i = 0; $i < $zip->numFiles; ++$i) {
                 $name = $zip->getNameIndex($i);
-                if ((strstr($name, 'document') || strstr($name, 'header') || strstr($name, 'footer')) && !strstr($name,
-                        'rels')
+                if ((strstr($name, 'document') || strstr($name, 'header') || strstr($name, 'footer')) && !strstr(
+                    $name,
+                    'rels'
+                )
                 ) {
                     $this->arrayPushAssoc($templateXML, str_replace('word/', '', $name), $zip->getFromIndex($i));
                 }
@@ -445,12 +452,18 @@ class TraitementController extends AbstractController
                         $cy = round($cy);
 
                         $replacement = [];
-                        preg_match("#wp:extent cx=\"$splited[3]\" cy=\"$splited[4]\".*wp:docPr.*a:blip r:embed=\"$splited[1]\".*a:ext cx=\"$splited[3]\" cy=\"$splited[4]\"#",
-                            $templateXML, $replacement);
+                        preg_match(
+                            "#wp:extent cx=\"$splited[3]\" cy=\"$splited[4]\".*wp:docPr.*a:blip r:embed=\"$splited[1]\".*a:ext cx=\"$splited[3]\" cy=\"$splited[4]\"#",
+                            $templateXML,
+                            $replacement
+                        );
                         $replacement = $replacement[0];
                         $replacement = preg_replace("#cy=\"$splited[4]\"#", "cy=\"$cy\"", $replacement);
-                        $templatesXML[$key] = preg_replace("#wp:extent cx=\"$splited[3]\" cy=\"$splited[4]\".*wp:docPr.*a:blip r:embed=\"$splited[1]\".*a:ext cx=\"$splited[3]\" cy=\"$splited[4]\"#",
-                            $replacement, $templateXML);
+                        $templatesXML[$key] = preg_replace(
+                            "#wp:extent cx=\"$splited[3]\" cy=\"$splited[4]\".*wp:docPr.*a:blip r:embed=\"$splited[1]\".*a:ext cx=\"$splited[3]\" cy=\"$splited[4]\"#",
+                            $replacement,
+                            $templateXML
+                        );
                     }
                 }
                 array_push($allmatches, $splited);
@@ -493,8 +506,11 @@ class TraitementController extends AbstractController
             if ($field == strtoupper($field)) {
                 $field = strtolower($field);
             }
-            $templateXML = preg_replace('#' . addcslashes(addslashes($originalField), self::REG_SPECIAL_CHAR) . '#',
-                html_entity_decode($field), $templateXML);
+            $templateXML = preg_replace(
+                '#' . addcslashes(addslashes($originalField), self::REG_SPECIAL_CHAR) . '#',
+                html_entity_decode($field),
+                $templateXML
+            );
         }
 
         return $templateXML;
@@ -523,8 +539,11 @@ class TraitementController extends AbstractController
                 '#' . addcslashes(addslashes($forEnd), self::REG_SPECIAL_CHAR) . '#',
             ], '', $data[0]);
 
-            $templateXML = preg_replace('#' . addcslashes(addslashes($data[0]), self::REG_SPECIAL_CHAR) . '#',
-                preg_replace('#TRfor#', 'for', $forStart) . $body . '{% endfor %}', $templateXML);
+            $templateXML = preg_replace(
+                '#' . addcslashes(addslashes($data[0]), self::REG_SPECIAL_CHAR) . '#',
+                preg_replace('#TRfor#', 'for', $forStart) . $body . '{% endfor %}',
+                $templateXML
+            );
         }
 
         return $templateXML;
@@ -553,8 +572,11 @@ class TraitementController extends AbstractController
                 '#' . addcslashes(addslashes($forEnd), self::REG_SPECIAL_CHAR) . '#',
             ], '', $data[0]);
 
-            $templateXML = preg_replace('#' . addcslashes(addslashes($data[0]), self::REG_SPECIAL_CHAR) . '#',
-                preg_replace('#Pfor#', 'for', $forStart) . $body . '{% endfor %}', $templateXML);
+            $templateXML = preg_replace(
+                '#' . addcslashes(addslashes($data[0]), self::REG_SPECIAL_CHAR) . '#',
+                preg_replace('#Pfor#', 'for', $forStart) . $body . '{% endfor %}',
+                $templateXML
+            );
         }
 
         return $templateXML;
@@ -651,8 +673,12 @@ class TraitementController extends AbstractController
                         self::DOCTYPE_CONVENTION_CLIENT == $data['name'] ||
                         self::DOCTYPE_CONVENTION_ETUDE == $data['name'] ||
                         self::DOCTYPE_SUIVI_ETUDE == $data['name']) &&
-                    $data['verification'] && $this->publipostage($docxFullPath, self::ROOTNAME_ETUDE, $etude->getId(),
-                        true)
+                    $data['verification'] && $this->publipostage(
+                        $docxFullPath,
+                        self::ROOTNAME_ETUDE,
+                        $etude->getId(),
+                        true
+                    )
                 ) {
                     $session->getFlashBag()->add('success', 'Le template a été vérifié, il ne contient pas d\'erreur');
                 }
@@ -667,8 +693,12 @@ class TraitementController extends AbstractController
                 // Vérification du template (document étudiant)
                 if ($etudiant && (self::DOCTYPE_CONVENTION_ETUDIANT == $data['name'] ||
                         self::DOCTYPE_DECLARATION_ETUDIANT_ETR == $data['name']) &&
-                    $data['verification'] && $this->publipostage($docxFullPath, self::ROOTNAME_ETUDIANT,
-                        $etudiant->getId(), true)
+                    $data['verification'] && $this->publipostage(
+                        $docxFullPath,
+                        self::ROOTNAME_ETUDIANT,
+                        $etudiant->getId(),
+                        true
+                    )
                 ) {
                     $session->getFlashBag()->add('success', 'Le template a été vérifié, il ne contient pas d\'erreur');
                 }
@@ -698,7 +728,8 @@ class TraitementController extends AbstractController
             }
         }
 
-        return $this->render('Publish/DocType/upload.html.twig',
+        return $this->render(
+            'Publish/DocType/upload.html.twig',
             ['form' => $form->createView()]
         );
     }

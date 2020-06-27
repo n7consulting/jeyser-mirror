@@ -24,16 +24,25 @@ class MandatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('debutMandat', GenemuDateType::class,
-                ['label' => 'Date de début', 'format' => 'dd/MM/yyyy', 'required' => false, 'widget' => 'single_text'])
-            ->add('finMandat', GenemuDateType::class,
-                ['label' => 'Date de Fin', 'format' => 'dd/MM/yyyy', 'required' => false, 'widget' => 'single_text'])
-            ->add('poste', EntityType::class,
+            ->add(
+                'debutMandat',
+                GenemuDateType::class,
+                ['label' => 'Date de début', 'format' => 'dd/MM/yyyy', 'required' => false, 'widget' => 'single_text']
+            )
+            ->add(
+                'finMandat',
+                GenemuDateType::class,
+                ['label' => 'Date de Fin', 'format' => 'dd/MM/yyyy', 'required' => false, 'widget' => 'single_text']
+            )
+            ->add(
+                'poste',
+                EntityType::class,
                 ['label' => 'Intitulé',
                  'class' => Poste::class,
                  'choice_label' => 'intitule',
                  'required' => true,
-                ]); //ajout de la condition "requis" pour éviter la corruption de la liste des membres par manque d'intitulé.
+                ]
+            ); //ajout de la condition "requis" pour éviter la corruption de la liste des membres par manque d'intitulé.
     }
 
     public function getBlockPrefix()

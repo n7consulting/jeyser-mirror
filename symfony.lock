@@ -29,9 +29,6 @@
     "behatch/contexts": {
         "version": "3.2.0"
     },
-    "container-interop/container-interop": {
-        "version": "1.2.0"
-    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -110,15 +107,6 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
-        }
-    },
     "easycorp/easyadmin-bundle": {
         "version": "1.17",
         "recipe": {
@@ -131,6 +119,9 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "friends-of-behat/mink-extension": {
+        "version": "2.3.1"
+    },
     "friendsofsymfony/user-bundle": {
         "version": "v2.1.2"
     },
@@ -139,6 +130,9 @@
     },
     "justinrainbow/json-schema": {
         "version": "1.6.1"
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.4"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -154,6 +148,9 @@
     },
     "pagerfanta/pagerfanta": {
         "version": "v2.0.1"
+    },
+    "php": {
+        "version": "7.3"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -197,9 +194,6 @@
     "symfony/cache-contracts": {
         "version": "v1.1.7"
     },
-    "symfony/class-loader": {
-        "version": "v3.4.21"
-    },
     "symfony/config": {
         "version": "v4.2.1"
     },
@@ -233,6 +227,9 @@
     "symfony/dependency-injection": {
         "version": "v4.2.1"
     },
+    "symfony/deprecation-contracts": {
+        "version": "v2.1.2"
+    },
     "symfony/doctrine-bridge": {
         "version": "v4.2.1"
     },
@@ -241,6 +238,9 @@
     },
     "symfony/dotenv": {
         "version": "v4.2.1"
+    },
+    "symfony/error-handler": {
+        "version": "v4.4.10"
     },
     "symfony/event-dispatcher": {
         "version": "v4.2.1"
@@ -322,6 +322,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.17.1"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"

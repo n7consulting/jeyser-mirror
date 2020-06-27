@@ -131,9 +131,12 @@ class MembreController extends AbstractController
      *
      * @return RedirectResponse|Response
      */
-    public function ajouter(Request $request, DocumentManager $documentManager, EmailEtuManager $emailEtuManager,
-                            RouterInterface $router)
-    {
+    public function ajouter(
+        Request $request,
+        DocumentManager $documentManager,
+        EmailEtuManager $emailEtuManager,
+        RouterInterface $router
+    ) {
         $em = $this->getDoctrine()->getManager();
 
         $membre = new Membre();
@@ -169,10 +172,17 @@ class MembreController extends AbstractController
                     $name = 'Photo - ' . $membre->getIdentifiant() . ' - ' . $membre->getPersonne()->getPrenomNom();
 
                     if ($photoUpload) {
-                        $document = $documentManager->uploadDocumentFromFile($photoUpload, $authorizedMIMEType, $name,
-                            $photoInformation, true);
-                        $membre->setPhotoURI($router->generate('publish_document_voir',
-                            ['id' => $document->getId()]));
+                        $document = $documentManager->uploadDocumentFromFile(
+                            $photoUpload,
+                            $authorizedMIMEType,
+                            $name,
+                            $photoInformation,
+                            true
+                        );
+                        $membre->setPhotoURI($router->generate(
+                            'publish_document_voir',
+                            ['id' => $document->getId()]
+                        ));
                     }
                 }
 
@@ -238,10 +248,17 @@ class MembreController extends AbstractController
                     $name = 'Photo - ' . $membre->getIdentifiant() . ' - ' . $membre->getPersonne()->getPrenomNom();
 
                     if ($photoUpload) {
-                        $document = $documentManager->uploadDocumentFromFile($photoUpload, $authorizedMIMEType, $name,
-                            $photoInformation, true);
-                        $membre->setPhotoURI($router->generate('publish_document_voir',
-                            ['id' => $document->getId()]));
+                        $document = $documentManager->uploadDocumentFromFile(
+                            $photoUpload,
+                            $authorizedMIMEType,
+                            $name,
+                            $photoInformation,
+                            true
+                        );
+                        $membre->setPhotoURI($router->generate(
+                            'publish_document_voir',
+                            ['id' => $document->getId()]
+                        ));
                     }
                 }
 

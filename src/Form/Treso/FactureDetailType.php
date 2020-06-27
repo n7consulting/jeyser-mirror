@@ -25,7 +25,9 @@ class FactureDetailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('description', TextareaType::class,
+        $builder->add(
+            'description',
+            TextareaType::class,
             ['label' => 'Description de la dépense',
              'required' => false,
              'attr' => [

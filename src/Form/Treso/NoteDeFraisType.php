@@ -35,7 +35,9 @@ class NoteDeFraisType extends AbstractType
                 'label' => 'Numéro de la Note de Frais',
                 'required' => true,
             ])
-            ->add('objet', TextareaType::class,
+            ->add(
+                'objet',
+                TextareaType::class,
                 ['label' => 'Objet de la Note de Frais',
                  'required' => true,
                  'attr' => [

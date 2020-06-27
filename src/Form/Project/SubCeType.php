@@ -23,7 +23,9 @@ class SubCeType extends DocTypeType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('contact', Select2EntityType::class,
+        $builder->add(
+            'contact',
+            Select2EntityType::class,
             ['label' => "'En cas d’absence ou de problème, il est également possible de joindre ...' ex: Vice-Président",
              'class' => Personne::class,
              'choice_label' => 'prenomNom',
@@ -32,9 +34,12 @@ class SubCeType extends DocTypeType
                  return $pr->getMembresByPoste('%vice-president%');
              },
              'required' => true,
-            ]);
+            ]
+        );
         DocTypeType::buildForm($builder, $options);
-        $builder->add('nbrDev', IntegerType::class,
+        $builder->add(
+            'nbrDev',
+            IntegerType::class,
             ['label' => 'Nombre d\'intervenants estimé',
              'required' => false,
              'attr' => ['title' => 'Mettre 0 pour ne pas afficher la phrase indiquant le nombre d\'intervenant'],

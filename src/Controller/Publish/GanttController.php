@@ -40,9 +40,14 @@ class GanttController extends AbstractController
      *
      * @return Response a png of project gantt chart
      */
-    public function getGantt(Etude $etude, EtudePermissionChecker $permChecker,
-                             ChartManager $chartManager, KernelInterface $kernel, $width = 960, $debug = false)
-    {
+    public function getGantt(
+        Etude $etude,
+        EtudePermissionChecker $permChecker,
+        ChartManager $chartManager,
+        KernelInterface $kernel,
+        $width = 960,
+        $debug = false
+    ) {
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {
             throw new AccessDeniedException('Cette étude est confidentielle');
         }

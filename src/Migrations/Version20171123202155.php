@@ -13,11 +13,13 @@ class Version20171123202155 extends AbstractMigration
     /**
      * @param Schema $schema
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         /*
          * Jeyser got migrations quite late in the project.
@@ -41,10 +43,12 @@ class Version20171123202155 extends AbstractMigration
     /**
      * @param Schema $schema
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
-        $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(),
-            'Migration can only be executed safely on \'mysql\'.');
+        $this->abortIf(
+            'mysql' !== $this->connection->getDatabasePlatform()->getName(),
+            'Migration can only be executed safely on \'mysql\'.'
+        );
 
         $this->addSql('DELETE from AdminParam where name = "fraisDossierDefaut"');
         $this->addSql('DELETE from AdminParam where name = "pourcentageAcompteDefaut"');

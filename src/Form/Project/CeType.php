@@ -31,24 +31,31 @@ class CeType extends AbstractType
         $builder->add('ce', SubCeType::class, ['label' => ' ', 'prospect' => $options['prospect']])
             ->add('acompte', CheckboxType::class, ['label' => 'Acompte', 'required' => false])
             ->add('pourcentageAcompte', PercentType::class, ['label' => 'Pourcentage acompte', 'required' => false])
-            ->add('suiveur', Select2EntityType::class,
-            ['label' => 'Suiveur de projet',
+            ->add(
+                'suiveur',
+                Select2EntityType::class,
+                ['label' => 'Suiveur de projet',
              'class' => Personne::class,
              'choice_label' => 'prenomNom',
              'query_builder' => function (PersonneRepository $pr) {
                  return $pr->getByMandatNonNulQueryBuilder();
              },
              'required' => false,
-            ])
+            ]
+            )
             ->add('ce', SubCeType::class, ['label' => ' ', 'prospect' => $options['prospect']])
             ->add('fraisDossier', IntegerType::class, ['label' => 'Frais de dossier', 'required' => false])
-            ->add('presentationProjet', TextareaType::class,
+            ->add(
+                'presentationProjet',
+                TextareaType::class,
                 ['label' => 'Présentation du projet',
                  'required' => false,
                  'attr' => ['cols' => '100%', 'rows' => 5],
                 ]
             )
-            ->add('descriptionPrestation', TextareaType::class,
+            ->add(
+                'descriptionPrestation',
+                TextareaType::class,
                 ['label' => 'Description de la prestation proposée',
                  'required' => false,
                  'attr' => ['title' => "La phrase commence par 'N7 Consulting réalisera, pour le compte du Client, 
@@ -57,7 +64,8 @@ class CeType extends AbstractType
                             'cols' => '100%',
                             'rows' => 5,
                  ],
-                ])
+                ]
+            )
             ->add('competences', Select2EntityType::class, [
                 'class' => Competence::class,
                 'by_reference' => false,

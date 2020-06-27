@@ -36,9 +36,13 @@ class ChartManager /*extends \Twig_Extension*/
 
     private const SIX_MONTHS = 15724800;
 
-    public function __construct(ObjectManager $em, EtudeManager $etudeManager, LoggerInterface $logger,
-                                KeyValueStore $keyValueStore, KernelInterface $kernel)
-    {
+    public function __construct(
+        ObjectManager $em,
+        EtudeManager $etudeManager,
+        LoggerInterface $logger,
+        KeyValueStore $keyValueStore,
+        KernelInterface $kernel
+    ) {
         $this->em = $em;
         $this->etudeManager = $etudeManager;
         $this->logger = $logger;

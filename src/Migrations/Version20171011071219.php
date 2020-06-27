@@ -13,7 +13,7 @@ class Version20171011071219 extends AbstractMigration
     /**
      * @param Schema $schema
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');
@@ -24,9 +24,11 @@ class Version20171011071219 extends AbstractMigration
          * is already there.
          * fetch() equals to an array if the column exist, and false otherwise.
          */
-        $this->skipIf(is_array($this->connection->executeQuery('SELECT * FROM information_schema.COLUMNS
+        $this->skipIf(
+            is_array($this->connection->executeQuery('SELECT * FROM information_schema.COLUMNS
                     WHERE TABLE_SCHEMA = "jeyser" AND TABLE_NAME = "FactureDetail" AND COLUMN_NAME = "factureADeduire_id"')->fetch()),
-            'FactureDetail.factureADeduire_id column already available');
+            'FactureDetail.factureADeduire_id column already available'
+        );
 
         // Ondelete set null for montantADeduire
         $this->addSql('ALTER TABLE Facture DROP FOREIGN KEY FK_313B5D8CD4F76809');
@@ -44,7 +46,7 @@ class Version20171011071219 extends AbstractMigration
     /**
      * @param Schema $schema
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf('mysql' !== $this->connection->getDatabasePlatform()->getName(), 'Migration can only be executed safely on \'mysql\'.');

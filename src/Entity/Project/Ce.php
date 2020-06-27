@@ -37,7 +37,7 @@ class Ce extends DocType
      */
     protected $etude;
 
-    /** nombre de developpeur estimé
+    /** nombre de developpeur estimé.
      * @var int
      *
      * @ORM\Column(name="nbrDev", type="integer", nullable=true)

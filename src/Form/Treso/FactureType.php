@@ -32,7 +32,9 @@ class FactureType extends AbstractType
             ->add('type', ChoiceType::class, ['choices' => array_flip(Facture::getTypeChoices()),
                                               'required' => true,
             ])
-            ->add('objet', TextareaType::class,
+            ->add(
+                'objet',
+                TextareaType::class,
                 ['label' => 'Objet de la Facture',
                  'required' => true,
                  'attr' => [
@@ -55,10 +57,16 @@ class FactureType extends AbstractType
                 'label' => 'Facture émise pour/par',
             ])
             ->add('montantADeduire', FactureDetailType::class, ['label' => 'Montant à déduire', 'required' => true])
-            ->add('dateEmission', DateType::class,
-                ['label' => 'Date d\'émission', 'required' => true, 'widget' => 'single_text'])
-            ->add('dateVersement', DateType::class,
-                ['label' => 'Date de versement', 'required' => false, 'widget' => 'single_text']);
+            ->add(
+                'dateEmission',
+                DateType::class,
+                ['label' => 'Date d\'émission', 'required' => true, 'widget' => 'single_text']
+            )
+            ->add(
+                'dateVersement',
+                DateType::class,
+                ['label' => 'Date de versement', 'required' => false, 'widget' => 'single_text']
+            );
     }
 
     public function getBlockPrefix()

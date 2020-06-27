@@ -39,7 +39,8 @@ class DashboardController extends AbstractController
     public function index()
     {
         if (!$this->statsStore->exists('expiration') ||
-            ($this->statsStore->exists('expiration') &&
+            (
+                $this->statsStore->exists('expiration') &&
                 intval($this->statsStore->get('expiration')) + self::EXPIRATION < time()
             )
         ) {
