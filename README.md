@@ -1,6 +1,5 @@
 # Jeyser CRM
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b2a395d1-acaa-4305-a30e-3a326fdb7c3a/small.png)](https://insight.sensiolabs.com/projects/b2a395d1-acaa-4305-a30e-3a326fdb7c3a)
 [![Travis-ci status](https://travis-ci.org/n7consulting/Incipio.svg?branch=master)](https://travis-ci.org/n7consulting/Incipio)
 [![Join the chat at https://gitter.im/jeyser-crm/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jeyser-crm/Lobby?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
 
