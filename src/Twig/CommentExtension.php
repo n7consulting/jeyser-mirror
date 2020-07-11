@@ -35,46 +35,6 @@ class CommentExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getTests()
-    {
-        return [
-            new \Twig\TwigTest('fos_comment_deleted', [$this, 'isCommentDeleted']),
-            new \Twig\TwigTest('fos_comment_in_state', [$this, 'isCommentInState']),
-        ];
-    }
-
-    /**
-     * Check if the state of the comment is deleted.
-     *
-     * @param CommentInterface $comment
-     *
-     * @return bool
-     *
-     * @deprecated Use isCommentInState instead
-     */
-    public function isCommentDeleted(CommentInterface $comment)
-    {
-        return $this->isCommentInState($comment, $comment::STATE_DELETED);
-    }
-
-    /**
-     * Checks if comment is in given state.
-     *
-     * @deprecated
-     *
-     * @param CommentInterface $comment
-     * @param int              $state   CommentInterface::STATE_*
-     *
-     * @return bool
-     */
-    public function isCommentInState(CommentInterface $comment, $state)
-    {
-        return $comment->getState() === $state;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions()
     {
         return [
