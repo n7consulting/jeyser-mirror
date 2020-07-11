@@ -38,26 +38,27 @@
  * </script>
  */
 
-(function(window, $, easyXDM){
+(function (window, $, easyXDM) {
     "use strict";
     var FOS_COMMENT = {
         /**
          * Shorcut post method.
          *
-         * @param string url The url of the page to post.
-         * @param object data The data to be posted.
-         * @param function success Optional callback function to use in case of succes.
-         * @param function error Optional callback function to use in case of error.
+         * @param url string The url of the page to post.
+         * @param data object The data to be posted.
+         * @param success function Optional callback function to use in case of succes.
+         * @param error function Optional callback function to use in case of error.
+         * @param complete function optionnal callback function to use after success or error
          */
-        post: function(url, data, success, error, complete) {
+        post: function (url, data, success, error, complete) {
             // Wrap the error callback to match return data between jQuery and easyXDM
-            var wrappedErrorCallback = function(response){
-                if('undefined' !== typeof error) {
+            var wrappedErrorCallback = function (response) {
+                if ('undefined' !== typeof error) {
                     error(response.responseText, response.status);
                 }
             };
-            var wrappedCompleteCallback = function(response){
-                if('undefined' !== typeof complete) {
+            var wrappedCompleteCallback = function (response) {
+                if ('undefined' !== typeof complete) {
                     complete(response.responseText, response.status);
                 }
             };
@@ -67,28 +68,48 @@
         /**
          * Shorcut get method.
          *
-         * @param string url The url of the page to get.
-         * @param object data The query data.
-         * @param function success Optional callback function to use in case of succes.
-         * @param function error Optional callback function to use in case of error.
+         * @param url string The url of the page to get.
+         * @param data object The query data.
+         * @param success function Optional callback function to use in case of succes.
+         * @param error function Optional callback function to use in case of error.
          */
-        get: function(url, data, success, error) {
+        get: function (url, data, success, error) {
             // Wrap the error callback to match return data between jQuery and easyXDM
-            var wrappedErrorCallback = function(response){
-                if('undefined' !== typeof error) {
+            var wrappedErrorCallback = function (response) {
+                if ('undefined' !== typeof error) {
                     error(response.responseText, response.status);
                 }
             };
             $.get(url, data, success).fail(wrappedErrorCallback);
         },
 
+        request: function (method, url, data, success, error) {
+            $.ajax({
+                url: url,
+                type: method,
+                data: data,
+            })
+                .done(function (response, statusText) {
+                    if ('undefined' !== typeof success) {
+                        success(response, statusText);
+                    }
+                })
+                .fail(function (response, statusText) {
+                        if ('undefined' !== typeof error) {
+                            error(response.data, statusText);
+                        }
+                    }
+                )
+            ;
+        },
+
         /**
          * Gets the comments of a thread and places them in the thread holder.
          *
-         * @param string identifier Unique identifier url for the thread comments.
-         * @param string url Optional url for the thread. Defaults to current location.
+         * @param identifier string Unique identifier url for the thread comments.
+         * @param url string Optional url for the thread. Defaults to current location.
          */
-        getThreadComments: function(identifier, permalink) {
+        getThreadComments: function (identifier, permalink) {
             var event = jQuery.Event('fos_comment_before_load_thread');
 
             event.identifier = identifier;
@@ -102,10 +123,10 @@
 
             FOS_COMMENT.thread_container.trigger(event);
             FOS_COMMENT.get(
-                FOS_COMMENT.base_url  + '/' + encodeURIComponent(event.identifier) + '/comments',
+                FOS_COMMENT.base_url + '/' + encodeURIComponent(event.identifier) + '/comments',
                 event.params,
                 // success
-                function(data) {
+                function (data) {
                     FOS_COMMENT.thread_container.html(data);
                     FOS_COMMENT.thread_container.attr('data-thread', event.identifier);
                     FOS_COMMENT.thread_container.trigger('fos_comment_load_thread', event.identifier);
@@ -116,10 +137,10 @@
         /**
          * Initialize the event listeners.
          */
-        initializeListeners: function() {
+        initializeListeners: function () {
             FOS_COMMENT.thread_container.on('submit',
                 'form.fos_comment_comment_new_form',
-                function(e) {
+                function (e) {
                     var that = $(this);
                     var serializedData = FOS_COMMENT.serializeObject(this);
 
@@ -136,7 +157,7 @@
                         this.action,
                         serializedData,
                         // success
-                        function(data, statusCode) {
+                        function (data, statusCode) {
                             FOS_COMMENT.appendComment(data, that);
                             that.trigger('fos_comment_new_comment', data);
                             if (that.data() && that.data().parent !== '') {
@@ -144,13 +165,13 @@
                             }
                         },
                         // error
-                        function(data, statusCode) {
+                        function (data, statusCode) {
                             var parent = that.parent();
                             parent.after(data);
                             parent.remove();
                         },
                         // complete
-                        function(data, statusCode) {
+                        function (data, statusCode) {
                             that.trigger('fos_comment_submitted_form', statusCode);
                         }
                     );
@@ -159,18 +180,18 @@
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_comment_reply_show_form',
-                function(e) {
+                function (e) {
                     var form_data = $(this).data();
                     var that = $(this);
 
-                    if(that.closest('.fos_comment_comment_reply').hasClass('fos_comment_replying')) {
+                    if (that.closest('.fos_comment_comment_reply').hasClass('fos_comment_replying')) {
                         return that;
                     }
 
                     FOS_COMMENT.get(
                         form_data.url,
                         {parentId: form_data.parentId},
-                        function(data) {
+                        function (data) {
                             that.closest('.fos_comment_comment_reply').addClass('fos_comment_replying');
                             that.after(data);
                             that.trigger('fos_comment_show_form', data);
@@ -181,7 +202,7 @@
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_comment_reply_cancel',
-                function(e) {
+                function (e) {
                     var form_holder = $(this).closest('.fos_comment_comment_form_holder');
 
                     var event = $.Event('fos_comment_cancel_form');
@@ -198,14 +219,14 @@
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_comment_edit_show_form',
-                function(e) {
+                function (e) {
                     var form_data = $(this).data();
                     var that = $(this);
 
                     FOS_COMMENT.get(
                         form_data.url,
                         {},
-                        function(data) {
+                        function (data) {
                             var commentBody = $(form_data.container);
 
                             // save the old comment for the cancel function
@@ -222,20 +243,21 @@
 
             FOS_COMMENT.thread_container.on('submit',
                 'form.fos_comment_comment_edit_form',
-                function(e) {
+                function (e) {
                     var that = $(this);
 
-                    FOS_COMMENT.post(
+                    FOS_COMMENT.request(
+                        'PUT',
                         this.action,
                         FOS_COMMENT.serializeObject(this),
                         // success
-                        function(data) {
+                        function (data) {
                             FOS_COMMENT.editComment(data);
                             that.trigger('fos_comment_edit_comment', data);
                         },
 
                         // error
-                        function(data, statusCode) {
+                        function (data, statusCode) {
                             var parent = that.parent();
                             parent.after(data);
                             parent.remove();
@@ -248,14 +270,14 @@
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_comment_edit_cancel',
-                function(e) {
+                function (e) {
                     FOS_COMMENT.cancelEditComment($(this).parents('.fos_comment_comment_body'));
                 }
             );
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_comment_vote',
-                function(e) {
+                function (e) {
                     var that = $(this);
                     var form_data = that.data();
 
@@ -263,7 +285,7 @@
                     FOS_COMMENT.get(
                         form_data.url,
                         {},
-                        function(data) {
+                        function (data) {
                             // Post it
                             var form = $($.trim(data)).children('form')[0];
                             var form_data = $(form).data();
@@ -271,7 +293,7 @@
                             FOS_COMMENT.post(
                                 form.action,
                                 FOS_COMMENT.serializeObject(form),
-                                function(data) {
+                                function (data) {
                                     $('#' + form_data.scoreHolder).html(data);
                                     that.trigger('fos_comment_vote_comment', data, form);
                                 }
@@ -283,7 +305,7 @@
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_comment_remove',
-                function(e) {
+                function (e) {
                     var form_data = $(this).data();
 
                     var event = $.Event('fos_comment_removing_comment');
@@ -297,14 +319,14 @@
                     FOS_COMMENT.get(
                         form_data.url,
                         {},
-                        function(data) {
+                        function (data) {
                             // Post it
                             var form = $($.trim(data)).children('form')[0];
-
-                            FOS_COMMENT.post(
+                            FOS_COMMENT.request(
+                                'DELETE',
                                 form.action,
                                 FOS_COMMENT.serializeObject(form),
-                                function(data) {
+                                function (data) {
                                     var commentHtml = $($.trim(data));
 
                                     var originalComment = $('#' + commentHtml.attr('id'));
@@ -319,21 +341,21 @@
 
             FOS_COMMENT.thread_container.on('click',
                 '.fos_comment_thread_commentable_action',
-                function(e) {
+                function (e) {
                     var form_data = $(this).data();
 
                     // Get the form
                     FOS_COMMENT.get(
                         form_data.url,
                         {},
-                        function(data) {
+                        function (data) {
                             // Post it
                             var form = $($.trim(data)).children('form')[0];
 
                             FOS_COMMENT.post(
                                 form.action,
                                 FOS_COMMENT.serializeObject(form),
-                                function(data) {
+                                function (data) {
                                     var form = $($.trim(data)).children('form')[0];
                                     var threadId = $(form).data().fosCommentThreadId;
 
@@ -347,10 +369,10 @@
             );
         },
 
-        appendComment: function(commentHtml, form) {
+        appendComment: function (commentHtml, form) {
             var form_data = form.data();
 
-            if('' != form_data.parent) {
+            if ('' != form_data.parent) {
                 // reply button holder
                 var reply_button_holder = form.closest('.fos_comment_comment_reply');
 
@@ -373,14 +395,13 @@
             }
         },
 
-        editComment: function(commentHtml) {
+        editComment: function (commentHtml) {
             var commentHtml = $($.trim(commentHtml));
             var originalCommentBody = $('#' + commentHtml.attr('id')).children('.fos_comment_comment_body');
-
             originalCommentBody.html(commentHtml.children('.fos_comment_comment_body').html());
         },
 
-        cancelEditComment: function(commentBody) {
+        cancelEditComment: function (commentBody) {
             commentBody.html(commentBody.data('original'));
         },
 
@@ -389,11 +410,10 @@
          * data property, so use this for now.
          * http://stackoverflow.com/questions/1184624/serialize-form-to-json-with-jquery#1186309
          */
-        serializeObject: function(obj)
-        {
+        serializeObject: function (obj) {
             var o = {};
             var a = $(obj).serializeArray();
-            $.each(a, function() {
+            $.each(a, function () {
                 if (o[this.name] !== undefined) {
                     if (!o[this.name].push) {
                         o[this.name] = [o[this.name]];
@@ -406,14 +426,13 @@
             return o;
         },
 
-        loadCommentCounts: function()
-        {
+        loadCommentCounts: function () {
             var threadIds = [];
             var commentCountElements = $('span.fos-comment-count');
 
-            commentCountElements.each(function(i, elem){
+            commentCountElements.each(function (i, elem) {
                 var threadId = $(elem).data('fosCommentThreadId');
-                if(threadId) {
+                if (threadId) {
                     threadIds.push(threadId);
                 }
             });
@@ -421,7 +440,7 @@
             FOS_COMMENT.get(
                 FOS_COMMENT.base_url + '.json',
                 {ids: threadIds},
-                function(data) {
+                function (data) {
                     // easyXdm doesn't always serialize
                     if (typeof data != "object") {
                         data = jQuery.parseJSON(data);
@@ -433,9 +452,9 @@
                         threadData[data.threads[i].id] = data.threads[i];
                     }
 
-                    $.each(commentCountElements, function(){
+                    $.each(commentCountElements, function () {
                         var threadId = $(this).data('fosCommentThreadId');
-                        if(threadId) {
+                        if (threadId) {
                             FOS_COMMENT.setCommentCount(this, threadData[threadId]);
                         }
                     });
@@ -444,7 +463,7 @@
 
         },
 
-        setCommentCount: function(elem, threadObject) {
+        setCommentCount: function (elem, threadObject) {
             if (threadObject == undefined) {
                 elem.innerHTML = '0';
 
@@ -459,7 +478,7 @@
     FOS_COMMENT.thread_container = window.fos_comment_thread_container || $('#fos_comment_thread');
 
     // AJAX via easyXDM if this is configured
-    if(typeof window.fos_comment_remote_cors_url != "undefined") {
+    if (typeof window.fos_comment_remote_cors_url != "undefined") {
         /**
          * easyXDM instance to use
          */
@@ -474,15 +493,15 @@
          * @param function success Optional callback function to use in case of succes.
          * @param function error Optional callback function to use in case of error.
          */
-        FOS_COMMENT.request = function(method, url, data, success, error) {
+        FOS_COMMENT.request = function (method, url, data, success, error) {
             // wrap the callbacks to match the callback parameters of jQuery
-            var wrappedSuccessCallback = function(response){
-                if('undefined' !== typeof success) {
+            var wrappedSuccessCallback = function (response) {
+                if ('undefined' !== typeof success) {
                     success(response.data, response.status);
                 }
             };
-            var wrappedErrorCallback = function(response){
-                if('undefined' !== typeof error) {
+            var wrappedErrorCallback = function (response) {
+                if ('undefined' !== typeof error) {
                     error(response.data.data, response.data.status);
                 }
             };
@@ -494,11 +513,11 @@
             }, wrappedSuccessCallback, wrappedErrorCallback);
         };
 
-        FOS_COMMENT.post = function(url, data, success, error) {
+        FOS_COMMENT.post = function (url, data, success, error) {
             this.request('POST', url, data, success, error);
         };
 
-        FOS_COMMENT.get= function(url, data, success, error) {
+        FOS_COMMENT.get = function (url, data, success, error) {
             // make data serialization equals to that of jquery
             var params = jQuery.param(data);
             url += '' != params ? '?' + params : '';
@@ -520,16 +539,16 @@
     FOS_COMMENT.base_url = window.fos_comment_thread_api_base_url;
 
     // Load the comment if there is a thread id defined.
-    if(typeof window.fos_comment_thread_id != "undefined") {
+    if (typeof window.fos_comment_thread_id != "undefined") {
         // get the thread comments and init listeners
         FOS_COMMENT.getThreadComments(window.fos_comment_thread_id);
     }
 
-    if(typeof window.fos_comment_thread_comment_count_callback != "undefined") {
+    if (typeof window.fos_comment_thread_comment_count_callback != "undefined") {
         FOS_COMMENT.setCommentCount = window.fos_comment_thread_comment_count_callback;
     }
 
-    if($('span.fos-comment-count').length > 0) {
+    if ($('span.fos-comment-count').length > 0) {
         FOS_COMMENT.loadCommentCounts();
     }
 

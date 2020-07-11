@@ -527,8 +527,13 @@ class EtudeController extends AbstractController
         $formSuivi->handleRequest($request);
 
         if (!$formSuivi->isValid()) {
+            $msg = 'Erreurs sur l\'étude: ';
+            foreach ($formSuivi->getErrors(true, true) as $error) {
+                $msg .= $error->getCause()->getPropertyPath() . ' : ' . $error->getMessage();
+            }
+
             return new JsonResponse(['responseCode' => Response::HTTP_PRECONDITION_FAILED,
-                                     'msg' => 'Erreur:' . $formSuivi->getErrors(true, false),
+                                     'msg' => $msg,
             ]);
         }
         if (!$ap) {
