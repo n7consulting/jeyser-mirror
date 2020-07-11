@@ -91,6 +91,7 @@ class ThreadController extends AbstractController
 
     /**
      * Creates a new Thread from the submitted data.
+     * @Route(name="fos_comment_post_threads", path="/api/threads", methods={"POST"})
      *
      * @param Request                $request       The current request
      * @param ThreadManagerInterface $threadManager
@@ -303,7 +304,7 @@ class ThreadController extends AbstractController
 
     /**
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route(name="fos_comment_patch_thread_comment_state", path="/api/threads/{id}/comments/{commentId}/state", methods={"PATCH"})
+     * @Route(name="fos_comment_patch_thread_comment_state", path="/api/threads/{id}/comments/{commentId}/state", methods={"DELETE", "PATCH"})
      *
      * Edits the comment state.
      *
