@@ -38,8 +38,8 @@ class CommentExtension extends \Twig_Extension
     public function getTests()
     {
         return [
-            new \Twig_SimpleTest('fos_comment_deleted', [$this, 'isCommentDeleted']),
-            new \Twig_SimpleTest('fos_comment_in_state', [$this, 'isCommentInState']),
+            new \Twig\TwigTest('fos_comment_deleted', [$this, 'isCommentDeleted']),
+            new \Twig\TwigTest('fos_comment_in_state', [$this, 'isCommentInState']),
         ];
     }
 
@@ -59,7 +59,7 @@ class CommentExtension extends \Twig_Extension
 
     /**
      * Checks if comment is in given state.
-     *
+     * @deprecated
      * @param CommentInterface $comment
      * @param int              $state   CommentInterface::STATE_*
      *
