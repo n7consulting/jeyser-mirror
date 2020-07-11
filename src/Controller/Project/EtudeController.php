@@ -283,7 +283,8 @@ class EtudeController extends AbstractController
         Etude $etude,
         EtudePermissionChecker $permChecker,
         ValidatorInterface $validator
-    ) {
+    )
+    {
         $em = $this->getDoctrine()->getManager();
 
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {
@@ -421,14 +422,14 @@ class EtudeController extends AbstractController
             /** @var Etude $etude */
             foreach ($etudesInMandat as $etude) {
                 $form = $form->add(
-                    (string) (2 * $id),
+                    (string)(2 * $id),
                     HiddenType::class,
                     ['label' => 'refEtude',
                      'data' => $etude->getReference($namingConvention),
                     ]
                 )
                     ->add(
-                        (string) (2 * $id + 1),
+                        (string)(2 * $id + 1),
                         TextareaType::class,
                         ['label' => $etude->getReference($namingConvention),
                          'required' => false, 'data' => $etude->getStateDescription(),
@@ -527,8 +528,13 @@ class EtudeController extends AbstractController
         $formSuivi->handleRequest($request);
 
         if (!$formSuivi->isValid()) {
+            $msg = 'Erreurs sur l\'étude: ';
+            foreach ($formSuivi->getErrors(true, true) as $error) {
+                $msg .= $error->getCause()->getPropertyPath() . ' : ' . $error->getMessage();
+            }
+
             return new JsonResponse(['responseCode' => Response::HTTP_PRECONDITION_FAILED,
-                                     'msg' => 'Erreur:' . $formSuivi->getErrors(true, false),
+                                     'msg' => $msg,
             ]);
         }
         if (!$ap) {
