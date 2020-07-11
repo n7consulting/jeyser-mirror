@@ -23,10 +23,7 @@
             {{ 'suivi.intervenants'|trans({}, 'project') }}
         </th>
         <th>
-            {{ 'suivi.ap'|trans({}, 'project') }}
-        </th>
-        <th>
-            {{ 'suivi.cc'|trans({}, 'project') }}
+            {{ 'suivi.ce'|trans({}, 'project') }}
         </th>
         <th>
             {{ 'suivi.fa'|trans({}, 'project') }}
@@ -92,33 +89,17 @@
                     {% if loop.index != loop.last %}
                         <br/><br/>
                     {% endif %}
-
-
-
                 {% endfor %}
             </td>
             <td>
-                {% if getEtatDoc(etude.ap) == 1 %}
-                    <img src="{{ enCours }}" title="{{ etude.ap is not null ? etude.ap.dateSignature | date("d/m/y") }}"/>
-                {% elseif getEtatDoc(etude.ap) == 2 %}
+                {% if getEtatDoc(etude.ce) == 1 %}
+                    <img src="{{ enCours }}" title="{{ etude.ap is not null ? etude.ce.dateSignature | date("d/m/y") }}"/>
+                {% elseif getEtatDoc(etude.ce) == 2 %}
                     <img src="{{ valide }}"
-                         title="{{ etude.ap is not null ? etude.ap.dateSignature | date("d/m/y") }}"/>
+                         title="{{ etude.ce is not null ? etude.ce.dateSignature | date("d/m/y") }}"/>
                 {% else %}
                     <img src="{{ nonValide }}"
-                         title="{{ etude.ap is not null ? etude.ap.dateSignature | date("d/m/y") }}"/>
-                {% endif %}
-            </td>
-
-            <td>
-                {% if getEtatDoc(etude.cc) == 1 %}
-                    <img src="{{ enCours }}"
-                         title="{{ etude.cc is not null ? etude.cc.dateSignature | date("d/m/y") }}"/>
-                {% elseif getEtatDoc(etude.cc) == 2 %}
-                    <img src="{{ valide }}"
-                         title="{{ etude.cc is not null ? etude.cc.dateSignature | date("d/m/y") }}"/>
-                {% else %}
-                    <img src="{{ nonValide }}"
-                         title="{{ etude.cc is not null ? etude.cc.dateSignature | date("d/m/y") }}"/>
+                         title="{{ etude.ce is not null ? etude.ce.dateSignature | date("d/m/y") }}"/>
                 {% endif %}
             </td>
             <td>

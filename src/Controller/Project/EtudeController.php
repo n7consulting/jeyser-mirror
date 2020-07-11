@@ -283,8 +283,7 @@ class EtudeController extends AbstractController
         Etude $etude,
         EtudePermissionChecker $permChecker,
         ValidatorInterface $validator
-    )
-    {
+    ) {
         $em = $this->getDoctrine()->getManager();
 
         if ($permChecker->confidentielRefus($etude, $this->getUser())) {
@@ -422,14 +421,14 @@ class EtudeController extends AbstractController
             /** @var Etude $etude */
             foreach ($etudesInMandat as $etude) {
                 $form = $form->add(
-                    (string)(2 * $id),
+                    (string) (2 * $id),
                     HiddenType::class,
                     ['label' => 'refEtude',
                      'data' => $etude->getReference($namingConvention),
                     ]
                 )
                     ->add(
-                        (string)(2 * $id + 1),
+                        (string) (2 * $id + 1),
                         TextareaType::class,
                         ['label' => $etude->getReference($namingConvention),
                          'required' => false, 'data' => $etude->getStateDescription(),
