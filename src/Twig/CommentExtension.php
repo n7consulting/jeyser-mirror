@@ -59,7 +59,9 @@ class CommentExtension extends \Twig_Extension
 
     /**
      * Checks if comment is in given state.
+     *
      * @deprecated
+     *
      * @param CommentInterface $comment
      * @param int              $state   CommentInterface::STATE_*
      *
