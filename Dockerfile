@@ -10,7 +10,7 @@ RUN buildDeps=" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         $buildDeps \
-        libicu57 \
+        libicu63 \
         zlib1g \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install \
@@ -58,7 +58,9 @@ RUN \
     && chown -R www-data . var/cache var/logs var/sessions
 
 #Install phantomjs
-RUN apt-get install -y  bzip2 fontconfig wget \
+
+ENV OPENSSL_CONF=/etc/ssl
+RUN apt-get install -y  bzip2 fontconfig wget libssl1.1 libssl-dev \
     && wget https://raw.github.com/n7consulting/phantomjs-build/master/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
     && tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2 \
     && mv phantomjs-2.1.1-linux-x86_64 /usr/local/bin \
