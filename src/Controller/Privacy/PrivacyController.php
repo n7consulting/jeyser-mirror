@@ -7,7 +7,7 @@ use App\Entity\Personne\Prospect;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -138,7 +138,7 @@ class PrivacyController extends AbstractController
     {
         $data = $serializer->serialize($personne, 'json', ['groups' => ['gdpr']]);
 
-        $response = new JsonResponse($data);
+        $response = new Response($data);
         $response->headers->set('Cache-Control', 'private');
         $response->headers->set('Content-type', 'application/json');
         $response->headers->set('Content-Disposition', 'attachment; filename="Export-RGPD-' . date('Y-m-d') . '-' . $personne->getNom() . '.json";');
