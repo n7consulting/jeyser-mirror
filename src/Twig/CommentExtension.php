@@ -75,8 +75,6 @@ class CommentExtension extends \Twig_Extension
     /**
      * Checks if the current user is able to delete a comment.
      *
-     * @param CommentInterface $comment
-     *
      * @return bool
      */
     public function canDeleteComment(CommentInterface $comment)
@@ -90,8 +88,6 @@ class CommentExtension extends \Twig_Extension
 
     /**
      * Checks if the current user is able to edit a comment.
-     *
-     * @param CommentInterface $comment
      *
      * @return bool If the user is able to comment
      */
@@ -112,8 +108,6 @@ class CommentExtension extends \Twig_Extension
      *
      * Will use the specified ACL, or return true otherwise.
      *
-     * @param ThreadInterface $thread
-     *
      * @return bool
      */
     public function canEditThread(ThreadInterface $thread)
@@ -127,8 +121,6 @@ class CommentExtension extends \Twig_Extension
 
     /**
      * Checks if the thread can be commented.
-     *
-     * @param ThreadInterface $thread
      *
      * @return bool
      */

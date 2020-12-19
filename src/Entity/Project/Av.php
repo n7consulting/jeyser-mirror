@@ -122,8 +122,6 @@ class Av extends DocType
     /**
      * Set etude.
      *
-     * @param Etude $etude
-     *
      * @return Av
      */
     public function setEtude(Etude $etude)
@@ -194,8 +192,6 @@ class Av extends DocType
     /**
      * Add avenantsMissions.
      *
-     * @param AvMission $avenantsMissions
-     *
      * @return Av
      */
     public function addAvenantsMission(AvMission $avenantsMissions)
@@ -207,8 +203,6 @@ class Av extends DocType
 
     /**
      * Remove avenantsMissions.
-     *
-     * @param AvMission $avenantsMissions
      */
     public function removeAvenantsMission(AvMission $avenantsMissions)
     {
@@ -252,8 +246,6 @@ class Av extends DocType
     /**
      * Add phases.
      *
-     * @param Phase $phases
-     *
      * @return Av
      */
     public function addPhase(Phase $phases)
@@ -265,8 +257,6 @@ class Av extends DocType
 
     /**
      * Remove phases.
-     *
-     * @param Phase $phases
      */
     public function removePhase(Phase $phases)
     {

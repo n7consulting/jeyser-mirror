@@ -30,8 +30,6 @@ abstract class AbstractCommentManager implements CommentManagerInterface
 
     /**
      * Constructor.
-     *
-     * @param SortingInterface $sorter
      */
     public function __construct(SortingInterface $sorter)
     {
@@ -111,8 +109,6 @@ abstract class AbstractCommentManager implements CommentManagerInterface
 
     /**
      * Performs the persistence of a comment.
-     *
-     * @param CommentInterface $comment
      */
     abstract protected function doSaveComment(CommentInterface $comment);
 }

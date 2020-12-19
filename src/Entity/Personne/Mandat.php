@@ -139,8 +139,6 @@ class Mandat
     /**
      * Set membre.
      *
-     * @param Membre $membre
-     *
      * @return Mandat
      */
     public function setMembre(Membre $membre)
@@ -162,8 +160,6 @@ class Mandat
 
     /**
      * Set poste.
-     *
-     * @param Poste $poste
      *
      * @return Mandat
      */

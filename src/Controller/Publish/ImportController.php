@@ -20,9 +20,6 @@ class ImportController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="publish_import", path="/Documents/import", methods={"GET","HEAD","POST"})
      *
-     * @param Request            $request
-     * @param SiajeEtudeImporter $siajeImporter
-     *
      * @return Response display an upload form for a csv resources from other crm
      */
     public function index(Request $request, SiajeEtudeImporter $siajeImporter)
@@ -64,9 +61,8 @@ class ImportController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="publish_import_format", path="/Documents/import/format/{service_number}", methods={"GET","HEAD"})
      *
-     * @param int                $service_number id of service as stated in $this::AVAILABLE_FORMATS
-     *                                           Return an html snippet of how csv should be formatted to match import
-     * @param SiajeEtudeImporter $siajeImporter
+     * @param int $service_number id of service as stated in $this::AVAILABLE_FORMATS
+     *                            Return an html snippet of how csv should be formatted to match import
      *
      * @return JsonResponse an array containing expected headers
      */

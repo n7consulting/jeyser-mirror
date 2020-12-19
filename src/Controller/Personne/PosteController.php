@@ -29,8 +29,6 @@ class PosteController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_poste_ajouter", path="/poste/add", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     *
      * @return RedirectResponse|Response
      */
     public function ajouter(Request $request)
@@ -82,10 +80,6 @@ class PosteController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_poste_modifier", path="/poste/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request       $request
-     * @param Poste         $poste
-     * @param ObjectManager $em
-     *
      * @return RedirectResponse|Response
      *
      * @internal param $id
@@ -117,10 +111,6 @@ class PosteController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_poste_supprimer", path="/poste/supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request       $request
-     * @param Poste         $poste
-     * @param ObjectManager $em
      *
      * @return RedirectResponse
      */

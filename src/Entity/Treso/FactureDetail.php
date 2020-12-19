@@ -242,8 +242,6 @@ class FactureDetail implements TresoDetailInterface
     }
 
     /**
-     * @param Facture $factureADeduire
-     *
      * @return FactureDetail
      */
     public function setFactureADeduire(Facture $factureADeduire)

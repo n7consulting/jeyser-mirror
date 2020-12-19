@@ -41,9 +41,6 @@ class CommentManager extends AbstractCommentManager
 
     /**
      * Constructor.
-     *
-     * @param SortingInterface $sorter
-     * @param ObjectManager    $em
      */
     public function __construct(SortingInterface $sorter, ObjectManager $em)
     {
@@ -127,8 +124,6 @@ class CommentManager extends AbstractCommentManager
 
     /**
      * Performs persisting of the comment.
-     *
-     * @param CommentInterface $comment
      */
     protected function doSaveComment(CommentInterface $comment)
     {

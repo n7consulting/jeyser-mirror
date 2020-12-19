@@ -75,8 +75,6 @@ class MembreRepository extends EntityRepository
     /**
      * Retourne tous les membres connaissant $competence.
      *
-     * @param Competence $competence
-     *
      * @return Membre[]
      */
     public function findByCompetence(Competence $competence)

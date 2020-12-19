@@ -28,8 +28,6 @@ class FiliereController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="personne_filiere_ajouter", path="/filiere/add", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     *
      * @return RedirectResponse|Response
      */
     public function ajouter(Request $request)
@@ -61,9 +59,6 @@ class FiliereController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="personne_filiere_modifier", path="/filiere/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     * @param Filiere $filiere
-     *
      * @return RedirectResponse|Response
      */
     public function modifier(Request $request, Filiere $filiere)
@@ -94,9 +89,6 @@ class FiliereController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="personne_filiere_supprimer", path="/filiere/supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request $request
-     * @param Filiere $filiere
      *
      * @return RedirectResponse
      */

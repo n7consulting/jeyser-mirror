@@ -361,8 +361,6 @@ class Facture implements TresoDetailableInterface
     /**
      * Add details.
      *
-     * @param FactureDetail $details
-     *
      * @return Facture
      */
     public function addDetail(FactureDetail $details)
@@ -374,8 +372,6 @@ class Facture implements TresoDetailableInterface
 
     /**
      * Remove details.
-     *
-     * @param FactureDetail $details
      */
     public function removeDetail(FactureDetail $details)
     {
@@ -467,8 +463,6 @@ class Facture implements TresoDetailableInterface
 
     /**
      * Set beneficiaire.
-     *
-     * @param Prospect $beneficiaire
      *
      * @return Facture
      */

@@ -43,10 +43,8 @@ class DeclaratifController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_Declaratif_TVA", path="/Tresorerie/Declaratifs/TVA/{year}/{month}/{trimestriel}", methods={"GET","HEAD","POST"}, defaults={"year": "", "month": "", "trimestriel": ""})
      *
-     * @param Request $request
-     * @param int     $year
-     * @param int     $month
-     * @param bool    $trimestriel
+     * @param int $year
+     * @param int $month
      *
      * @return Response
      *
@@ -229,9 +227,8 @@ class DeclaratifController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_Declaratif_BRC", path="/Tresorerie/Declaratifs/BRC/{year}/{month}", methods={"GET","HEAD","POST"}, defaults={"year": "", "month": ""})
      *
-     * @param Request $request
-     * @param null    $year
-     * @param null    $month
+     * @param null $year
+     * @param null $month
      *
      * @return RedirectResponse|Response
      *

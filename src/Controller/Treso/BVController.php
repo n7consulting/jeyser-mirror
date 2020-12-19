@@ -42,9 +42,7 @@ class BVController extends AbstractController
      * @Route(name="treso_BV_ajouter", path="/Tresorerie/BV/Ajouter", methods={"GET","HEAD","POST"}, defaults={"id": "-1"})
      * @Route(name="treso_BV_modifier", path="/Tresorerie/BV/Modifier/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
      *
-     * @param Request         $request
-     * @param                 $id
-     * @param RouterInterface $router
+     * @param $id
      *
      * @return RedirectResponse|Response
      *
@@ -106,8 +104,6 @@ class BVController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_BV_voir", path="/Tresorerie/BV/{id}", methods={"GET","HEAD"})
      *
-     * @param BV $bv
-     *
      * @return Response
      */
     public function voir(BV $bv)
@@ -118,8 +114,6 @@ class BVController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="treso_BV_supprimer", path="/Tresorerie/BV/Supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param BV $bv
      *
      * @return RedirectResponse
      */

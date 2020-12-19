@@ -39,8 +39,7 @@ class BaseURSSAFController extends AbstractController
      * @Route(name="treso_BaseURSSAF_ajouter", path="/Tresorerie/BaseURSSAF/Ajouter", methods={"GET","HEAD","POST"}, defaults={"id": "-1"})
      * @Route(name="treso_BaseURSSAF_modifier", path="/Tresorerie/BaseURSSAF/Modifier/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
      *
-     * @param Request $request
-     * @param         $id
+     * @param $id
      *
      * @return RedirectResponse|Response
      */
@@ -73,8 +72,6 @@ class BaseURSSAFController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="treso_BaseURSSAF_supprimer", path="/Tresorerie/BaseURSSAF/Supprimer/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
-     *
-     * @param BaseURSSAF $base
      *
      * @return RedirectResponse
      */

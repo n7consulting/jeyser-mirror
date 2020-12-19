@@ -124,8 +124,6 @@ class ClientContact
     /**
      * Set faitPar.
      *
-     * @param Personne $faitPar
-     *
      * @return ClientContact
      */
     public function setFaitPar(Personne $faitPar)
@@ -171,8 +169,6 @@ class ClientContact
 
     /**
      * Set thread.
-     *
-     * @param Thread $thread
      *
      * @return ClientContact
      */

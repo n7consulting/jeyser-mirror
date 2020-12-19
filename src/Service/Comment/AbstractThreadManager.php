@@ -56,8 +56,6 @@ abstract class AbstractThreadManager implements ThreadManagerInterface
 
     /**
      * Persists a thread.
-     *
-     * @param ThreadInterface $thread
      */
     public function saveThread(ThreadInterface $thread)
     {
@@ -74,8 +72,6 @@ abstract class AbstractThreadManager implements ThreadManagerInterface
      * Performs the persistence of the Thread.
      *
      * @abstract
-     *
-     * @param ThreadInterface $thread
      */
     abstract protected function doSaveThread(ThreadInterface $thread);
 }

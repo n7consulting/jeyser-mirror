@@ -58,9 +58,6 @@ interface CommentInterface
      */
     public function getThread();
 
-    /**
-     * @param ThreadInterface $thread
-     */
     public function setThread(ThreadInterface $thread);
 
     /**

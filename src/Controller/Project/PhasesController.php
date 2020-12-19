@@ -29,10 +29,6 @@ class PhasesController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_phases_modifier", path="/suivi/phases/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return RedirectResponse|Response
      */
     public function modifier(Request $request, Etude $etude, EtudePermissionChecker $permChecker)

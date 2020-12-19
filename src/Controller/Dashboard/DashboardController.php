@@ -54,8 +54,6 @@ class DashboardController extends AbstractController
     /**
      * @Route(name="dashboard_search", path="/search", methods={"GET","HEAD"})
      *
-     * @param Request $request
-     *
      * @return Response
      */
     public function search(Request $request)

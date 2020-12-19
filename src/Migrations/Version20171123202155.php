@@ -10,9 +10,6 @@ use Doctrine\Migrations\AbstractMigration;
  */
 class Version20171123202155 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -40,9 +37,6 @@ class Version20171123202155 extends AbstractMigration
 \'Acompte par défaut\', \'Valeur par défaut de l acompte à la création de la Convention Client\', \'800\')');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema): void
     {
         $this->abortIf(

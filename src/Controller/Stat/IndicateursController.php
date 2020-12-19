@@ -97,9 +97,6 @@ class IndicateursController extends AbstractController
      * Retard par mandat (gestion d'études)
      * Basé sur les dates de signature CC et non pas les numéros
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getRetardParMandat(Request $request, ObjectManager $em)
@@ -163,9 +160,6 @@ class IndicateursController extends AbstractController
      *
      * Nombre d'études par mandat (gestion d'études)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getNombreEtudes(Request $request, ObjectManager $em)
@@ -182,7 +176,7 @@ class IndicateursController extends AbstractController
 
             if ($dateSignature && $signee) {
                 if (array_key_exists($mandat, $nombreEtudesParMandat)) {
-                    $nombreEtudesParMandat[$mandat] += 1;
+                    ++$nombreEtudesParMandat[$mandat];
                 } else {
                     $nombreEtudesParMandat[$mandat] = 1;
                 }
@@ -222,9 +216,6 @@ class IndicateursController extends AbstractController
      * Taux d'avenants par mandat (gestion d'études)
      * Basé sur les dates de signature CC et non pas les numéros
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getTauxAvenantsParMandat(Request $request, ObjectManager $em)
@@ -243,7 +234,7 @@ class IndicateursController extends AbstractController
 
             if ($dateSignature && $signee) {
                 if (array_key_exists($mandat, $nombreEtudesParMandat)) {
-                    $nombreEtudesParMandat[$mandat] += 1;
+                    ++$nombreEtudesParMandat[$mandat];
                 } else {
                     $nombreEtudesParMandat[$mandat] = 1;
                     $nombreEtudesAvecAvenantParMandat[$mandat] = 0;
@@ -251,7 +242,7 @@ class IndicateursController extends AbstractController
                 }
 
                 if (count($etude->getAvs()->toArray())) {
-                    $nombreEtudesAvecAvenantParMandat[$mandat] += 1;
+                    ++$nombreEtudesAvecAvenantParMandat[$mandat];
                     $nombreAvsParMandat[$mandat] += count($etude->getAvs()->toArray());
                 }
             }
@@ -291,9 +282,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_treso_repartitionSorties", path="/admin/indicateurs/treso/repartitionSorties", methods={"GET","HEAD"})
      *
      * Répartition des dépenses HT selon les comptes comptables pour le mandat en cours (trésorerie)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -360,9 +348,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_treso_sorties", path="/admin/indicateurs/treso/sorties", methods={"GET","HEAD"})
      *
      * Montant HT des dépenses (trésorerie)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -441,9 +426,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_treso_caParMandatHistogram", path="/admin/indicateurs/treso/caParMandatHistogram", methods={"GET","HEAD"})
      *
      * Chiffre d'affaires signé cumulé par mandat (trésorerie)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -526,9 +508,6 @@ class IndicateursController extends AbstractController
      *
      * Evolution par mandat du chiffre d'affaires signé cumulé (trésorerie)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getCA(Request $request, ObjectManager $em)
@@ -598,9 +577,6 @@ class IndicateursController extends AbstractController
      *
      * Nombre de présents aux formations (formations)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getNombreDePresentFormationsTimed(Request $request, ObjectManager $em)
@@ -657,9 +633,6 @@ class IndicateursController extends AbstractController
      *
      * Nombre de formations par mandat (formations)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getNombreFormationsParMandat(Request $request, ObjectManager $em)
@@ -705,9 +678,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_asso_nombreMembres", path="/admin/indicateurs/asso/nombreMembres", methods={"GET","HEAD"})
      *
      * Nombre de membres (gestion associative)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -783,9 +753,6 @@ class IndicateursController extends AbstractController
      *
      * Nombres de membres par promotion (gestion associative)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getMembresParPromo(Request $request, ObjectManager $em)
@@ -830,9 +797,6 @@ class IndicateursController extends AbstractController
      *
      * Nombre d'intervenants par promotion (gestion associative)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getIntervenantsParPromo(Request $request, ObjectManager $em)
@@ -874,9 +838,6 @@ class IndicateursController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      *
      * Not used at the moment
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -1018,9 +979,6 @@ class IndicateursController extends AbstractController
      *
      * Répartition du CA selon le type de client (développement commercial)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getRepartitionClientSelonChiffreAffaire(Request $request, ObjectManager $em)
@@ -1067,9 +1025,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_devco_repartitionClientParNombreDEtude", path="/admin/indicateurs/devco/repartitionClientParNombreDEtude", methods={"GET","HEAD"})
      *
      * Provenance des études selon le type de client (développement commercial)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -1118,9 +1073,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_devco_caParMandatCourbe", path="/admin/indicateurs/devco/partClientFideles", methods={"GET","HEAD"})
      *
      * Taux de fidélisation (développement commercial)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -1180,9 +1132,6 @@ class IndicateursController extends AbstractController
      *
      * Provenance des études selon la source de prospection (développement commercial)
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getSourceProspectionParNombreDEtude(Request $request, ObjectManager $em)
@@ -1228,9 +1177,6 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_devco_sourceProspectionSelonChiffreAffaire", path="/admin/indicateurs/devco/sourceProspectionSelonChiffreAffaire", methods={"GET","HEAD"})
      *
      * Répartition du CA selon la source de prospection (développement commercial)
-     *
-     * @param Request       $request
-     * @param ObjectManager $em
      *
      * @return Response
      */
@@ -1279,9 +1225,6 @@ class IndicateursController extends AbstractController
      *
      * A chart displaying how much a skill has brought in turnover
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function getCACompetences(Request $request, ObjectManager $em)
@@ -1311,7 +1254,7 @@ class IndicateursController extends AbstractController
             $sumSkill = 0;
             foreach ($c->getEtudes() as $e) {
                 $temp['data'][$e->getMandat() - $MANDAT_MIN] += $e->getMontantHT();
-                $used_mandats[$e->getMandat() - $MANDAT_MIN] += 1;
+                ++$used_mandats[$e->getMandat() - $MANDAT_MIN];
                 $sumSkill += $e->getMontantHT();
             }
             if ($sumSkill > 0) {

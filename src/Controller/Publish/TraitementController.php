@@ -307,7 +307,6 @@ class TraitementController extends AbstractController
             $zip->deleteName('word/media/' . $image[2]);
             $zip->addFile($repertoire . '/' . $idDocx . '.png', 'word/media/' . $image[2]);
         }
-        /*****/
 
         $zip = new \ZipArchive();
         $zip->open($repertoire . '/' . $idDocx);
@@ -616,8 +615,6 @@ class TraitementController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="publish_documenttype_upload", path="/DocumentsType/Upload", methods={"GET","HEAD","POST"})
-     *
-     * @param Request $request
      *
      * @return RedirectResponse|Response
      */

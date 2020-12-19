@@ -128,7 +128,7 @@ class DocType
     /**
      * @Groups({"gdpr"})
      *
-     * @return null|string
+     * @return string|null
      */
     public function getSignataire1NomFormel()
     {
@@ -138,7 +138,7 @@ class DocType
     /**
      * @Groups({"gdpr"})
      *
-     * @return null|string
+     * @return string|null
      */
     public function getSignataire2NomFormel()
     {
@@ -197,8 +197,6 @@ class DocType
 
     /**
      * Set thread.
-     *
-     * @param Thread $thread
      *
      * @return DocType
      */

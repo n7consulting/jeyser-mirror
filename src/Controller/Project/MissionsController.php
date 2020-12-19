@@ -30,10 +30,6 @@ class MissionsController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_missions_modifier", path="/suivi/missions/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return RedirectResponse|Response
      */
     public function modifier(Request $request, Etude $etude, EtudePermissionChecker $permChecker)

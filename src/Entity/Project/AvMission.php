@@ -132,8 +132,6 @@ class AvMission extends DocType
     /**
      * Add nouvelleRepartition.
      *
-     * @param RepartitionJEH $nouvelleRepartition
-     *
      * @return AvMission
      */
     public function addNouvelleRepartition(RepartitionJEH $nouvelleRepartition)
@@ -145,8 +143,6 @@ class AvMission extends DocType
 
     /**
      * Remove nouvelleRepartition.
-     *
-     * @param RepartitionJEH $nouvelleRepartition
      */
     public function removeNouvelleRepartition(RepartitionJEH $nouvelleRepartition)
     {
@@ -237,8 +233,6 @@ class AvMission extends DocType
 
     /**
      * Set etude.
-     *
-     * @param Etude $etude
      *
      * @return AvMission
      */

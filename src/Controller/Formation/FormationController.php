@@ -76,8 +76,6 @@ class FormationController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="formation_ajouter", path="/formations/admin/ajouter", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     *
      * @return Response
      */
     public function ajouter(Request $request)
@@ -108,7 +106,6 @@ class FormationController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="formation_modifier", path="/formations/admin/modifier/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
      *
-     * @param Request   $request
      * @param Formation $formation The training to modify
      *
      * @return Response
@@ -200,7 +197,6 @@ class FormationController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="formation_supprimer", path="/formations/admin/supprimer/{id}", methods={"HEAD","POST"})
      *
-     * @param Request   $request
      * @param Formation $formation The training to delete (paramconverter from id)
      *
      * @return RedirectResponse Delete a training

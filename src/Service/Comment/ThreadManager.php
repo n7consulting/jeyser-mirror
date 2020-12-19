@@ -41,8 +41,6 @@ class ThreadManager extends AbstractThreadManager implements ThreadManagerInterf
 
     /**
      * Constructor.
-     *
-     * @param ObjectManager $em
      */
     public function __construct(ObjectManager $em)
     {
@@ -55,8 +53,6 @@ class ThreadManager extends AbstractThreadManager implements ThreadManagerInterf
 
     /**
      * Finds one comment thread by the given criteria.
-     *
-     * @param array $criteria
      *
      * @return ThreadInterface
      */
@@ -103,8 +99,6 @@ class ThreadManager extends AbstractThreadManager implements ThreadManagerInterf
 
     /**
      * Saves a thread.
-     *
-     * @param ThreadInterface $thread
      */
     protected function doSaveThread(ThreadInterface $thread)
     {

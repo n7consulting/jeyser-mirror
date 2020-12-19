@@ -26,9 +26,8 @@ class UrssafController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_urssaf", path="/Tresorerie/urssaf/{year}/{month}", methods={"GET","HEAD","POST"}, defaults={"year": "", "month": ""})
      *
-     * @param Request $request
-     * @param null    $year
-     * @param null    $month
+     * @param null $year
+     * @param null $month
      *
      * @return RedirectResponse|Response
      */

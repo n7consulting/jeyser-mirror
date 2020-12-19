@@ -32,8 +32,6 @@ class AdminController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="dashboard_parameters_admin", path="/parameters/admin", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     *
      * @return Response
      */
     public function index(Request $request)

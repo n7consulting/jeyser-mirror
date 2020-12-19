@@ -20,8 +20,6 @@ class CompetenceController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="hr_competence_ajouter", path="/rh/competence/add", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     *
      * @return RedirectResponse|Response
      */
     public function ajouter(Request $request)
@@ -65,8 +63,6 @@ class CompetenceController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="hr_competence_voir", path="/rh/competence/{id}", methods={"GET","HEAD"})
      *
-     * @param Competence $skill
-     *
      * @return Response
      */
     public function voir(Competence $skill)
@@ -87,9 +83,6 @@ class CompetenceController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="hr_competence_modifier", path="/rh/competence/modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request    $request
-     * @param Competence $competence
      *
      * @return RedirectResponse|Response
      */
@@ -144,7 +137,6 @@ class CompetenceController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="hr_competence_supprimer", path="/rh/competence/supprimer/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request    $request
      * @param Competence $competence param converter on id
      *
      * @return RedirectResponse

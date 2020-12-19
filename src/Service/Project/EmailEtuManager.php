@@ -20,8 +20,6 @@ class EmailEtuManager
     /**
      * Get Adresse Mail Etu.
      *
-     * @param Membre $membre
-     *
      * @return string format@etu.emse.fr
      */
     public function getEmailEtu(Membre $membre)

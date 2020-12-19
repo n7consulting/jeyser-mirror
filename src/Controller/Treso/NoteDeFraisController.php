@@ -39,8 +39,7 @@ class NoteDeFraisController extends AbstractController
      * @Route(name="treso_NoteDeFrais_ajouter", path="/Tresorerie/NoteDeFrais/Ajouter", methods={"GET","HEAD","POST"}, defaults={"id": "-1"})
      * @Route(name="treso_NoteDeFrais_modifier", path="/Tresorerie/NoteDeFrais/Modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     * @param         $id
+     * @param $id
      *
      * @return RedirectResponse|Response
      *
@@ -84,8 +83,6 @@ class NoteDeFraisController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_NoteDeFrais_voir", path="/Tresorerie/NoteDeFrais/{id}", methods={"GET","HEAD"})
      *
-     * @param NoteDeFrais $nf
-     *
      * @return Response
      */
     public function voir(NoteDeFrais $nf)
@@ -96,8 +93,6 @@ class NoteDeFraisController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="treso_NoteDeFrais_supprimer", path="/Tresorerie/NoteDeFrais/Supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param NoteDeFrais $nf
      *
      * @return RedirectResponse
      */

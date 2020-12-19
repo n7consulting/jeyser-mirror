@@ -25,9 +25,6 @@ class EtudePermissionChecker
     }
 
     /**
-     * @param Etude $etude
-     * @param User  $user
-     *
      * @return bool
      *
      * Comme l'authorizationChecker n'est pas dispo coté twig, on utilisera cette méthode uniquement dans les controllers.

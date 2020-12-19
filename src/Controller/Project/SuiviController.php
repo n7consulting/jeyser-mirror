@@ -50,9 +50,6 @@ class SuiviController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="project_suivi_ajouter", path="/suivi/suivi/ajouter/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     * @param Etude   $etude
-     *
      * @return RedirectResponse|Response
      */
     public function add(Request $request, Etude $etude)
@@ -96,8 +93,6 @@ class SuiviController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="project_suivi_voir", path="/suivi/suivi/voir/{id}", methods={"GET","HEAD"})
      *
-     * @param Suivi $suivi
-     *
      * @return Response
      */
     public function voir(Suivi $suivi)
@@ -116,9 +111,6 @@ class SuiviController extends AbstractController
     /**
      * @Security("has_role('ROLE_CA')")
      * @Route(name="project_suivi_modifier", path="/suivi/suivi/modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request $request
-     * @param Suivi   $suivi
      *
      * @return RedirectResponse|Response
      */

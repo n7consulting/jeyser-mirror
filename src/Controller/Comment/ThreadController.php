@@ -49,9 +49,6 @@ class ThreadController extends AbstractController
      *
      * Gets the thread for a given id.
      *
-     * @param Thread              $thread
-     * @param SerializerInterface $serializer
-     *
      * @return Response
      */
     public function getThreadAction(Thread $thread, SerializerInterface $serializer)
@@ -66,10 +63,6 @@ class ThreadController extends AbstractController
      * @Route(name="fos_comment_get_threads", path="/api/threads", methods={"GET"})
      *
      * Gets the threads for the specified ids.
-     *
-     * @param Request                $request
-     * @param ThreadManagerInterface $threadManager
-     * @param SerializerInterface    $serializer
      *
      * @return Response
      */
@@ -94,8 +87,7 @@ class ThreadController extends AbstractController
      *
      * @Route(name="fos_comment_post_threads", path="/api/threads", methods={"POST"})
      *
-     * @param Request                $request       The current request
-     * @param ThreadManagerInterface $threadManager
+     * @param Request $request The current request
      *
      * @return Response
      */
@@ -126,9 +118,8 @@ class ThreadController extends AbstractController
      *
      * Get the edit form the open/close a thread.
      *
-     * @param Request                $request       Current request
-     * @param mixed                  $id            Thread id
-     * @param ThreadManagerInterface $threadManager
+     * @param Request $request Current request
+     * @param mixed   $id      Thread id
      *
      * @return Response
      */
@@ -158,9 +149,8 @@ class ThreadController extends AbstractController
      *
      * Edits the thread.
      *
-     * @param Request                $request       Currenty request
-     * @param mixed                  $id            Thread id
-     * @param ThreadManagerInterface $threadManager
+     * @param Request $request Currenty request
+     * @param mixed   $id      Thread id
      *
      * @return Response
      */
@@ -191,10 +181,7 @@ class ThreadController extends AbstractController
      *
      * Presents the form to use to create a new Comment for a Thread.
      *
-     * @param Request                 $request
-     * @param string                  $id
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param string $id
      *
      * @return Response
      */
@@ -231,10 +218,8 @@ class ThreadController extends AbstractController
      *
      * Get a comment of a thread.
      *
-     * @param string                  $id             Id of the thread
-     * @param mixed                   $commentId      Id of the comment
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param string $id        Id of the thread
+     * @param mixed  $commentId Id of the comment
      *
      * @return Response
      */
@@ -271,11 +256,9 @@ class ThreadController extends AbstractController
      *
      * Get the delete form for a comment.
      *
-     * @param Request                 $request        Current request
-     * @param string                  $id             Id of the thread
-     * @param mixed                   $commentId      Id of the comment
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param Request $request   Current request
+     * @param string  $id        Id of the thread
+     * @param mixed   $commentId Id of the comment
      *
      * @return Response
      */
@@ -309,11 +292,9 @@ class ThreadController extends AbstractController
      *
      * Edits the comment state.
      *
-     * @param Request                 $request        Current request
-     * @param mixed                   $id             Thread id
-     * @param mixed                   $commentId      Id of the comment
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param Request $request   Current request
+     * @param mixed   $id        Thread id
+     * @param mixed   $commentId Id of the comment
      *
      * @return Response
      */
@@ -350,10 +331,8 @@ class ThreadController extends AbstractController
      *
      * Presents the form to use to edit a Comment for a Thread.
      *
-     * @param string                  $id             Id of the thread
-     * @param mixed                   $commentId      Id of the comment
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param string $id        Id of the thread
+     * @param mixed  $commentId Id of the comment
      *
      * @return Response
      */
@@ -385,11 +364,9 @@ class ThreadController extends AbstractController
      *
      * Edits a given comment.
      *
-     * @param Request                 $request        Current request
-     * @param string                  $id             Id of the thread
-     * @param mixed                   $commentId      Id of the comment
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param Request $request   Current request
+     * @param string  $id        Id of the thread
+     * @param mixed   $commentId Id of the comment
      *
      * @return Response
      */
@@ -426,11 +403,8 @@ class ThreadController extends AbstractController
      *
      * Get the comments of a thread. Creates a new thread if none exists.
      *
-     * @param Request                 $request        Current request
-     * @param string                  $id             Id of the thread
-     * @param ThreadManagerInterface  $threadManager
-     * @param ValidatorInterface      $validator
-     * @param CommentManagerInterface $commentManager
+     * @param Request $request Current request
+     * @param string  $id      Id of the thread
      *
      * @return Response
      */
@@ -502,10 +476,8 @@ class ThreadController extends AbstractController
      *
      * Creates a new Comment for the Thread from the submitted data.
      *
-     * @param Request                 $request        The current request
-     * @param string                  $id             The id of the thread
-     * @param ThreadManagerInterface  $threadManager
-     * @param CommentManagerInterface $commentManager
+     * @param Request $request The current request
+     * @param string  $id      The id of the thread
      *
      * @return Response
      */
@@ -582,8 +554,6 @@ class ThreadController extends AbstractController
     /**
      * Forwards the action to the thread view on a successful form submission.
      *
-     * @param FormInterface $form
-     *
      * @return Response
      */
     protected function onCreateThreadSuccess(FormInterface $form)
@@ -598,8 +568,6 @@ class ThreadController extends AbstractController
     /**
      * Returns a HTTP_BAD_REQUEST response when the form submission fails.
      *
-     * @param FormInterface $form
-     *
      * @return Response
      */
     protected function onCreateThreadError(FormInterface $form)
@@ -613,8 +581,6 @@ class ThreadController extends AbstractController
 
     /**
      * Returns a HTTP_BAD_REQUEST response when the Thread creation fails due to a duplicate id.
-     *
-     * @param FormInterface $form
      *
      * @return Response
      */
@@ -665,8 +631,6 @@ class ThreadController extends AbstractController
     /**
      * Forwards the action to the open thread edit view on a successful form submission.
      *
-     * @param FormInterface $form
-     *
      * @return Response
      */
     protected function onOpenThreadSuccess(FormInterface $form)
@@ -680,8 +644,6 @@ class ThreadController extends AbstractController
 
     /**
      * Returns a HTTP_BAD_REQUEST response when the form submission fails.
-     *
-     * @param FormInterface $form
      *
      * @return Response
      */
@@ -737,9 +699,8 @@ class ThreadController extends AbstractController
     /**
      * Checks if a comment belongs to a thread. Returns the comment if it does.
      *
-     * @param ThreadInterface         $thread         Thread object
-     * @param mixed                   $commentId      Id of the comment
-     * @param CommentManagerInterface $commentManager
+     * @param ThreadInterface $thread    Thread object
+     * @param mixed           $commentId Id of the comment
      *
      * @return CommentInterface|null The comment
      */

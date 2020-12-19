@@ -26,8 +26,6 @@ class DomaineCompetenceController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="project_domaine_index", path="/suivi/DomainesDeCompetence", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     *
      * @return RedirectResponse|Response
      */
     public function index(Request $request)
@@ -59,8 +57,6 @@ class DomaineCompetenceController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="project_domaine_delete", path="/suivi/DomainesDeCompetence/Supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param DomaineCompetence $domaine
      *
      * @return RedirectResponse
      */

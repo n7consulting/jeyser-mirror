@@ -304,8 +304,6 @@ class Membre implements AnonymizableInterface
     /**
      * Add mandats.
      *
-     * @param Mandat $mandats
-     *
      * @return Membre
      */
     public function addMandat(Mandat $mandats)
@@ -318,8 +316,6 @@ class Membre implements AnonymizableInterface
 
     /**
      * Remove mandats.
-     *
-     * @param Mandat $mandats
      */
     public function removeMandat(Mandat $mandats)
     {
@@ -483,8 +479,6 @@ class Membre implements AnonymizableInterface
     /**
      * Add missions.
      *
-     * @param Mission $missions
-     *
      * @return Membre
      */
     public function addMission(Mission $missions)
@@ -496,8 +490,6 @@ class Membre implements AnonymizableInterface
 
     /**
      * Remove missions.
-     *
-     * @param Mission $missions
      */
     public function removeMission(Mission $missions)
     {
@@ -517,8 +509,6 @@ class Membre implements AnonymizableInterface
     /**
      * Add relatedDocuments.
      *
-     * @param RelatedDocument $relatedDocuments
-     *
      * @return Membre
      */
     public function addRelatedDocument(RelatedDocument $relatedDocuments)
@@ -530,8 +520,6 @@ class Membre implements AnonymizableInterface
 
     /**
      * Remove relatedDocuments.
-     *
-     * @param RelatedDocument $relatedDocuments
      */
     public function removeRelatedDocument(RelatedDocument $relatedDocuments)
     {
@@ -599,8 +587,6 @@ class Membre implements AnonymizableInterface
     /**
      * Set filiere.
      *
-     * @param Filiere $filiere
-     *
      * @return Membre
      */
     public function setFiliere(Filiere $filiere)
@@ -623,8 +609,6 @@ class Membre implements AnonymizableInterface
     /**
      * Add missions.
      *
-     * @param Competence $competence
-     *
      * @return Membre
      */
     public function addCompetence(Competence $competence)
@@ -637,8 +621,6 @@ class Membre implements AnonymizableInterface
 
     /**
      * Remove missions.
-     *
-     * @param Competence $competence
      */
     public function removeCompetence(Competence $competence)
     {

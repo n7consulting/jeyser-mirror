@@ -12,8 +12,6 @@ use Doctrine\ORM\EntityRepository;
 class ClientContactRepository extends EntityRepository
 {
     /** Returns all contacts for an Etude.
-     * @param Etude $etude
-     * @param array $order
      *
      * @return mixed
      */
@@ -35,7 +33,6 @@ class ClientContactRepository extends EntityRepository
     }
 
     /** Returns the last contact for an Etude.
-     * @param Etude $etude
      *
      * @return mixed
      */
