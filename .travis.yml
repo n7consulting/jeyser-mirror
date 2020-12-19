@@ -6,6 +6,7 @@ services:
 script:
     - cp docker-compose.yml.dist docker-compose.yml
     - cp .env.dist .env
+    - cp var/key_value_store/config.json.dist var/key_value_store/config.json
     - sed -i "s/REPLACE_WITH_YOUR_EMAIL/jeyser-crm.travis@example.com/g" docker-compose.yml .env
     - docker-compose build
     # check prod env is working
