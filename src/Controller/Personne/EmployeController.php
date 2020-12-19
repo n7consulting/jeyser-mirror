@@ -28,9 +28,6 @@ class EmployeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_employe_ajouter", path="/employe/add/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request  $request
-     * @param Prospect $prospect
-     *
      * @return RedirectResponse|Response
      */
     public function ajouter(Request $request, Prospect $prospect)
@@ -65,9 +62,6 @@ class EmployeController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_employe_modifier", path="/employe/modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request $request
-     * @param Employe $employe
      *
      * @return RedirectResponse|Response
      */
@@ -106,7 +100,6 @@ class EmployeController extends AbstractController
      * @Route(name="personne_employe_supprimer", path="/employe/supprimer/{id}", methods={"GET","HEAD","POST"})
      *
      * @param Employe $employe the employee to delete
-     * @param Request $request
      *
      * @return RedirectResponse
      */

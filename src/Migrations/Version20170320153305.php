@@ -11,9 +11,6 @@ use Doctrine\Migrations\AbstractMigration;
  */
 class Version20170320153305 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -44,9 +41,6 @@ class Version20170320153305 extends AbstractMigration
         $this->addSql('UPDATE Etude SET cc_id = (SELECT id  FROM Cc WHERE etude_id = Etude.id) ');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

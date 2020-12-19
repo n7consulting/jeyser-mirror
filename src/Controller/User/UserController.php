@@ -44,10 +44,6 @@ class UserController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="user_modifier", path="/user/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request              $request
-     * @param User                 $user
-     * @param UserManagerInterface $userManager
-     *
      * @return RedirectResponse|Response
      */
     public function modifier(Request $request, User $user, UserManagerInterface $userManager)
@@ -87,8 +83,7 @@ class UserController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="user_supprimer", path="/user/supprimer/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param User    $user    the user to be deleted
-     * @param Request $request
+     * @param User $user the user to be deleted
      *
      * @return RedirectResponse
      *
@@ -130,10 +125,7 @@ class UserController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="user_addFromPersonne", path="/user/addFromPersonne/{id}", methods={"POST"})
      *
-     * @param Request              $request
-     * @param Personne             $personne    the personne whom a user should be added
-     * @param UserManagerInterface $userManager
-     * @param MailerInterface      $mailer
+     * @param Personne $personne the personne whom a user should be added
      *
      * @return RedirectResponse
      *

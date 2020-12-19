@@ -43,11 +43,8 @@ class DocumentManager
     protected $junior_id;
 
     /**
-     * @param ObjectManager         $em
-     * @param                       $juniorId
-     * @param                       $authorizedStorageSize
-     * @param TokenStorageInterface $tokenStorage
-     * @param KernelInterface       $kernel
+     * @param $juniorId
+     * @param $authorizedStorageSize
      */
     public function __construct(
         ObjectManager $em,
@@ -73,7 +70,6 @@ class DocumentManager
      * Upload un document sur le serveur depuis une ressource distante via HTTP.
      *
      * @param string $url
-     * @param array  $authorizedMIMEType
      * @param string $name
      * @param string $relatedDocument
      * @param bool   $deleteIfExist
@@ -111,11 +107,9 @@ class DocumentManager
     /**
      * Upload un fichier de type UploadedFile sur le serveur.
      *
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     * @param array                                               $authorizedMIMEType
-     * @param string                                              $name
-     * @param RelatedDocument                                     $relatedDocument
-     * @param bool                                                $deleteIfExist
+     * @param string          $name
+     * @param RelatedDocument $relatedDocument
+     * @param bool            $deleteIfExist
      *
      * @return Document
      *
@@ -150,7 +144,6 @@ class DocumentManager
     /**
      * uploadDocument has to be the only one fonction used to persist Document.
      *
-     * @param Document        $document
      * @param RelatedDocument $relatedDocument
      * @param bool            $deleteIfExist
      *

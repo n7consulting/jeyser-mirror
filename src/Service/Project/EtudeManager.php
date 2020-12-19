@@ -68,7 +68,6 @@ class EtudeManager
      * Get référence du document
      * Params : Etude $etude, mixed $doc, string $type (the type of doc).
      *
-     * @param Etude $etude
      * @param $type
      * @param int $key
      *

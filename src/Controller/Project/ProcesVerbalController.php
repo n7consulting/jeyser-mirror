@@ -32,11 +32,6 @@ class ProcesVerbalController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_procesverbal_ajouter", path="/suivi/procesverbal/ajouter/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     * @param DocTypeManager         $docTypeManager
-     *
      * @return RedirectResponse|Response
      */
     public function add(
@@ -82,11 +77,6 @@ class ProcesVerbalController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_procesverbal_modifier", path="/suivi/procesverbal/modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request                $request
-     * @param ProcesVerbal           $procesverbal
-     * @param EtudePermissionChecker $permChecker
-     * @param DocTypeManager         $docTypeManager
      *
      * @return RedirectResponse|Response
      */
@@ -138,10 +128,7 @@ class ProcesVerbalController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_procesverbal_rediger", path="/suivi/procesverbal/rediger/{id}/{type}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param string                 $type        PVR or PVRI
-     * @param EtudePermissionChecker $permChecker
+     * @param string $type PVR or PVRI
      *
      * @return RedirectResponse|Response
      */
@@ -188,10 +175,6 @@ class ProcesVerbalController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_procesverbal_supprimer", path="/suivi/procesverbal/supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request                $request
-     * @param ProcesVerbal           $procesVerbal
-     * @param EtudePermissionChecker $permChecker
      *
      * @return RedirectResponse
      */

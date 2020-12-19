@@ -54,9 +54,8 @@ class FactureController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_Facture_ajouter", path="/Tresorerie/Facture/Ajouter", methods={"GET","HEAD","POST"})
      *
-     * @param Request                   $request   Http request
-     * @param Etude                     $etude     Etude to which the Facture will be added
-     * @param ConversionLettreFormatter $formatter
+     * @param Request $request Http request
+     * @param Etude   $etude   Etude to which the Facture will be added
      *
      * @return RedirectResponse|Response
      */
@@ -102,8 +101,6 @@ class FactureController extends AbstractController
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_Facture_voir", path="/Tresorerie/Facture/{id}", methods={"GET","HEAD"})
      *
-     * @param Facture $facture
-     *
      * @return Response
      */
     public function voir(Facture $facture)
@@ -118,9 +115,6 @@ class FactureController extends AbstractController
     /**
      * @Security("has_role('ROLE_TRESO')")
      * @Route(name="treso_Facture_modifier", path="/Tresorerie/Facture/Modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request $request
-     * @param Facture $facture
      *
      * @return RedirectResponse|Response
      */
@@ -164,9 +158,6 @@ class FactureController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="treso_Facture_supprimer", path="/Tresorerie/Facture/Supprimer/{id}", methods={"DELETE"})
      *
-     * @param Facture $facture
-     * @param Request $request
-     *
      * @return RedirectResponse
      */
     public function supprimer(Facture $facture, Request $request)
@@ -190,8 +181,6 @@ class FactureController extends AbstractController
     }
 
     /**
-     * @param Facture $facture
-     *
      * @return FormInterface
      */
     private function createDeleteForm(Facture $facture)
@@ -206,9 +195,7 @@ class FactureController extends AbstractController
     /**
      * Returns a well formatted facture, according to current Etude state.
      *
-     * @param ObjectManager             $em
-     * @param Etude                     $etude
-     * @param ConversionLettreFormatter $formatter
+     * @param Etude $etude
      *
      * @return Facture
      */

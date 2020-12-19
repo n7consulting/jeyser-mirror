@@ -29,10 +29,6 @@ class GroupePhasesController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_groupes_modifier", path="/suivi/groupes/modifier/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return RedirectResponse|Response
      */
     public function modifier(Request $request, Etude $etude, EtudePermissionChecker $permChecker)

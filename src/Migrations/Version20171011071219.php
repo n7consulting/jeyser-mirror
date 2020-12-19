@@ -10,9 +10,6 @@ use Doctrine\Migrations\AbstractMigration;
  */
 class Version20171011071219 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -43,9 +40,6 @@ class Version20171011071219 extends AbstractMigration
         $this->addSql('CREATE UNIQUE INDEX UNIQ_82D8557BA750AC6D ON FactureDetail (factureADeduire_id)');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs

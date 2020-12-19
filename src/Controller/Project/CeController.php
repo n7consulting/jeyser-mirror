@@ -30,10 +30,7 @@ class CeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_ce_rediger", path="/suivi/ce/rediger/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude          etude which CE should belong to
-     * @param EtudePermissionChecker $permChecker
-     * @param DocTypeManager         $docTypeManager
+     * @param Etude $etude etude which CE should belong to
      *
      * @return RedirectResponse|Response
      */

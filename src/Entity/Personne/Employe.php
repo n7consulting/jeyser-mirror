@@ -83,8 +83,6 @@ class Employe implements AnonymizableInterface
     /**
      * Set prospect.
      *
-     * @param Prospect $prospect
-     *
      * @return Employe
      */
     public function setProspect(Prospect $prospect)
@@ -104,8 +102,6 @@ class Employe implements AnonymizableInterface
 
     /**
      * Set personne.
-     *
-     * @param Personne $personne
      *
      * @return Employe
      */

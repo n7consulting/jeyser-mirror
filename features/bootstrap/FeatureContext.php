@@ -49,9 +49,6 @@ class FeatureContext extends MinkContext implements Context
      * Every scenario gets its own context instance.
      * You can also pass arbitrary arguments to the
      * context constructor through behat.yml.
-     *
-     * @param ManagerRegistry $doctrine
-     * @param KernelInterface $kernel
      */
     public function __construct(ManagerRegistry $doctrine, KernelInterface $kernel)
     {

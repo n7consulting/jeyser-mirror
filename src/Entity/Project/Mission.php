@@ -251,8 +251,6 @@ class Mission extends DocType
     /**
      * Set intervenant.
      *
-     * @param Membre $intervenant
-     *
      * @return Mission
      */
     public function setIntervenant(Membre $intervenant)
@@ -419,8 +417,6 @@ class Mission extends DocType
     /**
      * Set etude.
      *
-     * @param Etude $etude
-     *
      * @return Mission
      */
     public function setEtude(Etude $etude)
@@ -491,8 +487,6 @@ class Mission extends DocType
     /**
      * Add repartitionsJEH.
      *
-     * @param RepartitionJEH $repartitionsJEH
-     *
      * @return Mission
      */
     public function addRepartitionsJEH(RepartitionJEH $repartitionsJEH)
@@ -504,8 +498,6 @@ class Mission extends DocType
 
     /**
      * Remove repartitionsJEH.
-     *
-     * @param RepartitionJEH $repartitionsJEH
      */
     public function removeRepartitionsJEH(RepartitionJEH $repartitionsJEH)
     {
@@ -525,8 +517,6 @@ class Mission extends DocType
     /**
      * Add phase.
      *
-     * @param Phase $phase
-     *
      * @return Mission
      */
     public function addPhase(Phase $phase)
@@ -539,8 +529,6 @@ class Mission extends DocType
 
     /**
      * Remove phase.
-     *
-     * @param Phase $phase
      */
     public function removePhase(Phase $phase)
     {

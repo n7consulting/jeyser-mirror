@@ -30,10 +30,6 @@ class AvMissionController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_avmission_ajouter", path="/suivi/avmission/ajouter/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return RedirectResponse|Response
      */
     public function add(Request $request, Etude $etude, EtudePermissionChecker $permChecker)
@@ -69,10 +65,6 @@ class AvMissionController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_avmission_modifier", path="/suivi/avmission/modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request                $request
-     * @param AvMission              $avmission
-     * @param EtudePermissionChecker $permChecker
      *
      * @return RedirectResponse|Response
      */
@@ -110,10 +102,6 @@ class AvMissionController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_avmission_delete", path="/suivi/avmission/supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param AvMission              $av
-     * @param Request                $request
-     * @param EtudePermissionChecker $permChecker
      *
      * @return RedirectResponse
      */

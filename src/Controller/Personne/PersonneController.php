@@ -77,8 +77,6 @@ class PersonneController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="personne_personne_supprimer", path="/personne/supprimer/{id}", methods={"HEAD","POST"})
      *
-     * @param Personne $personne
-     *
      * @return RedirectResponse
      */
     public function delete(Personne $personne)

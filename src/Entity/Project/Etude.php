@@ -923,8 +923,6 @@ class Etude
     /**
      * Set prospect.
      *
-     * @param Prospect $prospect
-     *
      * @return Etude
      */
     public function setProspect(Prospect $prospect)
@@ -987,8 +985,6 @@ class Etude
     /**
      * Add clientContacts.
      *
-     * @param ClientContact $clientContacts
-     *
      * @return Etude
      */
     public function addClientContact(ClientContact $clientContacts)
@@ -1000,8 +996,6 @@ class Etude
 
     /**
      * Remove clientContacts.
-     *
-     * @param ClientContact $clientContacts
      */
     public function removeClientContact(ClientContact $clientContacts)
     {
@@ -1021,8 +1015,6 @@ class Etude
     /**
      * Add suivi.
      *
-     * @param Suivi $suivi
-     *
      * @return Etude
      */
     public function addSuivi(Suivi $suivi)
@@ -1034,8 +1026,6 @@ class Etude
 
     /**
      * Remove suivi.
-     *
-     * @param Suivi $suivi
      */
     public function removeSuivi(Suivi $suivi)
     {
@@ -1083,8 +1073,6 @@ class Etude
     /**
      * Add phases.
      *
-     * @param Phase $phases
-     *
      * @return Etude
      */
     public function addPhase(Phase $phases)
@@ -1096,8 +1084,6 @@ class Etude
 
     /**
      * Remove phases.
-     *
-     * @param Phase $phases
      */
     public function removePhase(Phase $phases)
     {
@@ -1173,8 +1159,6 @@ class Etude
     /**
      * Add mission.
      *
-     * @param DocType $mission
-     *
      * @return Etude
      */
     public function addMission(DocType $mission)
@@ -1186,8 +1170,6 @@ class Etude
 
     /**
      * Remove missions.
-     *
-     * @param DocType $mission
      */
     public function removeMission(DocType $mission)
     {
@@ -1207,8 +1189,6 @@ class Etude
     /**
      * Add Facture.
      *
-     * @param Facture $facture
-     *
      * @return Etude
      */
     public function addFacture(Facture $facture)
@@ -1220,8 +1200,6 @@ class Etude
 
     /**
      * Remove Facture.
-     *
-     * @param Facture $facture
      */
     public function removeFacture(Facture $facture)
     {
@@ -1240,8 +1218,6 @@ class Etude
 
     /**
      * Remove procesVerbal.
-     *
-     * @param ProcesVerbal $pv
      */
     public function removeProcesVerbal(ProcesVerbal $pv)
     {
@@ -1261,8 +1237,6 @@ class Etude
     /**
      * Add pvis.
      *
-     * @param ProcesVerbal $pvi
-     *
      * @return Etude
      */
     public function addPvi(ProcesVerbal $pvi)
@@ -1276,8 +1250,6 @@ class Etude
 
     /**
      * Remove pvis.
-     *
-     * @param ProcesVerbal $pvis
      */
     public function removePvi(ProcesVerbal $pvis)
     {
@@ -1317,8 +1289,6 @@ class Etude
     /**
      * Add avs.
      *
-     * @param Av $avs
-     *
      * @return Etude
      */
     public function addAv(Av $avs)
@@ -1330,8 +1300,6 @@ class Etude
 
     /**
      * Remove avs.
-     *
-     * @param Av $avs
      */
     public function removeAv(Av $avs)
     {
@@ -1351,8 +1319,6 @@ class Etude
     /**
      * Add avMissions.
      *
-     * @param AvMission $avMissions
-     *
      * @return Etude
      */
     public function addAvMission(AvMission $avMissions)
@@ -1364,8 +1330,6 @@ class Etude
 
     /**
      * Remove avMissions.
-     *
-     * @param AvMission $avMissions
      */
     public function removeAvMission(AvMission $avMissions)
     {
@@ -1384,8 +1348,6 @@ class Etude
 
     /**
      * Set pvr.
-     *
-     * @param ProcesVerbal $pvr
      *
      * @return Etude
      */
@@ -1422,8 +1384,6 @@ class Etude
 
     /**
      * Set thread.
-     *
-     * @param Thread $thread
      *
      * @return Etude
      */
@@ -1537,8 +1497,6 @@ class Etude
     /**
      * Set if CE is active.
      *
-     * @param bool|null $ceActive
-     *
      * @return Etude
      */
     public function setCeActive(?bool $ceActive)
@@ -1561,8 +1519,6 @@ class Etude
     /**
      * Add groupes.
      *
-     * @param GroupePhases $groupe
-     *
      * @return Etude
      */
     public function addGroupe(GroupePhases $groupe)
@@ -1574,8 +1530,6 @@ class Etude
 
     /**
      * Remove groupes.
-     *
-     * @param GroupePhases $groupe
      */
     public function removeGroupe(GroupePhases $groupe)
     {
@@ -1648,8 +1602,6 @@ class Etude
     /**
      * Add procesVerbaux.
      *
-     * @param ProcesVerbal $procesVerbaux
-     *
      * @return Etude
      */
     public function addProcesVerbaux(ProcesVerbal $procesVerbaux)
@@ -1661,8 +1613,6 @@ class Etude
 
     /**
      * Remove procesVerbaux.
-     *
-     * @param ProcesVerbal $procesVerbaux
      */
     public function removeProcesVerbaux(ProcesVerbal $procesVerbaux)
     {
@@ -1681,8 +1631,6 @@ class Etude
     /**
      * Add relatedDocuments.
      *
-     * @param RelatedDocument $relatedDocuments
-     *
      * @return Etude
      */
     public function addRelatedDocument(RelatedDocument $relatedDocuments)
@@ -1694,8 +1642,6 @@ class Etude
 
     /**
      * Remove relatedDocuments.
-     *
-     * @param RelatedDocument $relatedDocuments
      */
     public function removeRelatedDocument(RelatedDocument $relatedDocuments)
     {
@@ -1758,8 +1704,6 @@ class Etude
 
     /**
      * Add competences.
-     *
-     * @param Competence $competence
      */
     public function addCompetence(Competence $competence)
     {
@@ -1769,8 +1713,6 @@ class Etude
 
     /**
      * Remove competences.
-     *
-     * @param Competence $competence
      */
     public function removeCompetence(Competence $competence)
     {

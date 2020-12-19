@@ -100,8 +100,6 @@ class Competence
     /**
      * Add membres.
      *
-     * @param Membre $membres
-     *
      * @return Competence
      */
     public function addMembre(Membre $membres)
@@ -113,8 +111,6 @@ class Competence
 
     /**
      * Remove membres.
-     *
-     * @param Membre $membres
      */
     public function removeMembre(Membre $membres)
     {
@@ -134,8 +130,6 @@ class Competence
     /**
      * Add etudes.
      *
-     * @param Etude $etudes
-     *
      * @return Competence
      */
     public function addEtude(Etude $etudes)
@@ -147,8 +141,6 @@ class Competence
 
     /**
      * Remove etudes.
-     *
-     * @param Etude $etudes
      */
     public function removeEtude(Etude $etudes)
     {

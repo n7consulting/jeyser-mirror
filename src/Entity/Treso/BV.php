@@ -520,8 +520,6 @@ class BV
     /**
      * Add cotisationURSSAF.
      *
-     * @param CotisationURSSAF $cotisationURSSAF
-     *
      * @return BV
      */
     public function addCotisationURSSAF(CotisationURSSAF $cotisationURSSAF)
@@ -533,8 +531,6 @@ class BV
 
     /**
      * Remove cotisationURSSAF.
-     *
-     * @param CotisationURSSAF $cotisationURSSAF
      */
     public function removeCotisationURSSAF(CotisationURSSAF $cotisationURSSAF)
     {

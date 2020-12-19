@@ -55,8 +55,7 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_homepage", path="/suivi/", methods={"GET","HEAD"})
      *
-     * @param EtudeManager $etudeManager
-     * @param string       $roleVoirConfidentiel role required to access confidential projects, injected by DI
+     * @param string $roleVoirConfidentiel role required to access confidential projects, injected by DI
      *
      * @return Response
      */
@@ -107,8 +106,7 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_ajax", path="/suivi/get", methods={"GET","HEAD"})
      *
-     * @param Request $request
-     * @param string  $roleVoirConfidentiel role required to access confidential projects, injected by DI
+     * @param string $roleVoirConfidentiel role required to access confidential projects, injected by DI
      *
      * @return Response
      */
@@ -149,8 +147,6 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_state", path="/suivi/suivi/state/", methods={"PUT"})
      *
-     * @param Request $request
-     *
      * @return Response
      */
     public function state(Request $request)
@@ -176,9 +172,6 @@ class EtudeController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_ajouter", path="/suivi/etude/add", methods={"GET","HEAD","POST"})
-     *
-     * @param Request      $request
-     * @param EtudeManager $etudeManager
      *
      * @return RedirectResponse|Response
      */
@@ -237,10 +230,6 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_voir", path="/suivi/etude/{nom}", methods={"GET","HEAD"})
      *
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     * @param ChartManager           $chartManager
-     *
      * @return Response
      */
     public function voir(Etude $etude, EtudePermissionChecker $permChecker, ChartManager $chartManager)
@@ -270,11 +259,6 @@ class EtudeController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_modifier", path="/suivi/etude/modifier/{nom}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     * @param ValidatorInterface     $validator
      *
      * @return RedirectResponse|Response
      */
@@ -333,10 +317,6 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="project_etude_supprimer", path="/suivi/etude/supprimer/{nom}", methods={"GET","HEAD","POST"})
      *
-     * @param Etude                  $etude
-     * @param Request                $request
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return RedirectResponse
      */
     public function delete(Etude $etude, Request $request, EtudePermissionChecker $permChecker)
@@ -370,9 +350,6 @@ class EtudeController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_suivi", path="/suivi/etudes/suivi", methods={"GET","HEAD"})
-     *
-     * @param Request      $request
-     * @param ChartManager $chartManager
      *
      * @return Response
      */
@@ -477,8 +454,6 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_suiviQualite", path="/suivi/etudes/suiviQualite", methods={"GET","HEAD"})
      *
-     * @param ChartManager $chartManager
-     *
      * @return Response
      */
     public function suiviQualite(ChartManager $chartManager)
@@ -503,10 +478,6 @@ class EtudeController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_etude_suivi_update", path="/suivi/suivi/update/{id}", methods={"POST"})
-     *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
      *
      * @return JsonResponse
      */
@@ -556,8 +527,7 @@ class EtudeController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_vu_ca", path="/suivi/ca/{id}", methods={"GET","HEAD"}, defaults={"id": "-1"})
      *
-     * @param              $id
-     * @param ChartManager $chartManager
+     * @param $id
      *
      * @return Response
      */

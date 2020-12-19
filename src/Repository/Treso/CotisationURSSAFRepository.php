@@ -26,8 +26,6 @@ class CotisationURSSAFRepository extends EntityRepository
      * Renvoie les cotisations pour une date donnée
      * YEAR MONTH DAY sont défini dans DashBoardBundle/DQL (qui doit devenir FrontEndBundle).
      *
-     * @param \DateTime $date
-     *
      * @return array
      */
     public function findAllByDate(\DateTime $date)

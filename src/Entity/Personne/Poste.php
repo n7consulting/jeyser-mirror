@@ -121,8 +121,6 @@ class Poste
     /**
      * Add mandats.
      *
-     * @param Mandat $mandats
-     *
      * @return Poste
      */
     public function addMandat(Mandat $mandats)
@@ -134,8 +132,6 @@ class Poste
 
     /**
      * Remove mandats.
-     *
-     * @param Mandat $mandats
      */
     public function removeMandat(Mandat $mandats)
     {

@@ -31,9 +31,6 @@ class ProspectController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_prospect_ajouter", path="/prospect/add/", methods={"GET","HEAD","POST"})
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return RedirectResponse|Response
      */
     public function ajouter(Request $request, ObjectManager $em)
@@ -81,9 +78,6 @@ class ProspectController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_prospect_voir", path="/prospect/voir/{id}", methods={"GET","HEAD"})
      *
-     * @param Prospect      $prospect
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function voir(Prospect $prospect, ObjectManager $em)
@@ -117,10 +111,6 @@ class ProspectController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_prospect_modifier", path="/prospect/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request       $request
-     * @param Prospect      $prospect
-     * @param ObjectManager $em
-     *
      * @return RedirectResponse|Response
      */
     public function modifier(Request $request, Prospect $prospect, ObjectManager $em)
@@ -151,9 +141,7 @@ class ProspectController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_prospect_supprimer", path="/prospect/supprimer/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Prospect      $prospect the prospect to delete
-     * @param Request       $request
-     * @param ObjectManager $em
+     * @param Prospect $prospect the prospect to delete
      *
      * @return RedirectResponse
      */
@@ -198,9 +186,6 @@ class ProspectController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_ajax_prospect", path="/ajax/ajax_prospect/", methods={"GET","HEAD"})
      *
-     * @param Request       $request
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function ajaxProspect(Request $request, ObjectManager $em)
@@ -227,8 +212,6 @@ class ProspectController extends AbstractController
      *
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_ajax_employes_de_prospect", path="/ajax/employes_de_prospect/{id}", methods={"GET","HEAD"})
-     *
-     * @param Prospect $prospect
      *
      * @return JsonResponse
      */

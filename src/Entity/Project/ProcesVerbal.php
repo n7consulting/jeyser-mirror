@@ -81,8 +81,6 @@ class ProcesVerbal extends DocType
     /**
      * Set etude.
      *
-     * @param Etude $etude
-     *
      * @return ProcesVerbal
      */
     public function setEtude(Etude $etude)

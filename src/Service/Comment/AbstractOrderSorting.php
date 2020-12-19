@@ -40,8 +40,6 @@ abstract class AbstractOrderSorting implements SortingInterface
      *        'children' => array ( .. )
      *    )
      *
-     * @param array $tree
-     *
      * @return array
      */
     public function sort(array $tree)
@@ -76,8 +74,6 @@ abstract class AbstractOrderSorting implements SortingInterface
     /**
      * Sorts a flat array of comments.
      *
-     * @param array $comments
-     *
      * @return array
      */
     public function sortFlat(array $comments)
@@ -106,9 +102,6 @@ abstract class AbstractOrderSorting implements SortingInterface
 
     /**
      * Compares 2 comments. Implement this to create custom sorting options.
-     *
-     * @param CommentInterface $a
-     * @param CommentInterface $b
      *
      * @return -1|0|1 As expected for usort()
      */

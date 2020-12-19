@@ -30,10 +30,7 @@ class CcController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_cc_rediger", path="/suivi/cc/rediger/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude          etude which CC should belong to
-     * @param EtudePermissionChecker $permChecker
-     * @param DocTypeManager         $docTypeManager
+     * @param Etude $etude etude which CC should belong to
      *
      * @return RedirectResponse|Response
      */

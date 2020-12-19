@@ -7,9 +7,9 @@ use App\Entity\Personne\Prospect;
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -50,10 +50,6 @@ class PrivacyController extends AbstractController
      *
      * @Security("has_role('ROLE_RGPD')")
      * @Route("/action/{id}", name="privacy_action", methods={"POST"})
-     *
-     * @param Request             $request
-     * @param Personne            $personne
-     * @param SerializerInterface $serializer
      *
      * @return RedirectResponse
      */

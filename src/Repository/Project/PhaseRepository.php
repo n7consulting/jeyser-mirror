@@ -12,8 +12,6 @@ use Doctrine\ORM\EntityRepository;
 class PhaseRepository extends EntityRepository
 {
     /**
-     * @param Etude $etude
-     *
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function getByEtudeQuery(Etude $etude)

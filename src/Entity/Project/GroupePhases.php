@@ -213,8 +213,6 @@ class GroupePhases
     /**
      * Add phases.
      *
-     * @param Phase $phases
-     *
      * @return GroupePhases
      */
     public function addPhase(Phase $phases)
@@ -226,8 +224,6 @@ class GroupePhases
 
     /**
      * Remove phases.
-     *
-     * @param Phase $phases
      */
     public function removePhase(Phase $phases)
     {

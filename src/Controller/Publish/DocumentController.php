@@ -58,8 +58,7 @@ class DocumentController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="publish_document_voir", path="/Documents/show/{id}", methods={"GET","HEAD"})
      *
-     * @param Document        $documentType (ParamConverter) The document to be downloaded
-     * @param KernelInterface $kernel
+     * @param Document $documentType (ParamConverter) The document to be downloaded
      *
      * @return BinaryFileResponse
      *
@@ -81,12 +80,6 @@ class DocumentController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="publish_document_uploadEtude", path="/Documents/Upload/Etude/{nom}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     * @param DocumentManager        $documentManager
-     * @param KernelInterface        $kernel
      *
      * @return Response
      */
@@ -114,11 +107,6 @@ class DocumentController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="publish_document_uploadEtudiant", path="/Documents/Upload/Etudiant/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request         $request
-     * @param Membre          $membre
-     * @param DocumentManager $documentManager
-     * @param KernelInterface $kernel
-     *
      * @return bool|RedirectResponse|Response
      */
     public function uploadEtudiant(Request $request, Membre $membre, DocumentManager $documentManager, KernelInterface $kernel)
@@ -138,8 +126,6 @@ class DocumentController extends AbstractController
      * @Security("has_role('ROLE_CA')")
      * @Route(name="publish_document_uploadFormation", path="/Documents/Upload/Formation/{id}", methods={"GET","HEAD"})
      *
-     * @param Formation $formation
-     *
      * @return JsonResponse
      */
     public function uploadFormation(Formation $formation)
@@ -150,10 +136,6 @@ class DocumentController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="publish_document_uploadDoctype", path="/Documents/Upload/Doctype", methods={"GET","HEAD","POST"})
-     *
-     * @param Request         $request
-     * @param DocumentManager $documentManager
-     * @param KernelInterface $kernel
      *
      * @return Response
      */
@@ -170,9 +152,6 @@ class DocumentController extends AbstractController
     /**
      * @Security("has_role('ROLE_CA')")
      * @Route(name="publish_document_delete", path="/Documents/Supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Document        $doc
-     * @param KernelInterface $kernel
      *
      * @return Response
      */

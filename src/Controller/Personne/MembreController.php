@@ -65,8 +65,6 @@ class MembreController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_membres_homepage", path="/membres-actifs", methods={"GET","HEAD"})
      *
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function statistique(ObjectManager $em)
@@ -94,9 +92,6 @@ class MembreController extends AbstractController
      * @Security("has_role('ROLE_ELEVE')")
      * @Route(name="personne_membre_voir", path="/membres/voir/{id}", methods={"GET","HEAD"})
      *
-     * @param Membre        $membre
-     * @param ObjectManager $em
-     *
      * @return Response
      */
     public function voir(Membre $membre, ObjectManager $em)
@@ -123,11 +118,6 @@ class MembreController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_membre_ajouter", path="/membres/add", methods={"GET","HEAD","POST"})
-     *
-     * @param Request         $request
-     * @param DocumentManager $documentManager
-     * @param EmailEtuManager $emailEtuManager
-     * @param RouterInterface $router
      *
      * @return RedirectResponse|Response
      */
@@ -216,11 +206,6 @@ class MembreController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_membre_modifier", path="/membres/modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request         $request
-     * @param Membre          $membre
-     * @param DocumentManager $documentManager
-     * @param RouterInterface $router
-     *
      * @return RedirectResponse|Response
      *
      * @internal param $id
@@ -282,10 +267,6 @@ class MembreController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="personne_membre_supprimer", path="/membres/supprimer/{id}", methods={"HEAD","POST"})
-     *
-     * @param Request       $request
-     * @param Membre        $membre
-     * @param ObjectManager $em
      *
      * @return RedirectResponse
      */

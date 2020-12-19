@@ -39,8 +39,7 @@ class CotisationURSSAFController extends AbstractController
      * @Route(name="treso_CotisationURSSAF_ajouter", path="/Tresorerie/CotisationURSSAF/Ajouter", methods={"GET","HEAD","POST"}, defaults={"id": "-1"})
      * @Route(name="treso_CotisationURSSAF_modifier", path="/Tresorerie/CotisationURSSAF/Modifier/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request $request
-     * @param         $id
+     * @param $id
      *
      * @return RedirectResponse|Response
      */
@@ -73,8 +72,6 @@ class CotisationURSSAFController extends AbstractController
     /**
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="treso_CotisationURSSAF_supprimer", path="/Tresorerie/CotisationURSSAF/Supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param CotisationURSSAF $cotisation
      *
      * @return RedirectResponse
      */

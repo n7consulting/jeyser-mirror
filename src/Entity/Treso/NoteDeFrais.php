@@ -171,8 +171,6 @@ class NoteDeFrais implements TresoDetailableInterface
     /**
      * Add details.
      *
-     * @param NoteDeFraisDetail $details
-     *
      * @return NoteDeFrais
      */
     public function addDetail(NoteDeFraisDetail $details)
@@ -184,8 +182,6 @@ class NoteDeFrais implements TresoDetailableInterface
 
     /**
      * Remove details.
-     *
-     * @param NoteDeFraisDetail $details
      */
     public function removeDetail(NoteDeFraisDetail $details)
     {

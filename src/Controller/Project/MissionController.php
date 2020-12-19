@@ -24,9 +24,6 @@ class MissionController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_mission_avancement", path="/suivi/missions/avancement/{id}", methods={"PUT"})
      *
-     * @param Mission $mission
-     * @param Request $request
-     *
      * @return Response
      */
     public function avancement(Mission $mission, Request $request)

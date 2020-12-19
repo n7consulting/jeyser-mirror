@@ -46,10 +46,6 @@ class ClientContactController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_clientcontact_ajouter", path="/suivi/clientcontact/ajouter/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return RedirectResponse|Response
      */
     public function add(Request $request, Etude $etude, EtudePermissionChecker $permChecker)
@@ -88,9 +84,6 @@ class ClientContactController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_clientcontact_voir", path="/suivi/clientcontact/voir/{id}", methods={"GET","HEAD"})
      *
-     * @param ClientContact          $clientContact
-     * @param EtudePermissionChecker $permChecker
-     *
      * @return Response
      */
     public function voir(ClientContact $clientContact, EtudePermissionChecker $permChecker)
@@ -115,10 +108,6 @@ class ClientContactController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_clientcontact_modifier", path="/suivi/clientcontact/modifier/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param Request                $request
-     * @param ClientContact          $clientContact
-     * @param EtudePermissionChecker $permChecker
      *
      * @return RedirectResponse|Response
      */
@@ -158,10 +147,6 @@ class ClientContactController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_clientcontact_delete", path="/suivi/clientcontact/supprimer/{id}", methods={"GET","HEAD","POST"})
-     *
-     * @param ClientContact          $contact
-     * @param Request                $request
-     * @param EtudePermissionChecker $permChecker
      *
      * @return RedirectResponse
      */

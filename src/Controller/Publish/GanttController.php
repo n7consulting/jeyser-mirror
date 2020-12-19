@@ -31,12 +31,9 @@ class GanttController extends AbstractController
      * @Route(name="publish_getgantt", path="/Documents/GetGantt/{id}/{width}", methods={"GET","HEAD"}, requirements={"width": "\d+"}, defaults={"width": "960"})
      * Génère le Gantt Chart de l'étude passée en paramètre.
      *
-     * @param Etude                  $etude        project whom gantt chart should be exported
-     * @param int                    $width        width of exported gantt
-     * @param bool                   $debug
-     * @param EtudePermissionChecker $permChecker
-     * @param ChartManager           $chartManager
-     * @param KernelInterface        $kernel
+     * @param Etude $etude project whom gantt chart should be exported
+     * @param int   $width width of exported gantt
+     * @param bool  $debug
      *
      * @return Response a png of project gantt chart
      */

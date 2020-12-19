@@ -31,10 +31,7 @@ class ApController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_ap_rediger", path="/suivi/ap/rediger/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
      *
-     * @param Request                $request
-     * @param Etude                  $etude          etude which Ap should be edited
-     * @param EtudePermissionChecker $permChecker
-     * @param DocTypeManager         $docTypeManager
+     * @param Etude $etude etude which Ap should be edited
      *
      * @return RedirectResponse|Response
      */
@@ -83,10 +80,6 @@ class ApController extends AbstractController
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_ap_suivi", path="/suivi/ap/suivi/{id}", methods={"GET","HEAD","POST"}, requirements={"id": "\d+"})
-     *
-     * @param Request                $request
-     * @param Etude                  $etude
-     * @param EtudePermissionChecker $permChecker
      *
      * @return RedirectResponse|Response
      */

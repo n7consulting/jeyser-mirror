@@ -10,9 +10,6 @@ use Doctrine\Migrations\AbstractMigration;
  */
 class Version20170614232630 extends AbstractMigration
 {
-    /**
-     * @param Schema $schema
-     */
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
@@ -35,9 +32,6 @@ class Version20170614232630 extends AbstractMigration
         $this->addSql('Update `AdminParam` set name = "anneeCreation" where name = "anneCreation"');
     }
 
-    /**
-     * @param Schema $schema
-     */
     public function down(Schema $schema): void
     {
         $this->abortIf(

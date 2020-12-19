@@ -341,8 +341,6 @@ class Formation
     /**
      * Add formateurs.
      *
-     * @param Personne $formateurs
-     *
      * @return Formation
      */
     public function addFormateur(Personne $formateurs)
@@ -354,8 +352,6 @@ class Formation
 
     /**
      * Remove formateurs.
-     *
-     * @param Personne $formateurs
      */
     public function removeFormateur(Personne $formateurs)
     {
@@ -364,8 +360,6 @@ class Formation
 
     /**
      * Add membresPresents.
-     *
-     * @param Personne $membresPresents
      *
      * @return Formation
      */
@@ -378,8 +372,6 @@ class Formation
 
     /**
      * Remove membresPresents.
-     *
-     * @param Personne $membresPresents
      */
     public function removeMembresPresent(Personne $membresPresents)
     {

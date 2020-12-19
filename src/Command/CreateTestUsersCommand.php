@@ -52,8 +52,6 @@ class CreateTestUsersCommand extends Command
 
     /**
      * Create users based on FeatureContext values.
-     *
-     * @param OutputInterface $output
      */
     private function createUsers(OutputInterface $output)
     {

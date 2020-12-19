@@ -98,8 +98,6 @@ class Prospect extends Adressable
     /**
      * Set thread.
      *
-     * @param Thread $thread
-     *
      * @return Prospect
      */
     public function setThread(Thread $thread)
@@ -122,8 +120,6 @@ class Prospect extends Adressable
     /**
      * Add employes.
      *
-     * @param Employe $employes
-     *
      * @return Prospect
      */
     public function addEmploye(Employe $employes)
@@ -135,8 +131,6 @@ class Prospect extends Adressable
 
     /**
      * Remove employes.
-     *
-     * @param Employe $employes
      */
     public function removeEmploye(Employe $employes)
     {

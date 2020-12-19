@@ -68,8 +68,6 @@ class CompteController extends AbstractController
      * @Security("has_role('ROLE_ADMIN')")
      * @Route(name="treso_Compte_supprimer", path="/Tresorerie/Compte/Supprimer/{id}", methods={"GET","HEAD","POST"})
      *
-     * @param Compte $compte
-     *
      * @return RedirectResponse
      */
     public function supprimer(Compte $compte)
