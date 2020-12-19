@@ -43,7 +43,7 @@ services:
             - traefik.enable=false
 
     traefik:
-        image: traefik:2.0
+        image: traefik:2.3
         command:
             - "--log.level=INFO"
             - "--providers.docker"
