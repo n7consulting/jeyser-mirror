@@ -559,7 +559,7 @@ class Etude
                 return $this->getFs();
             case 'PVR':
                 return $this->getPvr();
-            case 'PVI':
+            case \App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_INTERMEDIAIRE:
                 return $this->getPvis($key);
             case 'AV':
                 return $this->getAvs()->get($key);

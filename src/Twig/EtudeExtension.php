@@ -103,15 +103,15 @@ class EtudeExtension extends \Twig_Extension
             }
         }
 
-        // CC > PVI
+        // CC > PVRI
         if ($etude->getCc()) {
             /** @var ProcesVerbal $pvi */
             foreach ($etude->getPvis() as $pvi) {
                 if (null !== $pvi->getDateSignature() && $etude->getCc()
                         ->getDateSignature() >= $pvi->getDateSignature()
                 ) {
-                    $error = ['titre' => 'PVIS, CC  - Date de signature : ',
-                              'message' => 'La date de signature de la Convention Client doit être antérieure à la date de signature des PVIS.',
+                    $error = ['titre' => 'PVRIS, CC  - Date de signature : ',
+                              'message' => 'La date de signature de la Convention Client doit être antérieure à la date de signature des PVRIS.',
                     ];
                     array_push($errors, $error);
                     break;
@@ -134,7 +134,7 @@ class EtudeExtension extends \Twig_Extension
             }
         }
 
-        //ordre PVI
+        //ordre PVRI
         /**
          * @var ProcesVerbal
          * @var ProcesVerbal $pviAnterieur
@@ -142,7 +142,7 @@ class EtudeExtension extends \Twig_Extension
         foreach ($etude->getPvis() as $pvi) {
             if (isset($pviAnterieur)) {
                 if (null !== $pvi->getDateSignature() && $pvi->getDateSignature() < $pviAnterieur->getDateSignature()) {
-                    $error = ['titre' => 'PVIS - Date de signature : ', 'message' => 'La date de signature du PVI1 doit être antérieure à celle du PVI2 et ainsi de suite.
+                    $error = ['titre' => 'PVRIS - Date de signature : ', 'message' => 'La date de signature du PVRI1 doit être antérieure à celle du PVRI2 et ainsi de suite.
            ',
                     ];
                     array_push($errors, $error);

@@ -53,7 +53,7 @@ suivi:
   cc: CC
   cc_affichage: Affichage d'une Convention Client
   cc_enregistrer: Enregistrer la CC
-  cc_enregistrer_pvi_passer: Enregistrer la CC et passer au PVI
+  cc_enregistrer_pvi_passer: Enregistrer la CC et passer au PVRI
   cc_liste: Liste des Convention Client
   cc_modifier: Modifier une Convention Client
   cc_modifier_la: Modifier la Convention Client
@@ -242,8 +242,8 @@ suivi:
   propales_non_abouties_texte: Propales n'ayant pas abouti à la signature d'une convention client
   prospect_ajouter: Ajouter un Prospect
   précédent: Précédent
-  pvi: PVI
-  pvi_ajouter_un: Ajouter un PVI
+  pvi: PVRI
+  pvi_ajouter_un: Ajouter un PVRI
   pvr: PVR
   pvr_rediger: Rediger le PVR
   raison: Raison

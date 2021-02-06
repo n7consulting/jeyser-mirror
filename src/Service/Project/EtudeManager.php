@@ -106,11 +106,11 @@ class EtudeManager
             return $name . '-' . $type . ($key + 1);
         } elseif ('FS' == $type) {
             return $name . '-' . $type;
-        } elseif ('PVI' == $type) {
+        } elseif (\App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_INTERMEDIAIRE == $type) {
             if ($key >= 0 && $etude->getPvis($key)) {
                 return $name . '-' . $type . ($key + 1) . '-' . $etude->getPvis($key)->getVersion();
             } else {
-                return $name . '-' . $type . ($key + 1) . '- ERROR GETTING PVI';
+                return $name . '-' . $type . ($key + 1) . '- ERROR GETTING PVRI';
             }
         } elseif ('PVR' == $type) {
             if ($etude->getPvr()) {

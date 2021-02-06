@@ -53,7 +53,7 @@ class TraitementController extends AbstractController
 
     const DOCTYPE_FACTURE_SOLDE = 'FS';
 
-    const DOCTYPE_PROCES_VERBAL_INTERMEDIAIRE = 'PVI';
+    const DOCTYPE_PROCES_VERBAL_INTERMEDIAIRE = 'PVRI';
 
     const DOCTYPE_PROCES_VERBAL_FINAL = 'PVR';
 
