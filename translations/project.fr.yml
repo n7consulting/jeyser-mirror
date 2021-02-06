@@ -176,6 +176,8 @@ suivi:
   gantt: Gantt
   gantt_exporter: Exporter le Gantt
   generer: Generer
+  generer_ce: Générer la CE
+  generer_devis: Générer le devis
   groupe: Groupe
   groupe_ajouter: Ajouter un groupe
   groupes: groupes
