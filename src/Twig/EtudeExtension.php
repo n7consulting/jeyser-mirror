@@ -228,7 +228,7 @@ class EtudeExtension extends \Twig_Extension
          *************************/
 
         // Description de l'AP suffisante
-        if (strlen($etude->getDescriptionPrestation()) < 300) {
+        if (!$etude->getCeActive() && strlen($etude->getDescriptionPrestation()) < 300) {
             $error = ['titre' => 'Description de l\'étude:',
                       'message' => 'Attention la description de l\'étude dans l\'AP fait moins de 300 caractères',
             ];
