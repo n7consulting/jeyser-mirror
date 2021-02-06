@@ -45,6 +45,7 @@ suivi:
   avenant_supprimer_confirmation: Êtes-vous sûr de vouloir supprimer définitivement cet avenant ?
   avenants: Avenants
   avenants_clients: Avenants clients
+  av: AVCE
   avenants_mission: Avenants de Mission
   avortee: Avortée
   budget: Budget

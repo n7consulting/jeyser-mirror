@@ -109,7 +109,7 @@
         </tr>
         {% for av in formSuivi.avs %}
             <tr class="docTabRow">
-                <th>{{ 'suivi.pvi'|trans({}, 'project') }} n° {{ loop.index }}</th>
+                <th>{{ 'suivi.av'|trans({}, 'project') }} n° {{ loop.index }}</th>
                 <td class="state">{{ 'suivi.incomplet'|trans({}, 'project') }}</td>
                 <td>{{ form_widget(av.redige) }}</td>
                 <td>{{ form_widget(av.relu) }}</td>
