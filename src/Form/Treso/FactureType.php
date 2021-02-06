@@ -12,6 +12,7 @@
 namespace App\Form\Treso;
 
 use App\Entity\Personne\Prospect;
+use App\Entity\Project\Etude;
 use App\Entity\Treso\Facture;
 use Genemu\Bundle\FormBundle\Form\JQuery\Type\DateType;
 use Genemu\Bundle\FormBundle\Form\JQuery\Type\Select2EntityType;
@@ -43,6 +44,11 @@ class FactureType extends AbstractType
                  ],
                 ]
             )
+            ->add('etude', Select2EntityType::class, [
+                'label' => 'Etude',
+                'class' => Etude::class,
+                'choice_label' => 'nom',
+                ])
             ->add('details', CollectionType::class, [
                 'entry_type' => FactureDetailType::class,
                 'allow_add' => true,
