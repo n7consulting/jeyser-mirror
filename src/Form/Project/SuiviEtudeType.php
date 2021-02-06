@@ -85,7 +85,7 @@ class SuiviEtudeType extends AbstractType
                 'by_reference' => false, //indispensable cf doc
             ]
         );
-        $builder->add('pvr', DocTypeSuiviType::class, ['label' => 'PVR', 'data_class' => ProcesVerbal::class]);
+        $builder->add('pvr', DocTypeSuiviType::class, ['label' => 'PVRF', 'data_class' => ProcesVerbal::class]);
     }
 
     public function getBlockPrefix()

@@ -112,7 +112,7 @@ class EtudeManager
             } else {
                 return $name . '-' . $type . ($key + 1) . '- ERROR GETTING PVRI';
             }
-        } elseif ('PVR' == $type) {
+        } elseif (\App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_FINAL == $type) {
             if ($etude->getPvr()) {
                 return $name . '-' . $type . '-' . $etude->getPvr()->getVersion();
             } else {

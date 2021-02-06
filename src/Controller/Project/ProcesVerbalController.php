@@ -128,7 +128,7 @@ class ProcesVerbalController extends AbstractController
      * @Security("has_role('ROLE_SUIVEUR')")
      * @Route(name="project_procesverbal_rediger", path="/suivi/procesverbal/rediger/{id}/{type}", methods={"GET","HEAD","POST"})
      *
-     * @param string $type PVR or PVRI
+     * @param string $type PVRF or PVRI
      *
      * @return RedirectResponse|Response
      */
@@ -142,7 +142,7 @@ class ProcesVerbalController extends AbstractController
 
         if (!$procesverbal = $etude->getDoc($type)) {
             $procesverbal = new ProcesVerbal();
-            if ('PVR' == strtoupper($type)) {
+            if (\App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_FINAL == strtoupper($type)) {
                 $etude->setPvr($procesverbal);
             }
             $procesverbal->setType($type);

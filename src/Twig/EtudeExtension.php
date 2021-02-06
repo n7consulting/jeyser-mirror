@@ -152,11 +152,11 @@ class EtudeExtension extends \Twig_Extension
             $pviAnterieur = $pvi;
         }
 
-        // PVR < fin d'étude
+        // PVRF < fin d'étude
         if ($etude->getPvr()) {
             if (null !== $etude->getDateFin(true) && $etude->getPvr()->getDateSignature() > $etude->getDateFin(true)) {
-                $error = ['titre' => 'PVR  - Date de signature : ',
-                          'message' => 'La date de signature du PVR doit être antérieure à la date de fin de l\'étude. Consulter la Convention Client ou l\'Avenant à la Convention Client pour la fin l\'étude.',
+                $error = ['titre' => 'PVRF  - Date de signature : ',
+                          'message' => 'La date de signature du PVRF doit être antérieure à la date de fin de l\'étude. Consulter la Convention Client ou l\'Avenant à la Convention Client pour la fin l\'étude.',
                 ];
                 array_push($errors, $error);
             }
@@ -197,26 +197,26 @@ class EtudeExtension extends \Twig_Extension
             }
         }
 
-        // Date de fin d'étude approche alors que le PVR n'est pas signé
+        // Date de fin d'étude approche alors que le PVRF n'est pas signé
         $now = new \DateTime('now');
         $DateAvert0 = new \DateInterval('P10D');
         if ($etude->getDateFin()) {
             if (!$etude->getPvr()) {
                 if ($now < $etude->getDateFin(true) && $etude->getDateFin(true)->sub($DateAvert0) < $now) {
                     $error = ['titre' => 'Fin de l\'étude :',
-                              'message' => 'L\'étude se termine dans moins de dix jours, pensez à faire signer le PVR ou à faire signer des avenants de délais si vous pensez que l\'étude ne se terminera pas à temps.',
+                              'message' => 'L\'étude se termine dans moins de dix jours, pensez à faire signer le PVRF ou à faire signer des avenants de délais si vous pensez que l\'étude ne se terminera pas à temps.',
                     ];
                     array_push($errors, $error);
                 } elseif ($etude->getDateFin(true) < $now) {
                     $error = ['titre' => 'Fin de l\'étude :',
-                              'message' => 'La fin de l\'étude est passée. Pensez à faire un PVR ou des avenants à la CC et au(x) RM.',
+                              'message' => 'La fin de l\'étude est passée. Pensez à faire un PVRF ou des avenants à la CC et au(x) RM.',
                     ];
                     array_push($errors, $error);
                 }
             } else {
                 if ($etude->getPvr()->getDateSignature() > $etude->getDateFin(true)) {
                     $error = ['titre' => 'Fin de l\'étude :',
-                              'message' => 'La date du PVR est située après la fin de l\'étude.',
+                              'message' => 'La date du PVRF est située après la fin de l\'étude.',
                     ];
                     array_push($errors, $error);
                 }
@@ -317,7 +317,7 @@ class EtudeExtension extends \Twig_Extension
         if ($etude->getDateFin()) {
             if ($etude->getDateFin()->sub($DateAvert1) > $now && $etude->getDateFin()->sub($DateAvert0) < $now) {
                 $warning = ['titre' => 'Fin de l\'étude :',
-                            'message' => 'l\'étude se termine dans moins de vingt jours, pensez à faire signer le PVR ou à faire signer des avenants de délais si vous pensez que l\'étude ne se terminera pas à temps.',
+                            'message' => 'l\'étude se termine dans moins de vingt jours, pensez à faire signer le PVRF ou à faire signer des avenants de délais si vous pensez que l\'étude ne se terminera pas à temps.',
                 ];
                 array_push($warnings, $warning);
             }

@@ -557,7 +557,7 @@ class Etude
                 throw new \Exception('Missing implementation of getFis() on Etude entity');
             case 'FS':
                 return $this->getFs();
-            case 'PVR':
+            case \App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_FINAL:
                 return $this->getPvr();
             case \App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_INTERMEDIAIRE:
                 return $this->getPvis($key);

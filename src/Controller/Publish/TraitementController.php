@@ -55,7 +55,7 @@ class TraitementController extends AbstractController
 
     const DOCTYPE_PROCES_VERBAL_INTERMEDIAIRE = 'PVRI';
 
-    const DOCTYPE_PROCES_VERBAL_FINAL = 'PVR';
+    const DOCTYPE_PROCES_VERBAL_FINAL = 'PVRF';
 
     const DOCTYPE_RECAPITULATIF_MISSION = 'RM';
 
