@@ -11,7 +11,7 @@
 
 namespace App\Service\Project;
 
-use App\Entity\Project\Cc;
+use App\Entity\Project\Ce;
 use App\Entity\Project\Etude;
 use Doctrine\Common\Persistence\ObjectManager;
 use Webmozart\KeyValueStore\Api\KeyValueStore;
@@ -228,14 +228,14 @@ class EtudeManager
     }
 
     /**
-     * Get le maximum des mandats par rapport à la date de Signature de signature des CC.
+     * Get le maximum des mandats par rapport à la date de Signature de signature des CE.
      */
-    public function getMaxMandatCc()
+    public function getmaxMandatCe()
     {
         $qb = $this->em->createQueryBuilder();
 
         $query = $qb->select('c.dateSignature')
-            ->from(Cc::class, 'c')
+            ->from(Ce::class, 'c')
             ->orderBy('c.dateSignature', 'DESC');
 
         $value = $query->getQuery()->setMaxResults(1)->getOneOrNullResult();
