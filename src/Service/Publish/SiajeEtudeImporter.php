@@ -214,7 +214,7 @@ class SiajeEtudeImporter extends CsvImporter implements FileImporterInterface
                                 $this->em->persist($cc);
                             }
 
-                            //manage PVR
+                            //manage PVRF
                             if (null !== $this->dateManager($this->readArray($data, 'Date signature PV'))) {
                                 $pv = new ProcesVerbal();
                                 $pv->setEtude($e);

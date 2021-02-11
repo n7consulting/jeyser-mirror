@@ -414,7 +414,7 @@ class CreateDemoDataCommand extends Command
                     $pv->setSignataire1($this->president->getPersonne());
                     $pv->setSignataire2(null !== $emp ? $emp->getPersonne() : null);
                     $pv->setType('pvr');
-                    $this->validateObject('New PVR', $pv);
+                    $this->validateObject('New PVRF', $pv);
                     $this->em->persist($pv);
                 }
 

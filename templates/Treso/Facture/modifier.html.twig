@@ -65,6 +65,13 @@
         </tr>
         <tr>
             <th colspan="2">
+                {{ form_label(form.etude) }}
+                {{ form_errors(form.etude) }}
+            </th>
+            <td colspan="2">{{ form_widget(form.etude) }}</td>
+        </tr>
+        <tr>
+            <th colspan="2">
                 {{ form_label(form.beneficiaire) }}
                 {{ form_errors(form.beneficiaire) }}
             </th>

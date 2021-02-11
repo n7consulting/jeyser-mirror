@@ -16,6 +16,7 @@ use App\Entity\Hr\Competence;
 use App\Entity\Personne\Mandat;
 use App\Entity\Personne\Membre;
 use App\Entity\Project\Cc;
+use App\Entity\Project\Ce;
 use App\Entity\Project\Etude;
 use App\Entity\Project\Mission;
 use App\Entity\Treso\BV;
@@ -95,13 +96,14 @@ class IndicateursController extends AbstractController
      * @Route(name="stat_ajax_suivi_retardParMandat", path="/admin/indicateurs/etudes/retardParMandat", methods={"GET","HEAD"})
      *
      * Retard par mandat (gestion d'études)
-     * Basé sur les dates de signature CC et non pas les numéros
+     * Basé sur les dates de signature CC/CE et non pas les numéros
      *
      * @return Response
      */
     public function getRetardParMandat(Request $request, ObjectManager $em)
     {
         $ccs = $em->getRepository(Cc::class)->findBy([], ['dateSignature' => 'asc']);
+        $ces = $em->getRepository(Ce::class)->findBy([], ['dateSignature' => 'asc']);
 
         $nombreJoursParMandat = [];
         $nombreJoursAvecAvenantParMandat = [];
@@ -109,6 +111,23 @@ class IndicateursController extends AbstractController
         foreach ($ccs as $cc) {
             $etude = $cc->getEtude();
             $dateSignature = $cc->getDateSignature();
+            $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
+            $mandat = $etude->getMandat();
+
+            if ($dateSignature && $signee && $etude->getDelai()) {
+                if (array_key_exists($mandat, $nombreJoursParMandat)) {
+                    $nombreJoursParMandat[$mandat] += $etude->getDelai(false)->days;
+                    $nombreJoursAvecAvenantParMandat[$mandat] += $etude->getDelai(true)->days;
+                } else {
+                    $nombreJoursParMandat[$mandat] = $etude->getDelai(false)->days;
+                    $nombreJoursAvecAvenantParMandat[$mandat] = $etude->getDelai(true)->days;
+                }
+            }
+        }
+
+        foreach ($ces as $ce) {
+            $etude = $ce->getEtude();
+            $dateSignature = $ce->getDateSignature();
             $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
             $mandat = $etude->getMandat();
 
@@ -165,12 +184,28 @@ class IndicateursController extends AbstractController
     public function getNombreEtudes(Request $request, ObjectManager $em)
     {
         $ccs = $em->getRepository(Cc::class)->findBy([], ['dateSignature' => 'asc']);
+        $ces = $em->getRepository(Ce::class)->findBy([], ['dateSignature' => 'asc']);
 
         $nombreEtudesParMandat = [];
 
         foreach ($ccs as $cc) {
             $etude = $cc->getEtude();
             $dateSignature = $cc->getDateSignature();
+            $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
+            $mandat = $etude->getMandat();
+
+            if ($dateSignature && $signee) {
+                if (array_key_exists($mandat, $nombreEtudesParMandat)) {
+                    ++$nombreEtudesParMandat[$mandat];
+                } else {
+                    $nombreEtudesParMandat[$mandat] = 1;
+                }
+            }
+        }
+
+        foreach ($ces as $ce) {
+            $etude = $ce->getEtude();
+            $dateSignature = $ce->getDateSignature();
             $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
             $mandat = $etude->getMandat();
 
@@ -221,6 +256,7 @@ class IndicateursController extends AbstractController
     public function getTauxAvenantsParMandat(Request $request, ObjectManager $em)
     {
         $ccs = $em->getRepository(Cc::class)->findBy([], ['dateSignature' => 'asc']);
+        $ces = $em->getRepository(Ce::class)->findBy([], ['dateSignature' => 'asc']);
 
         $nombreEtudesParMandat = [];
         $nombreEtudesAvecAvenantParMandat = [];
@@ -229,6 +265,28 @@ class IndicateursController extends AbstractController
         foreach ($ccs as $cc) {
             $etude = $cc->getEtude();
             $dateSignature = $cc->getDateSignature();
+            $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
+            $mandat = $etude->getMandat();
+
+            if ($dateSignature && $signee) {
+                if (array_key_exists($mandat, $nombreEtudesParMandat)) {
+                    ++$nombreEtudesParMandat[$mandat];
+                } else {
+                    $nombreEtudesParMandat[$mandat] = 1;
+                    $nombreEtudesAvecAvenantParMandat[$mandat] = 0;
+                    $nombreAvsParMandat[$mandat] = 0;
+                }
+
+                if (count($etude->getAvs()->toArray())) {
+                    ++$nombreEtudesAvecAvenantParMandat[$mandat];
+                    $nombreAvsParMandat[$mandat] += count($etude->getAvs()->toArray());
+                }
+            }
+        }
+
+        foreach ($ces as $ce) {
+            $etude = $ce->getEtude();
+            $dateSignature = $ce->getDateSignature();
             $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
             $mandat = $etude->getMandat();
 
@@ -287,7 +345,7 @@ class IndicateursController extends AbstractController
      */
     public function getRepartitionSorties(Request $request, ObjectManager $em)
     {
-        $mandat = $this->etudeManager->getMaxMandatCc();
+        $mandat = $this->etudeManager->getmaxMandatCe();
 
         $nfs = $em->getRepository(NoteDeFrais::class)->findBy(['mandat' => $mandat]);
         $bvs = $em->getRepository(BV::class)->findBy(['mandat' => $mandat]);
@@ -432,13 +490,34 @@ class IndicateursController extends AbstractController
     public function getCAParMandatHistogram(Request $request, ObjectManager $em)
     {
         $ccs = $em->getRepository(Cc::class)->findBy([], ['dateSignature' => 'asc']);
+        $ces = $em->getRepository(Ce::class)->findBy([], ['dateSignature' => 'asc']);
 
         $cumuls = [];
         $cumulsJEH = [];
         $cumulsFraisDossier = [];
+
         foreach ($ccs as $cc) {
             $etude = $cc->getEtude();
             $dateSignature = $cc->getDateSignature();
+            $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
+            $mandat = $etude->getMandat();
+
+            if ($dateSignature && $signee) {
+                if (array_key_exists($mandat, $cumuls)) {
+                    $cumuls[$mandat] += $etude->getMontantHT();
+                    $cumulsJEH[$mandat] += $etude->getNbrJEH();
+                    $cumulsFraisDossier[$mandat] += $etude->getFraisDossier();
+                } else {
+                    $cumuls[$mandat] = $etude->getMontantHT();
+                    $cumulsJEH[$mandat] = $etude->getNbrJEH();
+                    $cumulsFraisDossier[$mandat] = $etude->getFraisDossier();
+                }
+            }
+        }
+
+        foreach ($ces as $ce) {
+            $etude = $ce->getEtude();
+            $dateSignature = $ce->getDateSignature();
             $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
             $mandat = $etude->getMandat();
 
@@ -512,8 +591,8 @@ class IndicateursController extends AbstractController
      */
     public function getCA(Request $request, ObjectManager $em)
     {
-        $ccs = $em->getRepository(Cc::class)
-            ->findBy([], ['dateSignature' => 'asc']);
+        $ccs = $em->getRepository(Cc::class)->findBy([], ['dateSignature' => 'asc']);
+        $ces = $em->getRepository(Cc::class)->findBy([], ['dateSignature' => 'asc']);
 
         if ($this->keyValueStore->exists('namingConvention')) {
             $namingConvention = $this->keyValueStore->get('namingConvention');
@@ -522,7 +601,7 @@ class IndicateursController extends AbstractController
         }
 
         $etudeManager = $this->etudeManager;
-        $maxMandat = $etudeManager->getMaxMandatCc();
+        $maxMandat = $etudeManager->getmaxMandatCe();
 
         $mandats = [];
         $cumuls = [];
@@ -530,6 +609,27 @@ class IndicateursController extends AbstractController
         foreach ($ccs as $cc) {
             $etude = $cc->getEtude();
             $dateSignature = $cc->getDateSignature();
+            $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
+
+            if ($dateSignature && $signee) {
+                $idMandat = $etude->getMandat();
+                $cumuls[$idMandat] += $etude->getMontantHT();
+                $interval = new \DateInterval('P' . ($maxMandat - $idMandat) . 'Y');
+                $dateDecale = clone $dateSignature;
+                $dateDecale->add($interval);
+                $mandats[$idMandat][]
+                    = ['x' => $dateDecale->getTimestamp() * 1000,
+                       'y' => $cumuls[$idMandat],
+                       'name' => $etude->getReference($namingConvention) . ' - ' . $etude->getNom(),
+                       'date' => $dateDecale->format('d/m/Y'),
+                       'prix' => $etude->getMontantHT(),
+                ];
+            }
+        }
+
+        foreach ($ces as $cc) {
+            $etude = $ce->getEtude();
+            $dateSignature = $ce->getDateSignature();
             $signee = self::STATE_ID_EN_COURS_X == $etude->getStateID() || self::STATE_ID_TERMINEE_X == $etude->getStateID();
 
             if ($dateSignature && $signee) {
@@ -852,7 +952,7 @@ class IndicateursController extends AbstractController
             $namingConvention = 'id';
         }
         $mandats = [];
-        $maxMandat = $etudeManager->getMaxMandatCc();
+        $maxMandat = $etudeManager->getmaxMandatCe();
 
         $cumuls = [];
         for ($i = 0; $i <= $maxMandat; ++$i) {
@@ -887,7 +987,7 @@ class IndicateursController extends AbstractController
                 if ($addDebut) {
                     $mandats[1][]
                         = ['x' => $dateDebutDecale->getTimestamp() * 1000,
-                           'y' => 0/* $cumuls[0] */,
+                           'y' => 0/* $cumuls[0] */ ,
                            'name' => $etude->getReference($namingConvention) . ' + ' . $etude->getNom(),
                            'date' => $dateDebutDecale->format('d/m/Y'),
                            'prix' => $etude->getMontantHT(),
@@ -896,7 +996,7 @@ class IndicateursController extends AbstractController
                 if ($addFin) {
                     $mandats[1][]
                         = ['x' => $dateFinDecale->getTimestamp() * 1000,
-                           'y' => 0/* $cumuls[0] */,
+                           'y' => 0/* $cumuls[0] */ ,
                            'name' => $etude->getReference($namingConvention) . ' - ' . $etude->getNom(),
                            'date' => $dateDebutDecale->format('d/m/Y'),
                            'prix' => $etude->getMontantHT(),

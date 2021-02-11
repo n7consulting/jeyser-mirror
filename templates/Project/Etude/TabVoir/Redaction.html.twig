@@ -137,11 +137,19 @@
                                 class="fa fa-pencil"></span> {{ 'suivi.rediger'|trans({}, 'project') }}</a></li>
                 {% if etude.ce.dateSignature |default('0') %}
                     <li><a href="{{ path('publish_publiposter',
-                            { 'templateName' : constant('\\App\\Controller\\Publish\\TraitementController::DOCTYPE_CONVENTION_ETUDE'),
-                                'rootName' : constant('\\App\\Controller\\Publish\\TraitementController::ROOTNAME_ETUDE'),
-                                'rootObject_id' : etude.id}) }}">
-                            <span class="fa fa-arrow-circle-down"></span> {{ 'suivi.generer'|trans({}, 'project') }}
-                        </a></li>
+                        { 'templateName' : constant('\\App\\Controller\\Publish\\TraitementController::DOCTYPE_DEVIS'),
+                            'rootName' : constant('\\App\\Controller\\Publish\\TraitementController::ROOTNAME_ETUDE'),
+                            'rootObject_id' : etude.id}) }}">
+                        <span class="fa fa-arrow-circle-down"></span> {{ 'suivi.generer_devis'|trans({}, 'project') }}
+                    </a></li>
+                    <li><a href="{{ path('publish_publiposter',
+                        { 'templateName' : constant('\\App\\Controller\\Publish\\TraitementController::DOCTYPE_CONVENTION_ETUDE'),
+                            'rootName' : constant('\\App\\Controller\\Publish\\TraitementController::ROOTNAME_ETUDE'),
+                            'rootObject_id' : etude.id}) }}">
+                        <span class="fa fa-arrow-circle-down"></span> {{ 'suivi.generer_ce'|trans({}, 'project') }}
+                    </a></li>
+                    </tr>
+                    <li></li>
                 {% endif %}
             </ul>
         </div>
