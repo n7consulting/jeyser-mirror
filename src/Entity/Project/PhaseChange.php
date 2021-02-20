@@ -16,6 +16,8 @@ class PhaseChange
 
     private $methodo = false;
 
+    private $livrable = false;
+
     private $dateDebut = false;
 
     private $validation = false;
@@ -57,6 +59,11 @@ class PhaseChange
     public function getMethodo()
     {
         return $this->methodo;
+    }
+
+    public function getLivrable()
+    {
+        return $this->livrable;
     }
 
     public function getDateDebut()
@@ -105,6 +112,13 @@ class PhaseChange
     public function setMethodo($x)
     {
         $this->methodo = $x;
+
+        return $this;
+    }
+
+    public function setLivrable($x)
+    {
+        $this->livrable = $x;
 
         return $this;
     }

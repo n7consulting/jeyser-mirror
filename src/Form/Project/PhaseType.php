@@ -42,6 +42,11 @@ class PhaseType extends AbstractType
                 ['label' => 'Méthodologie', 'required' => false, 'attr' => ['placeholder' => 'Méthodologie']]
             )
             ->add(
+                'livrable',
+                TextareaType::class,
+                ['label' => 'Livrable', 'required' => false, 'attr' => ['placeholder' => 'Livrable']]
+            )
+            ->add(
                 'nbrJEH',
                 IntegerType::class,
                 ['label' => 'Nombre de JEH', 'required' => false, 'attr' => ['class' => 'nbrJEH']]
