@@ -23,45 +23,56 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PhaseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('position', HiddenType::class, ['attr' => ['class' => 'position']])
-            ->add('titre', TextType::class, ['attr' => ['placeholder' => 'Titre phase']])
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            /** @var Phase $phase */
+            $phase = $event->getData();
+            $form = $event->getForm();
+
+            $readOnly = $phase && null !== $phase->getId() && $phase->getProcesVerbal();
+            $form
+            ->add('position', HiddenType::class, ['disabled' => $readOnly, 'attr' => ['class' => 'position']])
+            ->add('titre', TextType::class, ['disabled' => $readOnly, 'attr' => ['placeholder' => 'Titre phase']])
             ->add(
                 'objectif',
                 TextareaType::class,
-                ['label' => 'Objectif', 'required' => false, 'attr' => ['placeholder' => 'Objectif']]
+                ['label' => 'Objectif', 'required' => false, 'disabled' => $readOnly, 'attr' => ['placeholder' => 'Objectif']]
             )
             ->add(
                 'methodo',
                 TextareaType::class,
-                ['label' => 'Méthodologie', 'required' => false, 'attr' => ['placeholder' => 'Méthodologie']]
+                ['label' => 'Méthodologie', 'required' => false, 'disabled' => $readOnly, 'attr' => ['placeholder' => 'Méthodologie']]
             )
             ->add(
                 'livrable',
                 TextareaType::class,
-                ['label' => 'Livrable', 'required' => false, 'attr' => ['placeholder' => 'Livrable']]
+                ['label' => 'Livrable', 'required' => false, 'disabled' => $readOnly, 'attr' => ['placeholder' => 'Livrable']]
             )
             ->add(
                 'nbrJEH',
                 IntegerType::class,
-                ['label' => 'Nombre de JEH', 'required' => false, 'attr' => ['class' => 'nbrJEH']]
+                ['label' => 'Nombre de JEH', 'required' => false, 'disabled' => $readOnly, 'attr' => ['class' => 'nbrJEH']]
             )
             ->add(
                 'prixJEH',
                 IntegerType::class,
-                ['label' => 'Prix du JEH HT', 'required' => false, 'attr' => ['class' => 'prixJEH']]
+                ['label' => 'Prix du JEH HT', 'required' => false, 'disabled' => $readOnly, 'attr' => ['class' => 'prixJEH']]
             )
             ->add(
                 'dateDebut',
                 DateType::class,
-                ['label' => 'Date de début', 'format' => 'd/MM/y', 'required' => false, 'widget' => 'single_text']
+                ['label' => 'Date de début', 'format' => 'd/MM/y', 'required' => false, 'disabled' => $readOnly, 'widget' => 'single_text']
             )
-            ->add('delai', IntegerType::class, ['label' => 'Durée en nombre de jours', 'required' => false]);
+            ->add('delai', IntegerType::class, ['disabled' => $readOnly, 'label' => 'Durée en nombre de jours', 'required' => false]);
+        });
+
         if ($options['etude']) {
             $builder->add('groupe', Select2EntityType::class, [
                 'class' => GroupePhases::class,

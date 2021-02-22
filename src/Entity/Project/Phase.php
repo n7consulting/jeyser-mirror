@@ -125,6 +125,12 @@ class Phase
     private $mission;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project\ProcesVerbal", inversedBy="phases", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $procesVerbal;
+
+    /**
      * ADDITIONAL GETTERS/SETTERS.
      */
     public function getMontantHT()
@@ -337,7 +343,7 @@ class Phase
         return $this->methodo;
     }
 
-        /**
+    /**
      * Set livrable.
      *
      * @param string $livrable
@@ -508,5 +514,21 @@ class Phase
     public function setMission($mission)
     {
         $this->mission = $mission;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProcesVerbal()
+    {
+        return $this->procesVerbal;
+    }
+
+    /**
+     * @param mixed $procesVerbal
+     */
+    public function setProcesVerbal($procesVerbal)
+    {
+        $this->procesVerbal = $procesVerbal;
     }
 }

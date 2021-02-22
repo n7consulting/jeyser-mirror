@@ -11,23 +11,40 @@
 
 namespace App\Form\Project;
 
+use App\Entity\Project\Etude;
+use App\Entity\Project\Phase;
 use App\Entity\Project\ProcesVerbal;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use App\Repository\Project\PhaseRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProcesVerbalSubType extends DocTypeType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $phaseNum = $options['phases'];
-        if ('pvi' == $options['type']) {
-            $builder->add(
-                'phaseID',
-                IntegerType::class,
-                ['label' => 'Phases concernées', 'required' => false, 'attr' => ['min' => '1', 'max' => $phaseNum]]
-            );
-        }
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($options) {
+            /** @var ProcesVerbal $proces */
+            $proces = $event->getData();
+            $form = $event->getForm();
+
+            $form->add('phases', EntityType::class, [
+                'class' => Phase::class,
+                'query_builder' => function (PhaseRepository $pr) use ($options, $proces) {
+                    if (isset($proces)) {
+                        return $pr->getByEtudeAndPv($options['etude'], $proces);
+                    }
+
+                    return $pr->getByEtudeAndPv($options['etude']);
+                },
+                'required' => false,
+                'multiple' => true,
+                'by_reference' => false,
+                'attr' => ['class' => 'select2-multiple'],
+            ]);
+        });
 
         DocTypeType::buildForm($builder, $options);
     }
@@ -45,5 +62,7 @@ class ProcesVerbalSubType extends DocTypeType
             'prospect' => null,
             'phases' => null,
         ]);
+        $resolver->setRequired(['etude']);
+        $resolver->addAllowedTypes('etude', Etude::class);
     }
 }

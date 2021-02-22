@@ -324,9 +324,9 @@
     </div>
     <div class="collapse navbar-collapse navbar-pvs">
         <ul class="nav navbar-nav">
-            <li><a href="{{ path('project_procesverbal_rediger', {'id': etude.id, 'type': 'pvr'}) }}"><span
+            <li><a href="{{ path('project_procesverbal_ajouter', {'id': etude.id, 'type': 'pvr'}) }}"><span
                             class="fa fa-pencil"></span> {{ 'suivi.pvr_rediger'|trans({}, 'project') }}</a></li>
-            <li><a href="{{ path('project_procesverbal_ajouter', {'id': etude.id}) }}"><span
+            <li><a href="{{ path('project_procesverbal_ajouter', {'id': etude.id, 'type': 'pvi'}) }}"><span
                             class="fa fa-plus"></span> {{ 'suivi.pvi_ajouter_un'|trans({}, 'project') }}</a></li>
         </ul>
     </div>
@@ -353,18 +353,18 @@
                         <span class="fa fa-arrow-circle-down"></span>
                     </a>
                     &nbsp;&nbsp;&nbsp;
-                    <a title="{{ 'suivi.supprimer'|trans({}, 'project') }}" href="#"><span
+                    <a title="{{ 'suivi.supprimer'|trans({}, 'project') }}" href="{{ path('project_procesverbal_modifier', {'id': pvi.id}) }}"><span
                                 class="fa fa-times"></span></a>
                 </td>
                 <td style="width: 200px;"><a
                             href="{{ path('project_procesverbal_modifier', {'id': pvi.id}) }}">{{ 'suivi.pvi'|trans({}, 'project') }}
                         n°{{ loop.index }}</a></td>
                 <td>
-                    {% if pvi.phaseID is null %}
-                        {{ 'suivi.aucune'|trans({}, 'project') }} !
-                    {% else %}
-                        {{ pvi.phaseID }}
-                    {% endif %}
+                {%for phase in pvi.phases %}
+                    {{ phase.titre}} <br>
+                {% else %}
+                    {{ 'suivi.aucune'|trans({}, 'project') }} !
+                {% endfor %}
                 </td>
                 <td>{{ pvi.dateSignature ? pvi.dateSignature | date("d/m/Y") : "Non signé" }}</td>
                 <td>{{ pvi.signataire2 ? pvi.signataire2.nomFormel }}</td>
@@ -386,7 +386,13 @@
                 <td>
                     <a href="{{ path('project_procesverbal_modifier', {'id': etude.pvr.id}) }}">{{ 'suivi.pvr'|trans({}, 'project') }}</a>
                 </td>
-                <td>{{ 'suivi.toutes'|trans({}, 'project') }}</td>
+                <td>
+                    {%for phase in etude.pvr.phases %}
+                        {{ phase.titre}} <br>
+                    {% else %}
+                        {{ 'suivi.aucune'|trans({}, 'project') }} !
+                    {% endfor %}
+                </td>
                 <td>{{ etude.pvr.dateSignature ? etude.pvr.dateSignature | date("d/m/Y") : "Non signé" }}</td>
                 <td>{{ etude.pvr.signataire2 ? etude.pvr.signataire2.nomFormel }}</td>
             </tr>
