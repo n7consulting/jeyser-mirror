@@ -39,14 +39,14 @@
             </th>
             <td>{{ form_widget(form.dateSignature, {'attr': {'class': 'form-control'}}) }}</td>
         </tr>
-        {% if form.vars.data.phaseID %}
         <tr>
             <th>
-                {{ form_label(form.phaseID) }}
-                {{ form_errors(form.phaseID) }}
+                {{ form_label(form.phases) }}
+                {{ form_errors(form.phases) }}
             </th>
-            <td>{{ form_widget(form.phaseID, {'attr': {'class': 'form-control'}}) }}</td>
+            <th>
+                {{ form_widget(form.phases, {'attr': {'style': 'width:100%'}}) }}
+            </th>
         </tr>
-        {% endif %}
     </table>
 </div>

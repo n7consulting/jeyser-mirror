@@ -127,6 +127,43 @@ class ChartManager /*extends \Twig_Extension*/
                 ];
             }
             $data = $dataSauv;
+            if ($etude->getCe() && $etude->getCe()->getDateSignature()) {
+                $date = $etude->getCe()->getDateSignature();
+                if ($naissance >= $date) {
+                    $naissance = clone $date;
+                }
+                if ($mort <= $date) {
+                    $mort = clone $date;
+                }
+
+                $data[] = ['x' => count($cats), 'y' => $date->getTimestamp() * 1000,
+                           'titre' => 'Convention d\'étude', 'detail' => 'signé le ' . $date->format('d/m/Y'),
+                ];
+                $series[] = ['type' => 'scatter', 'data' => $data,
+                             'marker' => ['symbol' => 'triangle', 'fillColor' => 'red'],
+                ];
+            }
+            $data = $dataSauv;
+            if ($etude->getPvis()) {
+                foreach ($etude->getPvis() as $pvi) {
+                    if (!$pvi->getDateSignature()) {
+                        continue;
+                    }
+                    $date = $pvi->getDateSignature();
+                    if ($naissance >= $date) {
+                        $naissance = clone $date;
+                    }
+                    if ($mort <= $date) {
+                        $mort = clone $date;
+                    }
+
+                    $data[] = ['x' => count($cats), 'y' => $date->getTimestamp() * 1000,
+                            'titre' => 'PVRI', 'detail' => 'signé le ' . $date->format('d/m/Y'),
+                    ];
+                    $series[] = ['type' => 'scatter', 'data' => $data, 'marker' => ['symbol' => 'circle']];
+                    $data = $dataSauv;
+                }
+            }
             if ($etude->getPvr() && $etude->getPvr()->getDateSignature()) {
                 $date = $etude->getPvr()->getDateSignature();
                 if ($naissance >= $date) {
@@ -137,7 +174,7 @@ class ChartManager /*extends \Twig_Extension*/
                 }
 
                 $data[] = ['x' => count($cats), 'y' => $date->getTimestamp() * 1000,
-                           'titre' => 'Procès Verbal de Recette', 'detail' => 'signé le ' . $date->format('d/m/Y'),
+                           'titre' => 'PVRF', 'detail' => 'signé le ' . $date->format('d/m/Y'),
                 ];
                 $series[] = ['type' => 'scatter', 'data' => $data, 'marker' => ['symbol' => 'circle']];
             }

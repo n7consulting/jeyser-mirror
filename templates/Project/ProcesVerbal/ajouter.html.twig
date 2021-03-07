@@ -25,5 +25,8 @@
 {% block javascript %}
     {{ parent() }}
     {{ form_javascript(form) }}
+    <script type="text/javascript">
+         $(".select2-multiple").select2({width: '100%'});
+    </script>
     {% include "Project/DocType/selectOrNew.html.twig" with { known: form.knownSignataire2, knowned: form.signataire2, newed: form.newSignataire2 } %}
 {% endblock %}

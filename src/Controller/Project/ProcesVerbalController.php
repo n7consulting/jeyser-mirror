@@ -14,7 +14,6 @@ namespace App\Controller\Project;
 use App\Entity\Project\Etude;
 use App\Entity\Project\ProcesVerbal;
 use App\Form\Project\ProcesVerbalSubType;
-use App\Form\Project\ProcesVerbalType;
 use App\Service\Project\DocTypeManager;
 use App\Service\Project\EtudePermissionChecker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -30,13 +29,16 @@ class ProcesVerbalController extends AbstractController
 {
     /**
      * @Security("has_role('ROLE_SUIVEUR')")
-     * @Route(name="project_procesverbal_ajouter", path="/suivi/procesverbal/ajouter/{id}", methods={"GET","HEAD","POST"})
+     * @Route(name="project_procesverbal_ajouter", path="/suivi/procesverbal/ajouter/{id}/{type}", methods={"GET","HEAD","POST"})
+     *
+     * @param string $type PVRF or PVRI
      *
      * @return RedirectResponse|Response
      */
     public function add(
         Request $request,
         Etude $etude,
+        $type,
         EtudePermissionChecker $permChecker,
         DocTypeManager $docTypeManager
     ) {
@@ -46,14 +48,24 @@ class ProcesVerbalController extends AbstractController
             throw new AccessDeniedException('Cette étude est confidentielle');
         }
 
-        $proces = new ProcesVerbal();
-        $etude->addPvi($proces);
+        if ((null === $etude->getPvr() && 'pvr' === $type) || 'pvi' === $type) {
+            $proces = new ProcesVerbal();
+
+            if ('pvr' == $type) {
+                $etude->setPvr($proces);
+            } elseif ('pvi' == $type) {
+                $etude->addPvi($proces);
+            }
+
+            $proces->setType($type);
+        } else {
+            $proces = $etude->getPvr();
+        }
 
         $form = $this->createForm(
             ProcesVerbalSubType::class,
             $proces,
-            ['type' => 'pvi', 'prospect' => $etude->getProspect(), 'phases' => count($etude->getPhases()->getValues()),
-            ]
+            ['type' => $type, 'etude' => $etude, 'prospect' => $etude->getProspect()]
         );
         if ('POST' == $request->getMethod()) {
             $form->handleRequest($request);
@@ -71,6 +83,7 @@ class ProcesVerbalController extends AbstractController
         return $this->render('Project/ProcesVerbal/ajouter.html.twig', [
             'etude' => $etude,
             'form' => $form->createView(),
+            'type' => $type,
         ]);
     }
 
@@ -97,9 +110,7 @@ class ProcesVerbalController extends AbstractController
         $form = $this->createForm(
             ProcesVerbalSubType::class,
             $procesverbal,
-            ['type' => $procesverbal->getType(), 'prospect' => $procesverbal->getEtude()->getProspect(),
-             'phases' => count($procesverbal->getEtude()->getPhases()->getValues()),
-            ]
+            ['type' => $procesverbal->getType(), 'etude' => $etude, 'prospect' => $etude->getProspect()]
         );
         $deleteForm = $this->createDeleteForm($procesverbal->getId());
         if ('POST' == $request->getMethod()) {
@@ -122,54 +133,6 @@ class ProcesVerbalController extends AbstractController
             'type' => $procesverbal->getType(),
             'procesverbal' => $procesverbal,
         ]);
-    }
-
-    /**
-     * @Security("has_role('ROLE_SUIVEUR')")
-     * @Route(name="project_procesverbal_rediger", path="/suivi/procesverbal/rediger/{id}/{type}", methods={"GET","HEAD","POST"})
-     *
-     * @param string $type PVRF or PVRI
-     *
-     * @return RedirectResponse|Response
-     */
-    public function rediger(Request $request, Etude $etude, $type, EtudePermissionChecker $permChecker)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        if ($permChecker->confidentielRefus($etude, $this->getUser())) {
-            throw new AccessDeniedException('Cette étude est confidentielle');
-        }
-
-        if (!$procesverbal = $etude->getDoc($type)) {
-            $procesverbal = new ProcesVerbal();
-            if (\App\Controller\Publish\TraitementController::DOCTYPE_PROCES_VERBAL_FINAL == strtoupper($type)) {
-                $etude->setPvr($procesverbal);
-            }
-            $procesverbal->setType($type);
-        }
-
-        $form = $this->createForm(
-            ProcesVerbalType::class,
-            $etude,
-            ['type' => $type, 'prospect' => $etude->getProspect(), 'phases' => count($etude->getPhases()->getValues()),
-            ]
-        );
-        if ('POST' == $request->getMethod()) {
-            $form->handleRequest($request);
-
-            if ($form->isValid()) {
-                $em->persist($etude);
-                $em->flush();
-                $this->addFlash('success', 'PV rédigé');
-
-                return $this->redirectToRoute('project_etude_voir', ['nom' => $etude->getNom(), '_fragment' => 'tab3']);
-            }
-        }
-
-        return $this->render(
-            'Project/ProcesVerbal/rediger.html.twig',
-            ['form' => $form->createView(), 'etude' => $etude, 'type' => $type]
-        );
     }
 
     /**

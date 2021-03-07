@@ -11,6 +11,7 @@
 
 namespace App\Entity\Project;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,6 +45,14 @@ class ProcesVerbal extends DocType
      * @ORM\Column(name="phaseIDs", type="integer", nullable=true)
      */
     protected $phaseID;
+
+    /**
+     * @var Phase
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Project\Phase", mappedBy="procesVerbal", cascade={"merge"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $phases;
 
     /**
      * @var string
@@ -170,6 +179,44 @@ class ProcesVerbal extends DocType
     public function getPhaseID()
     {
         return $this->phaseID;
+    }
+
+    /**
+     * Add phase.
+     *
+     * @return Procesverbal
+     */
+    public function addPhase(Phase $phase)
+    {
+        $this->phases[] = $phase;
+        $phase->setProcesVerbal($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove phase.
+     */
+    public function removePhase(Phase $phase)
+    {
+        $this->phases->removeElement($phase);
+        $phase->setProcesVerbal(null);
+    }
+
+    /**
+     * Get phases.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhases()
+    {
+        return $this->phases;
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->phases = new ArrayCollection();
     }
 
     public function __toString()

@@ -86,6 +86,13 @@ class Phase
     private $methodo;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="livrable", type="text", nullable=true)
+     */
+    private $livrable;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateDebut", type="datetime", nullable=true)
@@ -116,6 +123,12 @@ class Phase
      * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $mission;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project\ProcesVerbal", inversedBy="phases", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    private $procesVerbal;
 
     /**
      * ADDITIONAL GETTERS/SETTERS.
@@ -331,6 +344,30 @@ class Phase
     }
 
     /**
+     * Set livrable.
+     *
+     * @param string $livrable
+     *
+     * @return Phase
+     */
+    public function setLivrable($livrable)
+    {
+        $this->livrable = $livrable;
+
+        return $this;
+    }
+
+    /**
+     * Get livrable.
+     *
+     * @return string
+     */
+    public function getLivrable()
+    {
+        return $this->livrable;
+    }
+
+    /**
      * Set dateDebut.
      *
      * @param \DateTime $dateDebut
@@ -477,5 +514,21 @@ class Phase
     public function setMission($mission)
     {
         $this->mission = $mission;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProcesVerbal()
+    {
+        return $this->procesVerbal;
+    }
+
+    /**
+     * @param mixed $procesVerbal
+     */
+    public function setProcesVerbal($procesVerbal)
+    {
+        $this->procesVerbal = $procesVerbal;
     }
 }
