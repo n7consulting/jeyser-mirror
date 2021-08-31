@@ -143,6 +143,9 @@
     "laminas/laminas-eventmanager": {
         "version": "3.3.0"
     },
+    "laminas/laminas-json": {
+        "version": "3.2.0"
+    },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.4"
     },
@@ -230,11 +233,11 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "4.1",
-            "ref": "f8863cbad2f2e58c4b65fa1eac892ab189971bea"
-        }
-    },
-    "symfony/debug-pack": {
-        "version": "v1.0.7"
+            "ref": "0ce7a032d344fb7b661cd25d31914cd703ad445b"
+        },
+        "files": [
+            "config/packages/dev/debug.yaml"
+        ]
     },
     "symfony/dependency-injection": {
         "version": "v4.2.1"
@@ -344,8 +347,8 @@
     "symfony/polyfill-php80": {
         "version": "v1.17.1"
     },
-    "symfony/profiler-pack": {
-        "version": "v1.0.4"
+    "symfony/polyfill-php81": {
+        "version": "v1.23.0"
     },
     "symfony/property-access": {
         "version": "v4.2.1"
@@ -451,6 +454,24 @@
     },
     "symfony/yaml": {
         "version": "v4.2.1"
+    },
+    "tattali/calendar-bundle": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "0c643e17b5340747b35c2c75e11727fa31bfa9bb"
+        },
+        "files": [
+            "config/routes/calendar.yaml"
+        ]
+    },
+    "twig/extra-bundle": {
+        "version": "v3.3.1"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.0"
     },
     "twig/twig": {
         "version": "v2.5.0"
