@@ -29,6 +29,9 @@
         "symfony/swiftmailer-bundle": "^3.1",
         "symfony/twig-bundle": "4.4.*",
         "symfony/yaml": "4.4.*",
+        "toiba/fullcalendar-bundle": "^6.2",
+        "twig/extra-bundle": "^3.3",
+        "twig/intl-extra": "^3.3",
         "webmozart/json": "dev-master",
         "webmozart/key-value-store": "^1.0"
     },

@@ -23,8 +23,7 @@ class TwigExtensionManager extends AbstractExtension
 
     public function getFunctions()
     {
-        return [
-        ];
+        return [];
     }
 
     public function getFilters()
@@ -53,6 +52,7 @@ class TwigExtensionManager extends AbstractExtension
     }
 
     /**
+     * @deprecated Use Twig built-in Filter format_spellout_number instead.
      * fonction permettant de transformer une valeur numérique en valeur en lettre.
      *
      * @param int $nbr    le nombre a convertir
