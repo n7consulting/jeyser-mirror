@@ -3,7 +3,7 @@
 {% extends "Project/layout.html.twig" %}
 
 {% block title %}
-    {{ 'suivi.accueil'|trans({}, 'project') }} - {{ parent() }}
+    {{ 'suivi.accueil'|trans({}, 'project') }} {{ parent() }}
 {% endblock %}
 
 {% block content_bundle %}
@@ -63,7 +63,7 @@
                         console.log(data);
                     });
             }
-            
+
             $('.accordion-toggle').each(function () {
                 $(this).click(function () {
                     if ($(this).attr('data-loaded') == 'false') {
