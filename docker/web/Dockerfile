@@ -56,7 +56,7 @@ ARG APP_ENV=prod
 COPY ./composer.json ./composer.lock /app/
 RUN mkdir -p var/cache var/sessions public/tmp \
     # Install dependencies
-    && composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress --no-suggest \
+    && composer install --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress \
     && composer clear-cache
 
 # Add application
