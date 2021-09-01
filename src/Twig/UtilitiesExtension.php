@@ -20,10 +20,15 @@ class UtilitiesExtension extends AbstractExtension
   {
     return array(
       new TwigFilter('ucfirst', [$this, 'ucFirst'], ['needs_environment' => true]),
-      new TwigFilter('soberName', [$this, 'soberName']),
+      new TwigFilter('signedDate', [$this, 'signedDate']),
     );
   }
 
+  /**
+   * Like native php ucFirst. Capitalize first letter of string.
+   * A bit complex to work properly with accents.
+   * @return string
+   */
   public function ucFirst($env, $string)
   {
     if (null !== $charset = $env->getCharset()) {
@@ -36,10 +41,11 @@ class UtilitiesExtension extends AbstractExtension
 
   /**
    * Mainly used in Archivage tab.
-   * Return a sober string then __toString() method in DocTypes.
+   * Return the signed date of documents or the intervenant for a mission.
+   * By default returns etude.non_signe translation.
    * @return string
    */
-  public function soberName($doc)
+  public function signedDate($doc)
   {
     $string = '';
     $dateSignature = $doc->getDateSignature() !== NULL ? $doc->getDateSignature()->format('d/m/y') : $this->t->trans('etude.non_signe', [], 'personne');
