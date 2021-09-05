@@ -77,6 +77,7 @@ generique:
   enregistrer: Enregistrer
   supprimer: Supprimer
 membre:
+  alumni : Alumnus
   affichage_membre: Affichage d'un membre
   ajout_membre: Ajout d'un membre
   modification_membre: Modification d'un membre
@@ -143,15 +144,22 @@ prospect:
   affichage_prospect: Affichage d'un prospect
   ajouter_prospect: Ajouter un prospect
   champs:
+    tags: Tags
     adresse: Adresse
     nom: Nom
     nombre_employe: Nombre d'employés
     type: Type de prospect
+    mail : Mail
+  secteur_activite : Secteurs d'activité
+  confirmation_supprimer_secteur: Voulez-vous vraiment supprimer ce secteur d'activité?
+  supprimer_secteur: Supprimer le secteur d'activité
   commentaires: Commentaires
   confirmation_supprimer_prospect: Etes-vous sûr de vouloir supprimer définitivement ce prospect ?
   description_liste_diffusion: Liste des mails valides, abonnés à la newsletter
   liste_diffusion: Liste de diffusion
   liste_prospect: Liste des prospects
+  mail : Mail
+  secteurActivite : Secteur d'activité
   modifier_prospect: Modifier le prospect
   supprimer_prospect: Supprimer le prospect
   type_prospect: Type de prospect
