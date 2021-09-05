@@ -4,17 +4,17 @@ formation:
   autre: Autre
   action: Action
   book_passation: Book de passation
-  categories: Categories
-  categorie: Categorie
+  categories: Catégories
+  categorie: Catégorie
   chercher: Chercher
   confirmation_supprimer_formation: Etes-vous sûr de vouloir supprimer définitivement cette formation ?
   confirmation_supprimer_passation: Etes-vous sûr de vouloir supprimer définitivement cette passation ?
   communication: Communication
   date: Date
-  date_upload: Date de télechargement
+  date_upload: Date de téléchargement
   description: Description
   devco: Développement commercial
-  documents_nb: Nombre de documents 
+  documents_nb: Nombre de documents
   documents: Documents
   document_formation : Documents relatifs à la formation
   document_passation: Documents relatifs à la passation

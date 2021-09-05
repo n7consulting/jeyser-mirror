@@ -2,7 +2,7 @@ dashboard:
   aucun_commentaire : Aucun commentaire sur les études durant les 10 derniers jours.
   book_passation : Book de passations
   base_urssaf: Bases URSSAF
-  actico: Activité Commerciale
+  activite_commerciale: Activité Commerciale
   administration: Administration
   administration_bdd: Administration BDD
   ajouter: Ajouter

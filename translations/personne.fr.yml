@@ -77,7 +77,7 @@ generique:
   enregistrer: Enregistrer
   supprimer: Supprimer
 membre:
-  alumni : Alumnus
+  alumni : Alumni
   affichage_membre: Affichage d'un membre
   ajout_membre: Ajout d'un membre
   modification_membre: Modification d'un membre

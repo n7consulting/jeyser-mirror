@@ -9,7 +9,7 @@ rh:
   alumnus: Alumnus
   ajouter_competence: Ajouter une compétence
   aucune_competence: Pas (encore !) de competences
-  competnece_ajouter : Ajouter une compétence
+  competence_ajouter : Ajouter une compétence
   contacts : Contacts
   contact : Contact
   contact_client_supprimer: Supprimer
@@ -19,12 +19,12 @@ rh:
   contact_nouveau_enregistrer: Enregistrer le nouveau contact
   contact_alumni: Contacts avec les alumni
   contact_alumni_ajouter: Ajouter un contact
-  contact_avec_alumnus: Contacts avec 
-  contact_voir: Voir le contact 
+  contact_avec_alumnus: Contacts avec
+  contact_voir: Voir le contact
   commentaires: Comentaires
   dernier_contact: Dernier contact
   date : Date
-  detail: Détails
+  details: Détails
   fait_par: Fait par
   gestion_alumni: Gestion des alumni
   information: Fiche d'information
@@ -43,6 +43,3 @@ rh:
   secteur_liste_vide: Aucun secteur d'activité de l'entreprise n'est enregistré
   type: Type
   voir_profil : Voir le profil
-
-
-
