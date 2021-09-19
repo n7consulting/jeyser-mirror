@@ -2,7 +2,7 @@
 
 namespace App\EventListener;
 
-use App\Repository\BookingRepository;
+use App\Repository\Booking\BookingRepository;
 use CalendarBundle\CalendarEvents;
 use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\CalendarEvent;
@@ -34,13 +34,7 @@ class CalendarSubscriber implements EventSubscriberInterface
     $start = $calendar->getStart();
     $end = $calendar->getEnd();
 
-    $bookings = $this->bookingRepository
-      ->createQueryBuilder('booking')
-      ->where('booking.beginAt BETWEEN :start and :end OR booking.endAt BETWEEN :start and :end')
-      ->setParameter('start', $start->format('Y-m-d H:i:s'))
-      ->setParameter('end', $end->format('Y-m-d H:i:s'))
-      ->getQuery()
-      ->getResult();
+    $bookings = $this->bookingRepository->getBookings($start, $end);
 
     foreach ($bookings as $booking) {
       // this create the events with your data (here booking data) to fill calendar

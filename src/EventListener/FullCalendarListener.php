@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Service\EventListener;
+namespace App\EventListener;
 
-use App\Entity\Booking\Booking;
 use App\Repository\Booking\BookingRepository;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Toiba\FullCalendarBundle\Entity\Event;
@@ -29,14 +28,7 @@ class FullCalendarListener
 
         // Modify the query to fit to your entity and needs
         // Change b.beginAt by your start date in your custom entity
-        $bookings = $this->bookingRepository
-            ->createQueryBuilder('booking')
-            ->where('booking.dateDebut BETWEEN :startDate and :endDate')
-            ->setParameter('startDate', $startDate->format('Y-m-d H:i:s'))
-            ->setParameter('endDate', $endDate->format('Y-m-d H:i:s'))
-            ->getQuery()
-            ->getResult()
-        ;
+        $bookings = $this->bookingRepository->getBookings();
 
         foreach ($bookings as $booking) {
             // this create the events with your own entity (here booking entity) to populate calendar

@@ -1,5 +1,5 @@
 formation:
-  actico: Activité Commerciale
+  activite_commerciale: Activité Commerciale
   annee: Année
   autre: Autre
   action: Action
@@ -7,8 +7,8 @@ formation:
   categories: Catégories
   categorie: Catégorie
   chercher: Chercher
-  confirmation_supprimer_formation: Etes-vous sûr de vouloir supprimer définitivement cette formation ?
-  confirmation_supprimer_passation: Etes-vous sûr de vouloir supprimer définitivement cette passation ?
+  confirmation_supprimer_formation: Êtes-vous sûr de vouloir supprimer définitivement cette formation ?
+  confirmation_supprimer_passation: Êtes-vous sûr de vouloir supprimer définitivement cette passation ?
   communication: Communication
   date: Date
   date_upload: Date de téléchargement
