@@ -1,4 +1,6 @@
-sudo: required
+os: linux
+dist: focal
+language: ruby # travis default, no impact, removes warning at validation
 
 services:
     - docker

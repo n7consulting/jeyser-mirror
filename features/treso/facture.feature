@@ -17,6 +17,7 @@ Feature: Facture
     When I fill in "Exercice Comptable" with "2018"
     When I fill in "Numéro de la Facture" with "3"
     When I fill in "Objet de la Facture" with "Gherkin facture"
+    When I fill in "Prix H.T." with "12"
     And I press "Enregistrer la Facture"
     Then the url should match "/Tresorerie/Facture/3"
     And I should see "Facture ajoutée"
