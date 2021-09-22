@@ -1,0 +1,26 @@
+excel : 
+  danger: Attention
+  etape : Etape 
+  etape1: Télecharger le fichier excel type.
+  etape2: Compléter ce fichier en suivant ces règles
+  etape2_1: - Ne touchez pas à la ligne 1 du tableau, qui indique les données à compléter.
+  etape2_2: - Complétez les lignes suivantes (en respectant les précisions faites dans la ligne 1 si il y en a).
+  etape2_3: - Ne modifiez pas la structure du tableau, sinon l'importation ne fonctionnera pas.
+  etape3: Enregistrer ce fichier (en gardant le format xslx) et mettez le en ligne, en choisissant un nom explicite. 
+  etape3_1: (Par exemple, BDDAlumni, BDDProspect ...)
+  etape4: Appuyer sur le bouton ci-dessous pour importer les données excel sur Jeyser.
+  error: Erreurs lors de l'importation
+  import: Importer des données d'un fichier Excel
+  importer: Importer les données
+  importation : Importation de données
+  mettre_en_ligne: Mettre en ligne
+  no_error : Aucune erreur n'a été commise durant l'importation des données.
+  no_succes : Aucune donnée n'a été importée.
+  presentation : Si vos données sont actuellement stockées sur excel, vous pouvez les importer en utilisant cette méthode.
+  presentation_0: Celle-ci est beaucoup plus rapide, puisqu'il vous suffit de remplir un tableau Excel.
+  presentation_1 : Cependant, certaines migrations peuvent échouer.
+  presentation_2 : Soyez donc attentif et vérifiez le résultat de l'importation.
+  presentation_3 : Dans tous les cas, il est préférable de charger vos données depuis le formulaire de Jeyser.
+  resultat: Résultats de l'importation
+  succes : Liste des données correctement importées
+  telecharger : Télecharger 
