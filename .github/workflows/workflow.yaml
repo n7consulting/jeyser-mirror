@@ -1,0 +1,34 @@
+name: Continuous integration
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Prepare config
+        run: |
+          cp docker-compose.yml.dist docker-compose.yml &&
+          cp .env.dist .env &&
+          cp var/key_value_store/config.json.dist var/key_value_store/config.json &&
+          sed -i "s/REPLACE_WITH_YOUR_EMAIL/jeyser-crm.actions@example.com/g" docker-compose.yml .env
+      - name: Build containers
+        run: docker-compose build
+      - name: Check production settings are working
+        run: docker-compose up -d
+      - name: Clear cache
+        run: sleep 10 && docker-compose run --rm web php bin/console cache:clear -e prod --no-warmup
+      - name: Run initialization step
+        run: docker-compose run --rm web composer install:first
+      - name: Validate database schema
+        run: docker-compose run --rm web php bin/console doctrine:schema:validate --ansi
+      - name: Run tests on test environment
+        run: docker-compose run --rm -e "APP_ENV=dev" web bash -c "composer install && php -d memory_limit=1024M vendor/bin/behat ./features/"
+      - name: Stop
+        run: docker-compose stop
+
